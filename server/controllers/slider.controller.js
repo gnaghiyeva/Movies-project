@@ -2,13 +2,13 @@ const SliderModel = require('../models/slider.model')
 
 const fs = require('fs')
 const path = require('path')
+const imagesDIR = path.join(__dirname, "..")
 
 const sliderController = {
   post: async (req, res) => {
-    const url = req.protocol + '://' + req.get('host');
     const newSlider = new SliderModel({
       name: req.body.name,
-      image: url + '/images/' + req.file.filename,
+      image: req.file.filename,
     });
     await newSlider.save();
     res.status(201).send("created");
@@ -41,18 +41,26 @@ const sliderController = {
 
   delete: async (req, res) => {
     const id = req.params.id;
-    const deletedSlider = await SliderModel.findByIdAndDelete(id);
-    const idx = deletedSlider.image.indexOf("images/")
-    const imageName = deletedSlider.image.substr(idx)
-    await SliderModel.deleteMany({ sliderID: id });
-    fs.unlinkSync('./' + imageName)
-    if (deletedSlider === undefined) {
-      res.status(404).send("slider not found");
-    } else {
+    // console.log(id)
+    try {
+      const deletedSlider = await SliderModel.findOne({_id:id})
+      console.log(deletedSlider)
+      // const idx = deletedSlider.image.indexOf("images/")
+
+      // await SliderModel.deleteMany({ sliderID: id });
+      // sen her kodda eyni sehvi etmisen evvelce emeliyyati gorursen sonra sliderin varligini yoxlayirsan
+
+      const imageName = deletedSlider.image
+      console.log(imagesDIR)
+      fs.unlinkSync(`${imagesDIR}/images/${imageName}`)
+      await SliderModel.findByIdAndDelete(id);
       res.status(203).send({
         data: deletedSlider,
         message: "slider deleted successfully",
       });
+    }
+    catch {
+      res.status(404).send("slider not found");
     }
   },
 
@@ -60,34 +68,33 @@ const sliderController = {
   edit: async (req, res) => {
     try {
       const id = req.params.id;
-      const image = req.file.image
-      console.log(image)
+      const image = req.file.filename
 
-      const existedSlider = await SliderModel.findById(
-        id,
-        { image: image },
-        { new: true }
-      );
-
-      existedSlider.save()
+      const existedSlider = await SliderModel.findOne({_id:id});
+      fs.unlinkSync(`${imagesDIR}/images/${existedSlider.image}`)
       if (!existedSlider) {
         return res.status(404).send("Slider not found!");
       }
+      existedSlider.image = image
 
-      const idx = existedSlider.image.indexOf("images/");
-      const imageName = existedSlider.image.substr(idx);
+      existedSlider.save()
 
-      console.log('IMG URL:', existedSlider.image);
-      console.log('idx:', idx);
-      console.log('Deleted slide:', existedSlider.image);
+
+
+      // const idx = existedSlider.image.indexOf("images/");
+      // const imageName = existedSlider.image.substr(idx);
+
+      // console.log('IMG URL:', existedSlider.image);
+      // console.log('idx:', idx);
+      // console.log('Deleted slide:', existedSlider.image);
 
       res.status(200).send({
-        data: imageName,
+        data: existedSlider, // sen bayaq seklin adina g yazmisdin sonrada deyirdin g hardan gelir
         message: "Slider updated successfully!",
       });
     } catch (error) {
       console.error(error);
-      res.status(500).send("Error updating slider");
+      res.status(404).send("Error updating slider");
     }
 
     // try {
