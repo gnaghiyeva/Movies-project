@@ -1,20 +1,21 @@
-const express = require('express')
+const express = require('express');
 const slider_router = express.Router()
-const sliderController = require('../controllers/slider.controller')
+const sliderController = require('../controllers/slider.controller');
 const upload = require('../helper/upload');
-
+//get All Artists
 slider_router.get('/',sliderController.getAll)
 
-//get Slider by ID
+//get Artist by ID
 slider_router.get('/:id',sliderController.getByID)
 
-//post Slider
-slider_router.post('/',upload.single('imageURL'),sliderController.post)
+//post Artist
+slider_router.post('/',upload.single('image'),sliderController.post)
 
-//delete Slider
+//delete Artist
 slider_router.delete('/:id',sliderController.delete)
 
-//edit Slider
+//edit Artist
 slider_router.put('/:id',sliderController.edit)
+
 
 module.exports = slider_router
