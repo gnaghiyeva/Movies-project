@@ -60,15 +60,16 @@ const sliderController = {
   edit: async (req, res) => {
     try {
       const id = req.params.id;
-      const image = req.body.image
+      const image = req.file.image
       console.log(image)
 
-      const existedSlider = await SliderModel.findByIdAndUpdate(
+      const existedSlider = await SliderModel.findById(
         id,
         { image: image },
         { new: true }
       );
 
+      existedSlider.save()
       if (!existedSlider) {
         return res.status(404).send("Slider not found!");
       }

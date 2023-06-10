@@ -15,7 +15,7 @@ slider_router.post('/',upload.single('image'),sliderController.post)
 slider_router.delete('/:id',sliderController.delete)
 
 //edit Artist
-slider_router.put('/:id',sliderController.edit)
+slider_router.put('/:id',upload.single('image'),sliderController.edit)
 
 
 module.exports = slider_router
