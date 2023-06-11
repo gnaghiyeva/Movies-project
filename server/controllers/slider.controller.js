@@ -5,10 +5,12 @@ const path = require('path')
 const imagesDIR = path.join(__dirname, "..")
 
 const sliderController = {
+  
   post: async (req, res) => {
-    const newSlider = new SliderModel({
+     const url = req.protocol + '://' + req.get('host');
+     const newSlider = new SliderModel({
       name: req.body.name,
-      image: req.file.filename,
+      image:  url + '/images/'+ req.file.filename,
     });
     await newSlider.save();
     res.status(201).send("created");
@@ -39,99 +41,150 @@ const sliderController = {
   },
 
 
+  // delete: async (req, res) => {
+  //   const id = req.params.id;
+  //   // console.log(id)
+  //   try {
+  //     const deletedSlider = await SliderModel.findOne({_id:id})
+  //     console.log(deletedSlider)
+  //     // const idx = deletedSlider.image.indexOf("images/")
+
+  //     // await SliderModel.deleteMany({ sliderID: id });
+  //     // sen her kodda eyni sehvi etmisen evvelce emeliyyati gorursen sonra sliderin varligini yoxlayirsan
+
+  //     const imageName = deletedSlider.image
+  //     console.log(imagesDIR)
+  //     fs.unlinkSync(`${imagesDIR}/images/${imageName}`)
+  //     await SliderModel.findByIdAndDelete(id);
+  //     res.status(203).send({
+  //       data: deletedSlider,
+  //       message: "slider deleted successfully",
+  //     });
+  //   }
+  //   catch {
+  //     res.status(404).send("slider not found");
+  //   }
+  // },
+
+  //from me
   delete: async (req, res) => {
     const id = req.params.id;
-    // console.log(id)
-    try {
-      const deletedSlider = await SliderModel.findOne({_id:id})
-      console.log(deletedSlider)
-      // const idx = deletedSlider.image.indexOf("images/")
-
-      // await SliderModel.deleteMany({ sliderID: id });
-      // sen her kodda eyni sehvi etmisen evvelce emeliyyati gorursen sonra sliderin varligini yoxlayirsan
-
-      const imageName = deletedSlider.image
-      console.log(imagesDIR)
-      fs.unlinkSync(`${imagesDIR}/images/${imageName}`)
-      await SliderModel.findByIdAndDelete(id);
+    const deletedSlider = await SliderModel.findByIdAndDelete(id);
+    const idx = deletedSlider.image.indexOf("images/")
+    const imageName = deletedSlider.image.substr(idx)
+   
+    fs.unlinkSync('./'+imageName)
+    if (deletedSlider === undefined) {
+      res.status(404).send("slider not found");
+    } else {
       res.status(203).send({
         data: deletedSlider,
         message: "slider deleted successfully",
       });
     }
-    catch {
-      res.status(404).send("slider not found");
-    }
+
+
+    
   },
 
 
+  // edit: async (req, res) => {
+  //   try {
+  //     const id = req.params.id;
+  //     const image = req.file.filename
+
+  //     const existedSlider = await SliderModel.findOne({_id:id});
+  //     fs.unlinkSync(`${imagesDIR}/images/${existedSlider.image}`)
+  //     if (!existedSlider) {
+  //       return res.status(404).send("Slider not found!");
+  //     }
+  //     existedSlider.image = image
+
+  //     existedSlider.save()
+
+
+
+  //     // const idx = existedSlider.image.indexOf("images/");
+  //     // const imageName = existedSlider.image.substr(idx);
+
+  //     // console.log('IMG URL:', existedSlider.image);
+  //     // console.log('idx:', idx);
+  //     // console.log('Deleted slide:', existedSlider.image);
+
+  //     res.status(200).send({
+  //       data: existedSlider, // sen bayaq seklin adina g yazmisdin sonrada deyirdin g hardan gelir
+  //       message: "Slider updated successfully!",
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //     res.status(404).send("Error updating slider");
+  //   }
+
+  //   // try {
+  //   //   const id = req.params.id;
+  //   //   const { image } = req.body;
+
+  //   //   const existedSlider = await SliderModel.findById(id,{image:image});
+  //   //   if (!existedSlider) {
+  //   //     return res.status(404).send("Slider not found!");
+  //   //   }
+
+  //   //   const idx = existedSlider.image.indexOf("images/");
+  //   //   const imageName = existedSlider.image.substr(idx);
+  //   //   console.log('guncellenmeden evvel',image)
+
+  //   //   const updatedSlider = await SliderModel.findByIdAndUpdate(
+  //   //     id,
+  //   //     { $set: { image: image } },
+  //   //     { new: true }
+  //   //   );
+
+  //   //   if (!updatedSlider) {
+  //   //     return res.status(500).send("Error updating slider");
+  //   //   }
+
+  //   //   console.log('imageName1',imageName)
+  //   //   fs.unlinkSync('./' + imageName); // Delete the previous image file
+  //   //   console.log('imageName2',imageName)
+
+  //   //   res.status(200).send("Slider updated successfully!");
+
+  //   //   console.log('guncellenmeden evvel',existedSlider)
+  //   // } catch (error) {
+  //   //   console.error(error);
+  //   //   res.status(500).send("Error updating slider");
+  //   // }
+
+  // },
+
+  //from me
   edit: async (req, res) => {
-    try {
-      const id = req.params.id;
-      const image = req.file.filename
-
-      const existedSlider = await SliderModel.findOne({_id:id});
-      fs.unlinkSync(`${imagesDIR}/images/${existedSlider.image}`)
-      if (!existedSlider) {
-        return res.status(404).send("Slider not found!");
-      }
-      existedSlider.image = image
-
-      existedSlider.save()
-
-
-
-      // const idx = existedSlider.image.indexOf("images/");
-      // const imageName = existedSlider.image.substr(idx);
-
-      // console.log('IMG URL:', existedSlider.image);
-      // console.log('idx:', idx);
-      // console.log('Deleted slide:', existedSlider.image);
-
-      res.status(200).send({
-        data: existedSlider, // sen bayaq seklin adina g yazmisdin sonrada deyirdin g hardan gelir
-        message: "Slider updated successfully!",
+    const id = req.params.id;
+    const name = req.body.name
+    const existedSlider = await SliderModel.findByIdAndDelete(id,{name:name});
+    const idx = existedSlider.image.indexOf("images/")
+    const imageName = existedSlider.image.substr(idx)
+   
+    fs.unlinkSync('./'+imageName)
+    if (existedSlider === undefined) {
+      res.status(404).send("slider not found");
+    } else {
+      res.status(203).send({
+        data: existedSlider,
+        message: "slider updated successfully",
       });
-    } catch (error) {
-      console.error(error);
-      res.status(404).send("Error updating slider");
     }
 
-    // try {
-    //   const id = req.params.id;
-    //   const { image } = req.body;
 
-    //   const existedSlider = await SliderModel.findById(id,{image:image});
-    //   if (!existedSlider) {
-    //     return res.status(404).send("Slider not found!");
-    //   }
+    const updatedUrl = req.protocol + '://' + req.get('host');
+    const updatedSlider = new SliderModel({
+      
+      name: req.body.name,
+      image: updatedUrl+'/images/'+ req.file.filename,
+    });
 
-    //   const idx = existedSlider.image.indexOf("images/");
-    //   const imageName = existedSlider.image.substr(idx);
-    //   console.log('guncellenmeden evvel',image)
-
-    //   const updatedSlider = await SliderModel.findByIdAndUpdate(
-    //     id,
-    //     { $set: { image: image } },
-    //     { new: true }
-    //   );
-
-    //   if (!updatedSlider) {
-    //     return res.status(500).send("Error updating slider");
-    //   }
-
-    //   console.log('imageName1',imageName)
-    //   fs.unlinkSync('./' + imageName); // Delete the previous image file
-    //   console.log('imageName2',imageName)
-
-    //   res.status(200).send("Slider updated successfully!");
-
-    //   console.log('guncellenmeden evvel',existedSlider)
-    // } catch (error) {
-    //   console.error(error);
-    //   res.status(500).send("Error updating slider");
-    // }
-
+    await updatedSlider.save();
+   
   },
 
 }

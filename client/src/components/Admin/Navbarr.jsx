@@ -19,7 +19,7 @@ const Navbarr = () => {
          <Link to="/admin/login">Login Admin</Link>
          </> : <>
          <Navbar.Text>
-            Signed in as: <a>{user.username}</a>
+            Signed in as: <p>{user.username}</p>
           </Navbar.Text>
           {user &&  <>
             <Button onClick={async()=>{

@@ -24,3 +24,49 @@ export const getUsers = async(token)=>{
     })
     return users;
 }
+
+
+//sliders
+
+export const getAllSliders = async(name)=>{
+    let URL
+    let globalData
+
+    if(!name){
+        URL = BASE_URL+ "/sliders"
+    }
+    else{
+        URL = BASE_URL + "/sliders/"+`?name=${name}`
+    }
+
+    await axios.get(URL).then((res)=>{
+        globalData=res.data
+    })
+
+    return globalData
+}
+
+
+export const getSliderById = async(id)=>{
+    let globalData;
+    await axios.get(`${BASE_URL}/sliders/${id}`).then((res)=>{
+        globalData=res.data
+        })
+        return globalData
+}
+
+export const deleteSlider = async(id)=>{
+   let deletedSlider
+    await axios.delete(`${BASE_URL}/sliders/${id}`).then((res)=>{
+        deletedSlider=res.data
+    })
+    return deletedSlider
+}
+
+export const editSlider = (id,updatedSlider)=>{
+   axios.put(`${BASE_URL}/sliders/${id}`,updatedSlider)
+}
+
+export const postSlider = (newSlider)=>{
+    axios.post(`${BASE_URL}/sliders`,newSlider)
+}
