@@ -29,6 +29,7 @@ const EditSlider = () => {
   const handleEdit = async(values, actions) => {
         
     setSliders(values);
+    console.log('setsliders',values)
     await editSlider(id,values);
     navigate('/admin/sliders');
     actions.resetForm();
@@ -48,9 +49,9 @@ const EditSlider = () => {
     <>
     {loading ? <div>loading...</div> : <form onSubmit={formik.handleSubmit}>
     <div style={{textAlign:'center',display:'flex', flexDirection:'column',alignItems:'center'}}>
-    <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='name' type='text' value={formik.values.name} id="outlined-basic" label="name" variant="outlined" />
+    {/* <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='name' type='text' value={formik.values.name} id="outlined-basic" label="name" variant="outlined" />
     <br/>
-    {formik.errors.name && formik.touched.name && (<span>{formik.errors.name}</span>)} 
+    {formik.errors.name && formik.touched.name && (<span>{formik.errors.name}</span>)}  */}
    
     {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)} 
   

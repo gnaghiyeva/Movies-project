@@ -41,7 +41,7 @@ const AdminSliders = () => {
           <Card sx={{ maxWidth: 345 }}>
             <CardMedia
               sx={{ height: 140 }}
-              image={slider.imageURL}
+              image={slider.image}
               title="green iguana"
             />
             <CardContent>
