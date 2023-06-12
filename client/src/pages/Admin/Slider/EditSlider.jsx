@@ -34,6 +34,8 @@ const EditSlider = () => {
   await editSlider(id, formData); // Düzenlenmiş slaydı kaydetmek için FormData'yı kullanın
   navigate('/admin/sliders');
   actions.resetForm();
+  
+
   };
 
 
