@@ -13,15 +13,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
+
 const AdminSliders = () => {
   const [sliders, setSliders] = useState([])
-
   useEffect(() => {
     getAllSliders().then((res) => {
       setSliders(res.data)
       console.log(res.data)
     })
-  },[])
+  },[sliders])
   return (
     <>
     <Navbar bg="dark" variant="dark">
