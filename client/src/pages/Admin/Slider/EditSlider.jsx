@@ -27,12 +27,13 @@ const EditSlider = () => {
 
   
   const handleEdit = async(values, actions) => {
-        
-    setSliders(values);
-    console.log('setsliders',values)
-    await editSlider(id,values);
-    navigate('/admin/sliders');
-    actions.resetForm();
+    const formData = new FormData();
+  formData.append('name', values.name);
+  formData.append('image', values.image); // FormData'ya seçilen resmi ekleyin
+
+  await editSlider(id, formData); // Düzenlenmiş slaydı kaydetmek için FormData'yı kullanın
+  navigate('/admin/sliders');
+  actions.resetForm();
   };
 
 
@@ -44,7 +45,18 @@ const EditSlider = () => {
     },
     onSubmit: handleEdit,
   });
-
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+  
+    reader.onload = () => {
+      const base64Image = reader.result;
+      setSelectedImages(base64Image);
+      formik.setFieldValue('image', file); // Seçilen resmi formik değerine atayın
+    };
+  
+    reader.readAsDataURL(file);
+  };
   return (
     <>
     {loading ? <div>loading...</div> : <form onSubmit={formik.handleSubmit}>
@@ -58,17 +70,16 @@ const EditSlider = () => {
      <Button ref={buttonRef} variant="contained" component="label" >
       Edit File
       <input
-      onChange={(e)=>{
-        buttonRef.current.style.background = 'red'
-        buttonRef.current.textContent = e.target.files[0].name;
-        formik.handleChange(e)
-        setSelectedImages(e.target.files[0])
-        console.log(e.target.files[0]);
-      }}
-      onBlur={formik.handleBlur} name='image' type='file' accept="image/*" hidden
-      />
+  onChange={handleImageChange}
+  onBlur={formik.handleBlur}
+  name="image"
+  type="file"
+  accept="image/*"
+  hidden
+/>
     </Button>
-    <img src={formik.values.image} width={100} height={100} alt='logo'/>
+    {/* <img src={formik.values.image} width={100} height={100} alt='logo'/>
+     */}
     {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)} 
     </div>
   
