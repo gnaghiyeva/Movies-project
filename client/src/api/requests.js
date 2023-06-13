@@ -70,3 +70,49 @@ export const editSlider = (id,updatedSlider)=>{
 export const postSlider = (newSlider)=>{
     axios.post(`${BASE_URL}/sliders`,newSlider)
 }
+
+
+//films
+
+export const getAllFilms = async(title)=>{
+    let URL
+    let globalData
+
+    if(!title){
+        URL = BASE_URL+ "/films"
+    }
+    else{
+        URL = BASE_URL + "/films/"+`?title=${title}`
+    }
+
+    await axios.get(URL).then((res)=>{
+        globalData=res.data
+    })
+
+    return globalData
+}
+
+
+export const getFilmById = async(id)=>{
+    let globalData;
+    await axios.get(`${BASE_URL}/films/${id}`).then((res)=>{
+        globalData=res.data
+        })
+        return globalData
+}
+
+export const deleteFilm = async(id)=>{
+   let deletedFilm
+    await axios.delete(`${BASE_URL}/films/${id}`).then((res)=>{
+        deletedFilm=res.data
+    })
+    return deletedFilm
+}
+
+export const editFilm = (id,updatedFilm)=>{
+   axios.put(`${BASE_URL}/films/${id}`,updatedFilm)
+}
+
+export const postFilm = (newFilm)=>{
+    axios.post(`${BASE_URL}/films`,newFilm)
+}

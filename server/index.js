@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 
 const user_router = require('./routes/users.routes');
 const slider_router = require('./routes/slider.routes');
+const category_router = require('./routes/category.routes');
+const film_router = require('./routes/film.routes');
 
 dotenv.config();
 app.use(bodyParser.json());
@@ -34,6 +36,10 @@ app.use('/api', user_router)
 app.use('/api/sliders', slider_router)
 app.use('/images', express.static('images'))
 
+
+app.use('/api/categories', category_router)
+
+app.use('/api/films', film_router)
 
 PORT = process.env.PORT
 app.listen(PORT, () => {
