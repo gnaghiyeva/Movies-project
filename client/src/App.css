@@ -47,3 +47,12 @@ body {
   object-fit: cover;
 }
 
+.button_style{
+  background-color:transparent;
+  border:1px solid yellow;
+  border-radius:25px
+}
+
+.button_style:hover {
+  background-color: yellow;
+}
