@@ -6,6 +6,7 @@ import { ROUTES } from './routes/routes';
 import { UserContextProvider } from './context/UserContext';
 import { SliderContextProvider } from './context/SliderContext';
 import { FilmContextProvider } from './context/FilmContext';
+import { ServiceContextProvider } from './context/ServiceContext';
 function App() {
   const routes = createBrowserRouter(ROUTES)
   return (
@@ -14,9 +15,11 @@ function App() {
    <UserContextProvider>
    <SliderContextProvider>
     <FilmContextProvider>
+      <ServiceContextProvider>
     <RouterProvider router={routes}>
 
     </RouterProvider>
+    </ServiceContextProvider>
     </FilmContextProvider>
     </SliderContextProvider>
    </UserContextProvider>

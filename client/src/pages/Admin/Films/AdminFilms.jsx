@@ -149,6 +149,7 @@ const AdminFilms = () => {
                       <TableCell align="center"><b>Quality</b></TableCell>
                       <TableCell align="center"><b>Minute</b></TableCell>
                       <TableCell align="center"><b>Imdb</b></TableCell>
+                      <TableCell align="center"><b>Category</b></TableCell>
                       <TableCell align="center"><b>Delete</b></TableCell>
                       <TableCell align="center"><b>Edit</b></TableCell>
                     </TableRow>
@@ -168,6 +169,7 @@ const AdminFilms = () => {
                         <TableCell align="center">{film.quality}</TableCell>
                         <TableCell align="center">{film.minute}</TableCell>
                         <TableCell align="center">{film.imdb}</TableCell>
+                        <TableCell align="center">{film.category}</TableCell>
                         <TableCell align="center"><Button variant='contained' color='success' onClick={()=>{
                     Swal.fire({
                       title: 'Are you sure?',

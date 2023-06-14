@@ -4,6 +4,9 @@ import Dashboard from "../pages/Admin/Dashboard/Dashboard";
 import AddFilm from "../pages/Admin/Films/AddFilm";
 import AdminFilms from "../pages/Admin/Films/AdminFilms";
 import EditFilm from "../pages/Admin/Films/EditFilm";
+import AddService from "../pages/Admin/Services/AddService";
+import AdminServices from "../pages/Admin/Services/AdminServices";
+import EditService from "../pages/Admin/Services/EditService";
 import AddSlider from "../pages/Admin/Slider/AddSlider";
 import AdminSliders from "../pages/Admin/Slider/AdminSliders";
 import EditSlider from "../pages/Admin/Slider/EditSlider";
@@ -59,6 +62,20 @@ export const ROUTES = [
                 path:'film/edit/:id',
                 element:<EditFilm/>
             },
+            {
+                path:'services',
+                element:<AdminServices/>
+            },
+            {
+                path:'add-service',
+                element:<AddService/>
+            },
+            {
+                path:'service/edit/:id',
+                element:<EditService/>
+            },
+
+
 
         ]
     }

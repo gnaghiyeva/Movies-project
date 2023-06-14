@@ -116,3 +116,50 @@ export const editFilm = (id,updatedFilm)=>{
 export const postFilm = (newFilm)=>{
     axios.post(`${BASE_URL}/films`,newFilm)
 }
+
+
+//services
+
+
+export const getAllServices = async(title)=>{
+    let URL
+    let globalData
+
+    if(!title){
+        URL = BASE_URL+ "/services"
+    }
+    else{
+        URL = BASE_URL + "/services/"+`?title=${title}`
+    }
+
+    await axios.get(URL).then((res)=>{
+        globalData=res.data
+    })
+
+    return globalData
+}
+
+
+export const getServiceById = async(id)=>{
+    let globalData;
+    await axios.get(`${BASE_URL}/services/${id}`).then((res)=>{
+        globalData=res.data
+        })
+        return globalData
+}
+
+export const deleteService = async(id)=>{
+   let deletedService
+    await axios.delete(`${BASE_URL}/services/${id}`).then((res)=>{
+        deletedService=res.data
+    })
+    return deletedService
+}
+
+export const editService = (id,updatedService)=>{
+   axios.put(`${BASE_URL}/services/${id}`,updatedService)
+}
+
+export const postService = (newService)=>{
+    axios.post(`${BASE_URL}/services`,newService)
+}
