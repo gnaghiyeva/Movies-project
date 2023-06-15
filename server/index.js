@@ -10,6 +10,7 @@ const slider_router = require('./routes/slider.routes');
 const category_router = require('./routes/category.routes');
 const film_router = require('./routes/film.routes');
 const service_router = require('./routes/service.routes');
+const streaming_router = require('./routes/streaming.routes');
 
 dotenv.config();
 app.use(bodyParser.json());
@@ -43,6 +44,8 @@ app.use('/api/categories', category_router)
 app.use('/api/films', film_router)
 
 app.use('/api/services', service_router)
+
+app.use('/api/streamings', streaming_router)
 
 PORT = process.env.PORT
 app.listen(PORT, () => {

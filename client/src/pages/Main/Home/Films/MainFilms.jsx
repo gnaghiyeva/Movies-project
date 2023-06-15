@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getAllFilms } from '../../../api/requests'
+import { getAllFilms } from '../../../../api/requests'
 import Grid from '@mui/material/Grid';
 import { Card, Image } from 'semantic-ui-react'
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';

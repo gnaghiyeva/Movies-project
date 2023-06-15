@@ -5,10 +5,11 @@ import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import "../../../App.css";
-import { getAllSliders } from '../../../api/requests';
+import "../../../../App.css";
+
 import { Button } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { getAllSliders } from '../../../../api/requests';
 const MainSliders = () => {
     const [sliders,setSliders] = useState([]);
     useEffect(()=>{

@@ -10,6 +10,8 @@ import EditService from "../pages/Admin/Services/EditService";
 import AddSlider from "../pages/Admin/Slider/AddSlider";
 import AdminSliders from "../pages/Admin/Slider/AdminSliders";
 import EditSlider from "../pages/Admin/Slider/EditSlider";
+import AdminStreamings from "../pages/Admin/Streaming/AdminStreamings";
+import EditStreaming from "../pages/Admin/Streaming/EditStreaming";
 import Home from "../pages/Main/Home/Home";
 import MainRoot from "../pages/Main/MainRoot";
 
@@ -73,6 +75,14 @@ export const ROUTES = [
             {
                 path:'service/edit/:id',
                 element:<EditService/>
+            },
+            {
+                path:'streamings',
+                element:<AdminStreamings/>
+            },
+            {
+                path:'streaming/edit/:id',
+                element:<EditStreaming/>
             },
 
 

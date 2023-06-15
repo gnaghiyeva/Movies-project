@@ -1,7 +1,7 @@
 import { Button, Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import serviceStyle from '../../../assets/styles/services.module.css'
-import { getAllServices } from '../../../api/requests'
+import serviceStyle from '../../../../assets/styles/services.module.css'
+import { getAllServices } from '../../../../api/requests'
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';

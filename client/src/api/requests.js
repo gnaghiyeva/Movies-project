@@ -163,3 +163,42 @@ export const editService = (id,updatedService)=>{
 export const postService = (newService)=>{
     axios.post(`${BASE_URL}/services`,newService)
 }
+
+
+
+//streaming
+
+export const getAllStreamings = async(title)=>{
+    let URL
+    let globalData
+
+    if(!title){
+        URL = BASE_URL+ "/streamings"
+    }
+    else{
+        URL = BASE_URL + "/streamings/"+`?title=${title}`
+    }
+
+    await axios.get(URL).then((res)=>{
+        globalData=res.data
+    })
+
+    return globalData
+}
+
+
+export const getStreamingById = async(id)=>{
+    let globalData;
+    await axios.get(`${BASE_URL}/streamings/${id}`).then((res)=>{
+        globalData=res.data
+        })
+        return globalData
+}
+
+
+
+export const editStreaming = (id,updatedStreaming)=>{
+   axios.put(`${BASE_URL}/streamings/${id}`,updatedStreaming)
+}
+
+
