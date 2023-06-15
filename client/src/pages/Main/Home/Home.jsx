@@ -4,6 +4,8 @@ import MainFilms from './Films/MainFilms'
 import MainServices from './Services/MainServices'
 import MainMovies from './Movies/MainMovies'
 import MainStreaming from './Streaming/MainStreaming'
+import Recently from './Recently/Recently'
+import HomeContact from './HomeContact/HomeContact'
 
 const Home = () => {
   return (
@@ -13,6 +15,8 @@ const Home = () => {
     <MainServices/>
     <MainMovies/>
     <MainStreaming/>
+    <Recently/>
+    <HomeContact/>
     </>
   )
 }
