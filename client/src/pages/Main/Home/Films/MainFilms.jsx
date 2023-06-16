@@ -5,7 +5,7 @@ import { Card, Image } from 'semantic-ui-react'
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Button } from '@mui/material';
-
+import {motion, AnimatePresence} from 'framer-motion'
 const MainFilms = () => {
   const [films, setFilms] = useState([])
   const [categories, setCategories] = useState([]);
@@ -42,10 +42,10 @@ const MainFilms = () => {
 
   return (
     <section style={{ backgroundColor: '#222', paddingTop: '60px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding:'0 50px' }}>
 
 
-        <article>
+        <article >
           <span style={{ color: 'yellow' }}>ONLINE STREAMING</span>
           <h1 style={{ color: 'white', fontSize: '36px' }}>UPCOMING MOVIES</h1>
         </article>
@@ -82,16 +82,18 @@ const MainFilms = () => {
       </div>
 
 
-      <Grid container spacing={2}>
+
+ 
+      <Grid container spacing={4} style={{margin:'0 auto'}}>
         {films && films.map((film) => {
           return (
-
-
-
             <Grid item xs={6} md={3} key={film._id}>
+            <motion.div animate={{opacity:1}} initial={{opacity:0}} layout>
+            <AnimatePresence>
+             
 
               <Card style={{ backgroundColor: '#222', color: 'white' }}>
-                <Image src={film.image} wrapped ui={false} />
+                <img src={film.image} height={300}  />
                 <Card.Content>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Card.Header>{film.title}</Card.Header>
@@ -135,7 +137,10 @@ const MainFilms = () => {
 
                 </div>
               </Card>
+              </AnimatePresence>
+            </motion.div>
             </Grid>
+           
 
           )
         })}

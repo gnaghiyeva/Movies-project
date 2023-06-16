@@ -19,10 +19,10 @@ const MainStreaming = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCounter((prevCounter) => prevCounter + 1);
-    }, 100); // Her 100ms'de bir counter'ı 1 artır
+    }, 100); 
 
     return () => {
-      clearInterval(interval); // Component unmount olduğunda interval'i temizle
+      clearInterval(interval); 
     };
   }, []);
 
@@ -34,11 +34,12 @@ const MainStreaming = () => {
     setOpenModal(false);
   };
 
-  const youtubeLink = 'https://www.youtube.com/embed/tgbNymZ7vqY';
+  const youtubeLink = 'https://www.youtube.com/watch?v=wdH9x71r0O0';
 
   return (
+    <section style={{padding:'40px 100px'}}>
     <Grid container spacing={2}>
-      <Grid item md={6}>
+      <Grid item md={6} xs={12}>
         <article>
           <h5>Online Streaming</h5>
 
@@ -88,10 +89,11 @@ const MainStreaming = () => {
           </Dialog>
         </article>
       </Grid>
-      <Grid item md={6}>
+      <Grid item md={6} xs={12}>
         <img style={{ width: '100%' }} src={streamingLogo} alt="Streaming Logo" />
       </Grid>
     </Grid>
+    </section>
   )
 }
 

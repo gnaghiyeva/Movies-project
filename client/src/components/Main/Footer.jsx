@@ -12,7 +12,7 @@ const Footer = () => {
     return (
         <footer>
 
-            <div className={footerHome.footer} >
+            <div className={footerHome.footer} style={{padding:'30px 50px'}}>
                 <Grid container spacing={2}>
                     <Grid item xs={6} md={3}>
                         <ul style={{ color: 'white', listStyle: 'none', lineHeight:'2em' }}>
@@ -58,8 +58,8 @@ const Footer = () => {
                 </Grid>
             </div>
 
-            <div style={{display:'flex', justifyContent:'space-between', padding:'15px 0', alignItems:'center', backgroundColor:'#222'}}>
-                <p style={{color:'white'}}>Copyright © 2022 All Rights Reserved By Movflx</p>
+            <div style={{display:'flex', justifyContent:'space-around', padding:'15px 0', alignItems:'center', backgroundColor:'#222'}}>
+                <p style={{color:'gray'}}>Copyright © 2022 All Rights Reserved By Movflx</p>
 
                 <img src={cardsVisa} alt='cards'/>
             </div>

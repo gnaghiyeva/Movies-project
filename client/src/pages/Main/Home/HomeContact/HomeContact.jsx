@@ -9,7 +9,7 @@ const HomeContact = () => {
     const sendEmail = (e) => {
         e.preventDefault();
     
-        emailjs.sendForm('gmail', 'template_2cs8od6', form.current, 'dSgJh36b-64n40_h0')
+        emailjs.sendForm('gmail', 'template_tsi07v3', form.current, 'dSgJh36b-64n40_h0')
           .then((result) => {
               console.log(result.text);
           }, (error) => {
@@ -17,28 +17,25 @@ const HomeContact = () => {
           });
       };
   return (
-    <section className={homeContact.contact} style={{padding:'30px 0', display:'flex', alignItems:'center'}}>
-
-<Grid container spacing={2}>
-  <Grid item md={6}>
-    <article>
-        <h1>TRIAL START FIRST 30 DAYS.</h1>
-        <p>Enter your email to create or restart your membership.</p>
-    </article>
-  </Grid>
-  <Grid item md={6}>
- 
- 
-  <form ref={form} onSubmit={sendEmail} style={{display:'flex', flexDirection:'column', width:'30%', margin:'0 auto'}}>
-    <div style={{display:'flex'}}>
-      <TextField type='email' name='email'  id="outlined-basic" label="title" variant="outlined" /><br/>
-      <Button variant='contained' color='success' type="submit" value="Send">Send</Button>
-    </div>   
-    </form>
-  </Grid>
- 
-</Grid>
-    </section>
+    <section className={homeContact.contact} style={{padding: '30px 60px', textAlign: 'center'}}>
+    <Grid container spacing={2}>
+      <Grid item md={6} xs={12}>
+        <article>
+          <h1>TRIAL START FIRST 30 DAYS.</h1>
+          <p>Enter your email to create or restart your membership.</p>
+        </article>
+      </Grid>
+      <Grid item md={6} xs={12}>
+        <form ref={form} onSubmit={sendEmail} style={{display: 'flex', flexDirection: 'column'}}>
+          <div style={{display: 'flex'}}>
+            <TextField name="message" /><br/>
+            <Button variant='contained' color='success' type="submit" value="Send">Send</Button>
+          </div>   
+        </form>
+      </Grid>
+    </Grid>
+  </section>
+  
   )
 }
 

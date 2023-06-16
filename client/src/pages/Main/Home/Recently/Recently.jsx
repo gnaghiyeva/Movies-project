@@ -27,19 +27,19 @@ const Recently = () => {
   return (
     <section style={{ backgroundColor: '#222', paddingTop: '60px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <article>
+        <article style={{margin:'0 auto', textAlign:'center'}}>
           <span style={{ color: 'yellow' }}>ONLINE STREAMING</span>
-          <h1 style={{ color: 'white', fontSize: '36px' }}>UPCOMING MOVIES</h1>
+          <h1 style={{ color: 'white', fontSize: '36px' }}>RECENTLY ADDED MOVIES</h1>
         </article>
       </div>
 
-      <Grid container spacing={2}>
+      <Grid container spacing={4} style={{margin:'0 auto'}}>
         {films &&
           films.map((film) => {
             return (
               <Grid item xs={6} md={3} key={film._id}>
                 <Card style={{ backgroundColor: '#222', color: 'white' }}>
-                  <Image src={film.image} wrapped ui={false} />
+                  <img src={film.image} height={300} />
                   <Card.Content>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <Card.Header>{film.title}</Card.Header>
