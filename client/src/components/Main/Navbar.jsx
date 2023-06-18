@@ -84,7 +84,7 @@ const Navbar = () => {
           <ul style={{display:'flex', gap:'40px', listStyle:'none'}}>
             <li><Link to='/' style={{color:'white', textDecoration:'none'}}>HOME</Link></li>
             <li><Link to='/movie' style={{color:'white', textDecoration:'none'}}>MOVIE</Link></li>
-            <li><Link style={{color:'white', textDecoration:'none'}}>PRICING</Link></li>
+            <li><Link to='/pricings' style={{color:'white', textDecoration:'none'}}>PRICING</Link></li>
             <li><Link style={{color:'white', textDecoration:'none'}}>BLOG</Link></li>
             <li><Link style={{color:'white', textDecoration:'none'}}>CONTACT</Link></li>
           </ul>

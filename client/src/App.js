@@ -8,26 +8,32 @@ import { SliderContextProvider } from './context/SliderContext';
 import { FilmContextProvider } from './context/FilmContext';
 import { ServiceContextProvider } from './context/ServiceContext';
 import { StreamingContextProvider } from './context/StreamingContext';
+import { PricingContextProvider } from './context/PricingContext';
+import { PricingStrategyProvider } from './context/PricingStrategy';
 function App() {
   const routes = createBrowserRouter(ROUTES)
   return (
-   <>
-  
-   <UserContextProvider>
-   <SliderContextProvider>
-    <FilmContextProvider>
-      <ServiceContextProvider>
-        <StreamingContextProvider>
-    <RouterProvider router={routes}>
+    <>
 
-    </RouterProvider>
-    </StreamingContextProvider>
-    </ServiceContextProvider>
-    </FilmContextProvider>
-    </SliderContextProvider>
-   </UserContextProvider>
-   
-   </>
+      <UserContextProvider>
+        <SliderContextProvider>
+          <FilmContextProvider>
+            <ServiceContextProvider>
+              <StreamingContextProvider>
+                <PricingContextProvider>
+                  <PricingStrategyProvider>
+                    <RouterProvider router={routes}>
+
+                    </RouterProvider>
+                  </PricingStrategyProvider>
+                </PricingContextProvider>
+              </StreamingContextProvider>
+            </ServiceContextProvider>
+          </FilmContextProvider>
+        </SliderContextProvider>
+      </UserContextProvider>
+
+    </>
   );
 }
 

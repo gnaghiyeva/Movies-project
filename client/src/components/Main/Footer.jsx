@@ -8,6 +8,7 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import footerHome from '../../assets/styles/footer.module.css'
 import cardsVisa from '../../assets/images/card_img.png'
+import {Link} from 'react-router-dom'
 const Footer = () => {
     return (
         <footer>
@@ -47,10 +48,10 @@ const Footer = () => {
                         <ul style={{ color: 'white', listStyle: 'none' , lineHeight:'2.5em'  }}>
                             <li><h2>Follow us</h2></li>
                             <div style={{display:'flex', gap:'15px'}}>
-                            <li><FacebookIcon style={{ color: 'rgb(59,89,152)', fontSize: '45px' }} /></li>
-                            <li><TwitterIcon style={{ color: 'rgb(85,172,238)', fontSize: '45px' }} /></li>
-                            <li><PinterestIcon style={{ color: 'rgb(215,30,24)', fontSize: '45px' }} /></li>
-                            <li><LinkedInIcon style={{ color: 'rgb(21,101,192)', fontSize: '45px' }} /></li>
+                            <li><Link to='https://www.facebook.com/ColorsTV/'><FacebookIcon style={{ color: 'rgb(59,89,152)', fontSize: '45px' }} /></Link></li>
+                            <li><Link to='https://twitter.com/ColorsTV?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'><TwitterIcon style={{ color: 'rgb(85,172,238)', fontSize: '45px' }} /></Link></li>
+                            <li><Link to='https://in.pinterest.com/ColorsTv/'><PinterestIcon style={{ color: 'rgb(215,30,24)', fontSize: '45px' }} /></Link></li>
+                            <li><Link to='https://www.linkedin.com/company/colorstv'><LinkedInIcon style={{ color: 'rgb(21,101,192)', fontSize: '45px' }} /></Link></li>
                             </div>
                         </ul>
 

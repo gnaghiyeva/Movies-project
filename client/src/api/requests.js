@@ -202,3 +202,86 @@ export const editStreaming = (id,updatedStreaming)=>{
 }
 
 
+
+//pricing plans
+
+export const getAllPricings = async(className)=>{
+    let URL
+    let globalData
+
+    if(!className){
+        URL = BASE_URL+ "/pricings"
+    }
+    else{
+        URL = BASE_URL + "/pricings/"+`?classname=${className}`
+    }
+
+    await axios.get(URL).then((res)=>{
+        globalData=res.data
+    })
+
+    return globalData
+}
+
+
+export const getPricingById = async(id)=>{
+    let globalData;
+    await axios.get(`${BASE_URL}/pricings/${id}`).then((res)=>{
+        globalData=res.data
+        })
+        return globalData
+}
+
+
+
+export const editPricing = (id,updatedPricing)=>{
+   axios.put(`${BASE_URL}/pricings/${id}`,updatedPricing)
+}
+
+//pricingSliders
+
+
+
+export const getAllPricingSliders = async(name)=>{
+    let URL
+    let globalData
+
+    if(!name){
+        URL = BASE_URL+ "/pricingSliders"
+    }
+    else{
+        URL = BASE_URL + "/pricingSliders/"+`?name=${name}`
+    }
+
+    await axios.get(URL).then((res)=>{
+        globalData=res.data
+    })
+
+    return globalData
+}
+
+
+export const getPricingSliderById = async(id)=>{
+    let globalData;
+    await axios.get(`${BASE_URL}/pricingSliders/${id}`).then((res)=>{
+        globalData=res.data
+        })
+        return globalData
+}
+
+export const deletePricingSlider = async(id)=>{
+   let deletedPricingSlider
+    await axios.delete(`${BASE_URL}/pricingSliders/${id}`).then((res)=>{
+        deletedPricingSlider=res.data
+    })
+    return deletedPricingSlider
+}
+
+export const editPricingSlider = (id,updatedPricingSlider)=>{
+   axios.put(`${BASE_URL}/pricingSliders/${id}`,updatedPricingSlider)
+}
+
+export const postPricingSlider = (newPricingSlider)=>{
+    axios.post(`${BASE_URL}/pricingSliders`,newPricingSlider)
+}
+

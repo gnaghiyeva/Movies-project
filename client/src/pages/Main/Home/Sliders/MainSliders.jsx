@@ -10,6 +10,7 @@ import "../../../../App.css";
 import { Button } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { getAllSliders } from '../../../../api/requests';
+import {Link} from 'react-router-dom'
 const MainSliders = () => {
     const [sliders,setSliders] = useState([]);
     useEffect(()=>{
@@ -33,7 +34,7 @@ const MainSliders = () => {
     e.target.style.backgroundColor = 'transparent';
     e.target.style.color = 'white';
   }}>
-           <PlayArrowIcon/> WATCH NOW
+           <PlayArrowIcon/> <Link style={{color:'black'}} to='/movie'>WATCH NOW</Link> 
           </Button>
           </article>
         </SwiperSlide>

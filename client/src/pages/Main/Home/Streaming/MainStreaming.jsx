@@ -34,7 +34,7 @@ const MainStreaming = () => {
     setOpenModal(false);
   };
 
-  const youtubeLink = 'https://www.youtube.com/watch?v=wdH9x71r0O0';
+  const youtubeLink = 'https://www.youtube.com/embed/hZGR5Sj1Bfo';
 
   return (
     <section style={{padding:'40px 100px'}}>
