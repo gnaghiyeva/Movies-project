@@ -1,0 +1,166 @@
+import React, { useEffect, useState } from 'react'
+import { getAllFilms } from '../../../../api/requests';
+import Grid from '@mui/material/Grid';
+import { Card, Image } from 'semantic-ui-react';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { Button } from '@mui/material';
+import { motion, AnimatePresence } from 'framer-motion'
+const NewMovie = () => {
+    const [films, setFilms] = useState([])
+    const [categories, setCategories] = useState([]);
+    const [allFilms, setAllFilms] = useState([]);
+    const [activeButton, setActiveButton] = useState('');
+  useEffect(() => {
+    getAllFilms().then((res) => {
+      const formattedFilms = res.data.filter((film) => {
+        const releaseDate = new Date(film.releaseDate);
+        const currentDate = new Date();
+        return releaseDate > currentDate;
+      });
+      setFilms(formattedFilms);
+      setAllFilms(formattedFilms); 
+
+      const uniqueCategories = [...new Set(formattedFilms.map((film) => film.category))];
+      setCategories(uniqueCategories);
+    });
+  }, []);
+
+  // useEffect(() => {
+  //     getAllFilms().then((res) => {
+  //       const formattedFilms = res.data;
+  
+  //       // Son eklenen 8 filmi al
+  //       const recentlyAddedFilms = formattedFilms
+  //         .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
+  //         .slice(0, 4);
+  
+  //       setAllFilms(formattedFilms);
+  //       setFilms(recentlyAddedFilms);
+  //     });
+  //   }, []);
+
+  const handleCategoryFilter = (category) => {
+    setActiveButton(category); 
+
+    if (category === 'All Movies') {
+      setFilms(allFilms); 
+    } else {
+      const filtered = allFilms.filter((film) => {
+        return film.category && film.category.includes(category);
+      });
+      setFilms(filtered);
+    }
+  };
+  return (
+    <section style={{ backgroundColor: '#222', paddingTop: '60px' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding:'0 50px' }}>
+
+
+      <article >
+        <span style={{ color: 'yellow' }}>ONLINE STREAMING</span>
+        <h1 style={{ color: 'white', fontSize: '36px' }}>New Release Movies</h1>
+      </article>
+
+      {/* <div>
+
+
+     <Button onClick={() => handleCategoryFilter('Action')}>Action</Button>
+      <Button onClick={() => handleCategoryFilter('Comedy')}>Comedy</Button>
+      <Button onClick={() => handleCategoryFilter('Horror')}>Horror</Button>
+
+    </div> */}
+
+
+      <div>
+        <Button
+          className={activeButton === 'All Movies' ? 'active' : ''}
+          onClick={() => handleCategoryFilter('All Movies')}
+          style={{ border: activeButton === 'All Movies' ? '1px solid yellow' : '' }}
+        >
+          All Movies
+        </Button>
+        {categories.map((category) => (
+          <Button
+            key={category}
+            className={activeButton === category ? 'active' : ''}
+            onClick={() => handleCategoryFilter(category)}
+            style={{ border: activeButton === category ? '1px solid yellow' : '' }}
+          >
+            {category}
+          </Button>
+        ))}
+      </div>
+    </div>
+
+
+
+
+    <Grid container spacing={4} style={{margin:'0 auto'}}>
+      {films && films.map((film) => {
+        return (
+          <Grid item xs={6} md={3} key={film._id}>
+          <motion.div animate={{opacity:1}} initial={{opacity:0}} layout>
+          <AnimatePresence>
+           
+
+            <Card style={{ backgroundColor: '#222', color: 'white' }}>
+              <img src={film.image} height={300}  />
+              <Card.Content>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Card.Header>{film.title}</Card.Header>
+                  <Card.Meta>
+                    <span className='date' style={{ color: 'white' }}>{film.releaseDate}</span>
+                  </Card.Meta>
+                </div>
+                <br />
+
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Card.Description>
+                    <span style={{ border: '1px solid yellow', padding: '5px 15px' }}>
+                      {film.quality}
+                    </span>
+                  </Card.Description>
+
+                  <div style={{ display: 'flex', gap: '15px' }}>
+                    <Card.Description>
+                      <span style={{ display: 'flex', alignItems: 'center' }}>
+                        <AccessTimeIcon />  {film.minute} min
+                      </span>
+                    </Card.Description>
+                    <Card.Description>
+                      <span style={{ display: 'flex', alignItems: 'center' }}>
+                        <ThumbUpIcon /> {film.imdb}
+                      </span>
+                    </Card.Description>
+
+                  </div>
+
+                </div>
+              </Card.Content>
+
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+
+                </div>
+
+
+
+
+              </div>
+            </Card>
+            </AnimatePresence>
+          </motion.div>
+          </Grid>
+         
+
+        )
+      })}
+
+    </Grid>
+
+  </section>
+  )
+}
+
+export default NewMovie

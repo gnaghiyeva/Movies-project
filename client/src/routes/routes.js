@@ -14,6 +14,9 @@ import AdminStreamings from "../pages/Admin/Streaming/AdminStreamings";
 import EditStreaming from "../pages/Admin/Streaming/EditStreaming";
 import Home from "../pages/Main/Home/Home";
 import MainRoot from "../pages/Main/MainRoot";
+import Movie from "../pages/Main/Movie/Movie";
+
+
 
 export const ROUTES = [
     {
@@ -24,6 +27,11 @@ export const ROUTES = [
                 path:'',
                 element:<Home/>
             },
+            {
+                path:'movie',
+                element:<Movie/>
+            }
+            
             
 
         ]
