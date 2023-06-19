@@ -31,6 +31,23 @@ const FilmController = {
         })
     },
 
+    // getAll: async (req, res) => {
+    //     const {title} = req.query
+    //     const Films = await FilmModel.find();
+    //     if(!title){
+    //         res.status(200).send({
+    //             data:Films,
+    //             message:'card get successfully'
+    //         })
+    //     }
+    //     else{
+    //         res.status(200).send({
+    //             data:Films.filter((x)=>x.title.toLowerCase().trim().includes(title.toLowerCase().trim())),
+    //             message:'card get succesfully'
+    //         })
+    //     }
+    // },
+
     getByID: async (req, res) => {
         const id = req.params.id;
         FilmModel.findById(id).then((film) => {

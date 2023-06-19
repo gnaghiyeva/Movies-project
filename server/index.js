@@ -13,6 +13,7 @@ const service_router = require('./routes/service.routes');
 const streaming_router = require('./routes/streaming.routes');
 const pricing_router = require('./routes/pricing.routes');
 const pricingSlider_router = require('./routes/pricingSlider.routes');
+const upcomingVideo_router = require('./routes/upcomingVideo.routes');
 
 dotenv.config();
 app.use(bodyParser.json());
@@ -39,7 +40,7 @@ app.get('/api', (req, res) => {
 app.use('/api', user_router)
 app.use('/api/sliders', slider_router)
 app.use('/images', express.static('images'))
-
+app.use('/videos', express.static('videos'))
 
 app.use('/api/categories', category_router)
 
@@ -52,6 +53,8 @@ app.use('/api/streamings', streaming_router)
 app.use('/api/pricings', pricing_router)
 
 app.use('/api/pricingSliders', pricingSlider_router)
+
+app.use('/api/upcomingvideos', upcomingVideo_router)
 
 PORT = process.env.PORT
 app.listen(PORT, () => {

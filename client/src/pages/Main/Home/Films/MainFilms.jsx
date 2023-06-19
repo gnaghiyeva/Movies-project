@@ -6,6 +6,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Button } from '@mui/material';
 import {motion, AnimatePresence} from 'framer-motion'
+import {Link} from 'react-router-dom'
 const MainFilms = () => {
   const [films, setFilms] = useState([])
   const [categories, setCategories] = useState([]);
@@ -96,7 +97,7 @@ const MainFilms = () => {
                 <img src={film.image} height={300}  />
                 <Card.Content>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Card.Header>{film.title}</Card.Header>
+                    <Card.Header><Link to={`/film/${film._id}`}>{film.title}</Link></Card.Header>
                     <Card.Meta>
                       <span className='date' style={{ color: 'white' }}>{film.releaseDate}</span>
                     </Card.Meta>

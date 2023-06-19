@@ -9,6 +9,9 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import footerHome from '../../assets/styles/footer.module.css'
 import cardsVisa from '../../assets/images/card_img.png'
 import {Link} from 'react-router-dom'
+import EditLocationIcon from '@mui/icons-material/EditLocation';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
+import DraftsIcon from '@mui/icons-material/Drafts';
 const Footer = () => {
     return (
         <footer>
@@ -19,9 +22,9 @@ const Footer = () => {
                         <ul style={{ color: 'white', listStyle: 'none', lineHeight:'2em' }}>
                             <li><img width={200} src={Movflix} alt='logo' /></li>
                             <li>Movflx Online the relase etras thats sheets continig passag.</li>
-                            <li> Address : PO Box W75 Street</li>
-                            <li>Phone : +24 1245 654 235</li>
-                            <li>Email : info@exemple.com</li>
+                            <li> <EditLocationIcon/> Address : PO Box W75 Street</li>
+                            <li><HeadphonesIcon/>  Phone : +24 1245 654 235</li>
+                            <li><DraftsIcon/>  Email : info@exemple.com</li>
                         </ul>
                     </Grid>
 

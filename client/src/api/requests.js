@@ -73,7 +73,6 @@ export const postSlider = (newSlider)=>{
 
 
 //films
-
 export const getAllFilms = async(title)=>{
     let URL
     let globalData
@@ -119,8 +118,6 @@ export const postFilm = (newFilm)=>{
 
 
 //services
-
-
 export const getAllServices = async(title)=>{
     let URL
     let globalData
@@ -167,7 +164,6 @@ export const postService = (newService)=>{
 
 
 //streaming
-
 export const getAllStreamings = async(title)=>{
     let URL
     let globalData
@@ -195,11 +191,12 @@ export const getStreamingById = async(id)=>{
         return globalData
 }
 
-
-
 export const editStreaming = (id,updatedStreaming)=>{
    axios.put(`${BASE_URL}/streamings/${id}`,updatedStreaming)
 }
+
+
+
 
 
 
@@ -285,3 +282,49 @@ export const postPricingSlider = (newPricingSlider)=>{
     axios.post(`${BASE_URL}/pricingSliders`,newPricingSlider)
 }
 
+
+
+
+//upcomingVideos
+export const getAllUpcomingVideos = async(desc)=>{
+    let URL
+    let globalData
+
+    if(!desc){
+        URL = BASE_URL+ "/upcomingvideos"
+    }
+    else{
+        URL = BASE_URL + "/upcomingvideos/"+`?desc=${desc}`
+    }
+
+    await axios.get(URL).then((res)=>{
+        globalData=res.data
+    })
+
+    return globalData
+}
+
+
+export const getUpcomingVideoById = async(id)=>{
+    let globalData;
+    await axios.get(`${BASE_URL}/upcomingvideos/${id}`).then((res)=>{
+        globalData=res.data
+        })
+        return globalData
+}
+
+export const deleteUpcomingVideo = async(id)=>{
+   let deletedUpcomingVideo
+    await axios.delete(`${BASE_URL}/upcomingvideos/${id}`).then((res)=>{
+        deletedUpcomingVideo=res.data
+    })
+    return deletedUpcomingVideo
+}
+
+export const editUpcomingVideo = (id,updatedUpcomingVideo)=>{
+   axios.put(`${BASE_URL}/upcomingvideos/${id}`,updatedUpcomingVideo)
+}
+
+export const postUpcomingVideo = (newUpcomingVideo)=>{
+    axios.post(`${BASE_URL}/upcomingvideos`,newUpcomingVideo)
+}

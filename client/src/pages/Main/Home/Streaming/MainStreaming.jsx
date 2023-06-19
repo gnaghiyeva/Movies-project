@@ -78,7 +78,7 @@ const MainStreaming = () => {
             <DialogTitle>YouTube Video</DialogTitle>
             <DialogContent>
               <iframe
-                width="100%"
+                width="560"
                 height="315"
                 src={youtubeLink}
                 allow="autoplay; encrypted-media"
