@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { getAllFilms } from '../../../../api/requests';
 import Grid from '@mui/material/Grid';
-import { Card, Image } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Button } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom';
 const NewMovie = () => {
     const [films, setFilms] = useState([])
     const [categories, setCategories] = useState([]);
@@ -30,7 +31,7 @@ const NewMovie = () => {
   //     getAllFilms().then((res) => {
   //       const formattedFilms = res.data;
   
-  //       // Son eklenen 8 filmi al
+ 
   //       const recentlyAddedFilms = formattedFilms
   //         .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
   //         .slice(0, 4);
@@ -105,10 +106,10 @@ const NewMovie = () => {
            
 
             <Card style={{ backgroundColor: '#222', color: 'white' }}>
-              <img src={film.image} height={300}  />
+              <img src={film.image} height={300} alt='film_photo'  />
               <Card.Content>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <Card.Header>{film.title}</Card.Header>
+                  <Card.Header><Link to={`/film/${film._id}`}>{film.title}</Link></Card.Header>
                   <Card.Meta>
                     <span className='date' style={{ color: 'white' }}>{film.releaseDate}</span>
                   </Card.Meta>
@@ -143,9 +144,6 @@ const NewMovie = () => {
                 <div style={{ display: 'flex', alignItems: 'center' }}>
 
                 </div>
-
-
-
 
               </div>
             </Card>
