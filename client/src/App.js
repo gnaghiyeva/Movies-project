@@ -10,6 +10,7 @@ import { ServiceContextProvider } from './context/ServiceContext';
 import { StreamingContextProvider } from './context/StreamingContext';
 import { PricingContextProvider } from './context/PricingContext';
 import { PricingStrategyProvider } from './context/PricingStrategy';
+import { DetailContextProvider } from './context/DetailContext';
 function App() {
   const routes = createBrowserRouter(ROUTES)
   return (
@@ -22,9 +23,11 @@ function App() {
               <StreamingContextProvider>
                 <PricingContextProvider>
                   <PricingStrategyProvider>
-                    <RouterProvider router={routes}>
+                    <DetailContextProvider>
+                      <RouterProvider router={routes}>
 
-                    </RouterProvider>
+                      </RouterProvider>
+                    </DetailContextProvider>
                   </PricingStrategyProvider>
                 </PricingContextProvider>
               </StreamingContextProvider>

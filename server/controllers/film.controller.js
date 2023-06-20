@@ -2,6 +2,7 @@ const FilmModel = require('../models/film.model')
 
 const fs = require('fs')
 const path = require('path')
+const UpcomingVideoModel = require('../models/upcomingVideo.model')
 const imagesDIR = path.join(__dirname, "..")
 
 const FilmController = {
@@ -93,6 +94,7 @@ const FilmController = {
     delete: async (req, res) => {
         const id = req.params.id;
         const deletedFilm = await FilmModel.findByIdAndDelete(id);
+        await UpcomingVideoModel.deleteMany({ filmID: id });
         const idx = deletedFilm.image.indexOf("images/")
         const imageName = deletedFilm.image.substr(idx)
 

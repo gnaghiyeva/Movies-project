@@ -143,6 +143,7 @@ const AdminFilms = () => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                   <TableHead>
                     <TableRow>
+                    <TableCell><b>ID</b></TableCell>
                       <TableCell><b>Image</b></TableCell>
                       <TableCell align="center"><b>Title</b></TableCell>
                       <TableCell align="center"><b>Release Date</b></TableCell>
@@ -160,11 +161,12 @@ const AdminFilms = () => {
                         key={film._id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                       >
+                           <TableCell align="center">{film._id}</TableCell>
                         <TableCell component="th" scope="row">
                           <img width={200} src={film.image} alt='logo'/>
                           
                         </TableCell>
-                        <TableCell align="center">{film.title}</TableCell>
+                        <TableCell align="center"><Link to={`/admin/film/${film._id}`}>{film.title}</Link></TableCell>
                         <TableCell align="center">{film.releaseDate}</TableCell>
                         <TableCell align="center">{film.quality}</TableCell>
                         <TableCell align="center">{film.minute}</TableCell>

@@ -1,6 +1,9 @@
 import AdminLogin from "../pages/Admin/AdminLogin";
 import AdminRoot from "../pages/Admin/AdminRoot";
 import Dashboard from "../pages/Admin/Dashboard/Dashboard";
+import AddDetailVideo from "../pages/Admin/Detail/AddDetailVideo";
+import AdminDetail from "../pages/Admin/Detail/AdminDetail";
+import EditDetail from "../pages/Admin/Detail/EditDetail";
 import AddFilm from "../pages/Admin/Films/AddFilm";
 import AdminFilms from "../pages/Admin/Films/AdminFilms";
 import EditFilm from "../pages/Admin/Films/EditFilm";
@@ -90,10 +93,21 @@ export const ROUTES = [
                 element:<AddFilm/>
             },
             {
+                path:'add-video',
+                element:<AddDetailVideo/>
+            },
+            {
                 path:'film/edit/:id',
                 element:<EditFilm/>
             },
-            
+            {
+                path:'film/:id',
+                element:<AdminDetail/>
+            },
+            {
+                path:'videoDetail/edit/:id',
+                element:<EditDetail/>
+            },
             {
                 path:'services',
                 element:<AdminServices/>
