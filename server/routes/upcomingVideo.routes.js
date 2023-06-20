@@ -1,7 +1,7 @@
 const express = require('express');
 const upcomingVideo_router = express.Router()
 const UpcomingVideoController = require('../controllers/upcomingVideos.controller');
-const upload = require('../helper/upload');
+const upload = require('../helper/videoupload');
 //get All Artists
 upcomingVideo_router.get('/',UpcomingVideoController.getAll)
 
