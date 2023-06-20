@@ -7,6 +7,7 @@ import { Divider } from '@mui/material';
 import EditLocationIcon from '@mui/icons-material/EditLocation';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import DraftsIcon from '@mui/icons-material/Drafts';
+import bigContactStyle from '../../../../assets/styles/bigContact.module.css'
 const BigContact = () => {
     const form = useRef();
 
@@ -33,9 +34,9 @@ const BigContact = () => {
                     <form ref={form} onSubmit={sendEmail} style={{ display: 'flex', flexDirection: 'column', border: '1px solid gray' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', padding: '15px 20px' }}>
 
-                            <TextField style={{ backgroundColor: 'rgb(31,30,36,1)', color: 'white' }} name="message" placeholder='name'></TextField> <br />
-                            <TextField style={{ backgroundColor: 'rgb(31,30,36,1)', color: 'white' }} name="message" placeholder='surname'></TextField> <br />
-                            <TextField style={{ backgroundColor: 'rgb(31,30,36,1)', color: 'white' }} name="message" placeholder='subject' ></TextField> <br />
+                            <TextField sx={{ input: { color: 'white' } }} style={{ backgroundColor: 'rgb(31,30,36,1)' }}  name="message" placeholder='name'></TextField> <br />
+                            <TextField sx={{ input: { color: 'white' } }} style={{ backgroundColor: 'rgb(31,30,36,1)' }} name="message" placeholder='surname'></TextField> <br />
+                            <TextField sx={{ input: { color: 'white' } }} style={{ backgroundColor: 'rgb(31,30,36,1)'}} name="message" placeholder='subject' ></TextField> <br />
                             <TextareaAutosize style={{ backgroundColor: 'rgb(31,30,36,1)', color: 'white', height: '100px' }} name="message" /><br />
                             <Button style={{ width: '20%', backgroundColor: 'transparent', border: '1px solid yellow', padding: '16px 15px', borderRadius: '20px' }} variant='contained' color='success' type="submit" value="Send">Send Message</Button>
                         </div>
