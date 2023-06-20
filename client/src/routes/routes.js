@@ -18,6 +18,7 @@ import AdminSliders from "../pages/Admin/Slider/AdminSliders";
 import EditSlider from "../pages/Admin/Slider/EditSlider";
 import AdminStreamings from "../pages/Admin/Streaming/AdminStreamings";
 import EditStreaming from "../pages/Admin/Streaming/EditStreaming";
+import Contact from "../pages/Main/Contact/Contact";
 import MainFilmDetail from "../pages/Main/Home/Films/MainFilmDetail";
 import Home from "../pages/Main/Home/Home";
 import MainRoot from "../pages/Main/MainRoot";
@@ -46,6 +47,10 @@ export const ROUTES = [
             {
                 path:'film/:id',
                 element:<MainFilmDetail/>
+            },
+            {
+                path:'contact',
+                element:<Contact/>
             }
             
             

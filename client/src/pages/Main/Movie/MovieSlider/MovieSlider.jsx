@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 
 import "../../../../App.css";
 import { getAllPricingSliders } from '../../../../api/requests';
+import { Link } from 'react-router-dom';
 
 const MovieSlider = () => {
     const [pricingSliders,setPricingSliders] = useState([]);
@@ -21,9 +22,8 @@ const MovieSlider = () => {
     {pricingSliders && pricingSliders.map((pricingSlider) => (
       <SwiperSlide key={pricingSlider._id} style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${pricingSlider.image})` ,backgroundSize: 'cover', backgroundPosition: 'center'}}>
         <article style={{textAlign:'center', padding:'300px 40px'}}>
-        <h3 style={{color:'yellow'}}>MOVFLX</h3>
         <h1 style={{color:'white', fontWeight:'900', fontSize:'60px',lineHeight: '1.2'}}>OUR MOVIES</h1>
-        
+        <h4 style={{color:'white'}}><Link to='/' style={{color:'yellow'}}>HOME</Link> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;  OUR MOVIES</h4>
         
        
         </article>

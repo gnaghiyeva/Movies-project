@@ -6,12 +6,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import "../../../../App.css";
-
 import { getAllPricingSliders } from '../../../../api/requests';
 import { Link } from 'react-router-dom';
 
-const PricingPlan = () => {
-  const [pricingSliders,setPricingSliders] = useState([]);
+const ContactSlider = () => {
+    const [pricingSliders,setPricingSliders] = useState([]);
     useEffect(()=>{
        getAllPricingSliders().then((res)=>{
         setPricingSliders(res.data)
@@ -23,8 +22,9 @@ const PricingPlan = () => {
     {pricingSliders && pricingSliders.map((pricingSlider) => (
       <SwiperSlide key={pricingSlider._id} style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${pricingSlider.image})` ,backgroundSize: 'cover', backgroundPosition: 'center'}}>
         <article style={{textAlign:'center', padding:'300px 40px'}}>
-        <h1 style={{color:'white', fontWeight:'900', fontSize:'60px',lineHeight: '1.2'}}>PRICING PLAN</h1>
-        <h4 style={{color:'white'}}><Link to='/' style={{color:'yellow'}}>HOME</Link> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;  PRICING PLAN</h4>
+        <h1 style={{color:'white', fontWeight:'900', fontSize:'60px',lineHeight: '1.2'}}>CONTACT</h1>
+        <h4 style={{color:'white'}}><Link to='/' style={{color:'yellow'}}>HOME</Link> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;  CONTACT</h4>
+        
         
        
         </article>
@@ -34,4 +34,4 @@ const PricingPlan = () => {
   )
 }
 
-export default PricingPlan
+export default ContactSlider
