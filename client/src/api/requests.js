@@ -328,3 +328,40 @@ export const editUpcomingVideo = (id,updatedUpcomingVideo)=>{
 export const postUpcomingVideo = (newUpcomingVideo)=>{
     axios.post(`${BASE_URL}/upcomingvideos`,newUpcomingVideo)
 }
+
+
+
+//contact
+
+export const getAllContacts = async(address)=>{
+    let URL
+    let globalData
+
+    if(!address){
+        URL = BASE_URL+ "/contact"
+    }
+    else{
+        URL = BASE_URL + "/contact/"+`?address=${address}`
+    }
+
+    await axios.get(URL).then((res)=>{
+        globalData=res.data
+    })
+
+    return globalData
+}
+
+
+export const getContactById = async(id)=>{
+    let globalData;
+    await axios.get(`${BASE_URL}/contact/${id}`).then((res)=>{
+        globalData=res.data
+        })
+        return globalData
+}
+
+
+
+export const editContact = (id,updatedContact)=>{
+   axios.put(`${BASE_URL}/contact/${id}`,updatedContact)
+}

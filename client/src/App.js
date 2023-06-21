@@ -11,6 +11,7 @@ import { StreamingContextProvider } from './context/StreamingContext';
 import { PricingContextProvider } from './context/PricingContext';
 import { PricingStrategyProvider } from './context/PricingStrategy';
 import { DetailContextProvider } from './context/DetailContext';
+import { ContactProvider } from './context/ContactContext';
 function App() {
   const routes = createBrowserRouter(ROUTES)
   return (
@@ -24,9 +25,11 @@ function App() {
                 <PricingContextProvider>
                   <PricingStrategyProvider>
                     <DetailContextProvider>
-                      <RouterProvider router={routes}>
+                      <ContactProvider>
+                        <RouterProvider router={routes}>
 
-                      </RouterProvider>
+                        </RouterProvider>
+                      </ContactProvider>
                     </DetailContextProvider>
                   </PricingStrategyProvider>
                 </PricingContextProvider>

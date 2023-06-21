@@ -1,5 +1,7 @@
 import AdminLogin from "../pages/Admin/AdminLogin";
 import AdminRoot from "../pages/Admin/AdminRoot";
+import AdminContact from "../pages/Admin/Contact/AdminContact";
+import EditContact from "../pages/Admin/Contact/EditContact";
 import Dashboard from "../pages/Admin/Dashboard/Dashboard";
 import AddDetailVideo from "../pages/Admin/Detail/AddDetailVideo";
 import AdminDetail from "../pages/Admin/Detail/AdminDetail";
@@ -152,6 +154,14 @@ export const ROUTES = [
             {
                 path:'pricingStrategy/edit/:id',
                 element:<EditPricingStrategy/>
+            },
+            {
+                path:'contact',
+                element:<AdminContact/>
+            },
+            {
+                path:'contact/edit/:id',
+                element:<EditContact/>
             },
 
 
