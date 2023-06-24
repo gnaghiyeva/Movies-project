@@ -9,6 +9,7 @@ import EditDetail from "../pages/Admin/Detail/EditDetail";
 import AddFilm from "../pages/Admin/Films/AddFilm";
 import AdminFilms from "../pages/Admin/Films/AdminFilms";
 import EditFilm from "../pages/Admin/Films/EditFilm";
+import NotFound from "../pages/Admin/NotFound/NotFound";
 import AddPricing from "../pages/Admin/Pricings/AddPricing";
 import AddPricingStrategy from "../pages/Admin/Pricings/AddPricingStrategy";
 import AdminPricingStrategy from "../pages/Admin/Pricings/AdminPricingStrategy";
@@ -163,6 +164,10 @@ export const ROUTES = [
                 path:'contact/edit/:id',
                 element:<EditContact/>
             },
+            {
+                path:'*',
+                element:<NotFound/>
+            }
 
 
 
