@@ -15,6 +15,7 @@ const pricing_router = require('./routes/pricing.routes');
 const pricingSlider_router = require('./routes/pricingSlider.routes');
 const upcomingVideo_router = require('./routes/upcomingVideo.routes');
 const contact_router = require('./routes/contact.routes');
+const blog_router = require('./routes/blog.routes');
 
 dotenv.config();
 app.use(bodyParser.json());
@@ -58,6 +59,8 @@ app.use('/api/pricingSliders', pricingSlider_router)
 app.use('/api/upcomingvideos', upcomingVideo_router)
 
 app.use('/api/contact', contact_router)
+
+app.use('/api/blogs', blog_router)
 
 PORT = process.env.PORT
 app.listen(PORT, () => {

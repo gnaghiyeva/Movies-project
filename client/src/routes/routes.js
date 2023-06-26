@@ -1,5 +1,8 @@
 import AdminLogin from "../pages/Admin/AdminLogin";
 import AdminRoot from "../pages/Admin/AdminRoot";
+import AddBlog from "../pages/Admin/Blog/AddBlog";
+import AdminBlog from "../pages/Admin/Blog/AdminBlog";
+import EditBlog from "../pages/Admin/Blog/EditBlog";
 import AdminContact from "../pages/Admin/Contact/AdminContact";
 import EditContact from "../pages/Admin/Contact/EditContact";
 import Dashboard from "../pages/Admin/Dashboard/Dashboard";
@@ -24,6 +27,8 @@ import AdminSliders from "../pages/Admin/Slider/AdminSliders";
 import EditSlider from "../pages/Admin/Slider/EditSlider";
 import AdminStreamings from "../pages/Admin/Streaming/AdminStreamings";
 import EditStreaming from "../pages/Admin/Streaming/EditStreaming";
+import Blog from "../pages/Main/Blog/Blog";
+import BlogDetail from "../pages/Main/Blog/MainBlogs/BlogDetail";
 import Contact from "../pages/Main/Contact/Contact";
 import MainFilmDetail from "../pages/Main/Home/Films/MainFilmDetail";
 import Home from "../pages/Main/Home/Home";
@@ -57,7 +62,15 @@ export const ROUTES = [
             {
                 path:'contact',
                 element:<Contact/>
-            }
+            },
+            {
+                path:'blog',
+                element:<Blog/>
+            },
+            {
+                path:'blog/:id',
+                element:<BlogDetail/>
+            },
             
             
 
@@ -165,9 +178,22 @@ export const ROUTES = [
                 element:<EditContact/>
             },
             {
+                path:'blogs',
+                element:<AdminBlog/>
+            },
+            {
+                path:'blog/edit/:id',
+                element:<EditBlog/>
+            },
+            {
+                path:'add-blog',
+                element:<AddBlog/>
+            },
+            {
                 path:'*',
                 element:<NotFound/>
-            }
+            },
+            
 
 
 

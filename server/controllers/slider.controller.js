@@ -160,32 +160,36 @@ const sliderController = {
   //from me
   edit: async (req, res) => {
     const id = req.params.id;
-    const name = req.body.name
-    const existedSlider = await SliderModel.findByIdAndDelete(id,{name:name});
-    const idx = existedSlider.image.indexOf("images/")
-    const imageName = existedSlider.image.substr(idx)
-   
-    fs.unlinkSync('./'+imageName)
-    if (existedSlider === undefined) {
-      res.status(404).send("slider not found");
-    } else {
-      res.status(203).send({
-        data: existedSlider,
-        message: "slider updated successfully",
-      });
-    }
-
-
-    const updatedUrl = req.protocol + '://' + req.get('host');
-    const updatedSlider = new SliderModel({
+    const name = req.body.name;
       
-      name: req.body.name,
-      image: updatedUrl+'/images/'+ req.file.filename,
-    });
-
-    await updatedSlider.save();
+  
+    let updatedSlider = await SliderModel.findById(id);
+  
+    if (!updatedSlider) {
+      return res.status(404).send("Slider not found");
+    }
+  
    
-  },
+    const idx = updatedSlider.image.indexOf("images/");
+    const imageName = updatedSlider.image.substr(idx);
+  
+    if (req.file) {
+     
+      fs.unlinkSync('./' + imageName);
+  
+      const updatedUrl = req.protocol + '://' + req.get('host');
+      updatedSlider.image = updatedUrl + '/images/' + req.file.filename;
+    }
+  
+    updatedSlider.name = name;
+  
+    await updatedSlider.save();
+  
+    res.status(203).send({
+      data: updatedSlider,
+      message: "Slider updated successfully",
+    });
+  }
 
 }
 

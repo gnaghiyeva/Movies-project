@@ -68,32 +68,38 @@ const pricingSliderController = {
   //from me
   edit: async (req, res) => {
     const id = req.params.id;
-    const name = req.body.name
-    const existedPricingSlider = await pricingSliderModel.findByIdAndDelete(id,{name:name});
-    const idx = existedPricingSlider.image.indexOf("images/")
-    const imageName = existedPricingSlider.image.substr(idx)
-   
-    fs.unlinkSync('./'+imageName)
-    if (existedPricingSlider === undefined) {
-      res.status(404).send("slider not found");
-    } else {
-      res.status(203).send({
-        data: existedPricingSlider,
-        message: "slider updated successfully",
-      });
+    const name = req.body.name;
+    
+  
+    let updatedPricingSlider = await pricingSliderModel.findById(id);
+  
+    if (!updatedPricingSlider) {
+      return res.status(404).send("PricingSLider not found");
     }
-
-
-    const updatedUrl = req.protocol + '://' + req.get('host');
-    const updatedPricingSlider = new pricingSliderModel({
-      
-      name: req.body.name,
-      image: updatedUrl+'/images/'+ req.file.filename,
-    });
-
-    await updatedPricingSlider.save();
+  
    
-  },
+    const idx = updatedPricingSlider.image.indexOf("images/");
+    const imageName = updatedPricingSlider.image.substr(idx);
+  
+    if (req.file) {
+     
+      fs.unlinkSync('./' + imageName);
+  
+      const updatedUrl = req.protocol + '://' + req.get('host');
+      updatedPricingSlider.image = updatedUrl + '/images/' + req.file.filename;
+    }
+  
+    // Dəyişdirilmiş məlumatları güncəlləyirik
+    updatedPricingSlider.name = name;
+  
+    await updatedPricingSlider.save();
+  
+    res.status(203).send({
+      data: updatedPricingSlider,
+      message: "pricingSlider updated successfully",
+    });
+  }
+  
 
 }
 

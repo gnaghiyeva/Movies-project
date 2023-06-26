@@ -22,6 +22,8 @@ import ContactPageIcon from '@mui/icons-material/ContactPage';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import ConnectedTvIcon from '@mui/icons-material/ConnectedTv';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import BookIcon from '@mui/icons-material/Book';
+
 const Navbarr = () => {
   const [state, setState] = React.useState({
     left: false,
@@ -43,7 +45,7 @@ const Navbarr = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Sliders', 'pricingSliders', 'Films', 'Contact', 'Services', 'Streamings'].map((text, index) => (
+        {['Sliders', 'pricingSliders', 'Films', 'Contact', 'Services', 'Streamings', 'blogs'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -55,6 +57,7 @@ const Navbarr = () => {
                 {text === 'Contact' ? <Link to='contact'><ContactPageIcon /></Link> : ''}
                 {text === 'Services' ? <Link to='services'><DesignServicesIcon /></Link> : ''}
                 {text === 'Streamings' ? <Link to='streamings'><ConnectedTvIcon /></Link> : ''}
+                {text === 'blogs' ? <Link to='blogs'><BookIcon/></Link> : ''}
 
               </ListItemIcon>
               <ListItemText primary={text} />

@@ -37,7 +37,8 @@ const streamingController = {
         const id = req.params.id;
         const title = req.body.title
         const desc = req.body.desc
-        const existedStreaming = await StreamingModel.findByIdAndUpdate(id,{title:title, desc:desc})
+        const link = req.body.link
+        const existedStreaming = await StreamingModel.findByIdAndUpdate(id,{title:title, desc:desc, link:link})
         if(existedStreaming==undefined){
           res.status(204).send('streaming not found')
         }
@@ -48,7 +49,8 @@ const streamingController = {
     post: async (req, res) => {
         const newStreaming = new StreamingModel({
             title: req.body.title,
-            desc:req.body.desc
+            desc:req.body.desc,
+            link:req.body.link
 
         });
         await newStreaming.save();

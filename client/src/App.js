@@ -12,6 +12,7 @@ import { PricingContextProvider } from './context/PricingContext';
 import { PricingStrategyProvider } from './context/PricingStrategy';
 import { DetailContextProvider } from './context/DetailContext';
 import { ContactProvider } from './context/ContactContext';
+import { BlogContextProviver } from './context/BlogContext';
 function App() {
   const routes = createBrowserRouter(ROUTES)
   return (
@@ -26,9 +27,11 @@ function App() {
                   <PricingStrategyProvider>
                     <DetailContextProvider>
                       <ContactProvider>
-                        <RouterProvider router={routes}>
+                        <BlogContextProviver>
+                          <RouterProvider router={routes}>
 
-                        </RouterProvider>
+                          </RouterProvider>
+                        </BlogContextProviver>
                       </ContactProvider>
                     </DetailContextProvider>
                   </PricingStrategyProvider>

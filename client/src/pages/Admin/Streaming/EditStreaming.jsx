@@ -15,37 +15,45 @@ const EditStreaming = () => {
   const [streaming, setStreaming] = useState({})
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    getStreamingById(id).then((res) => {
-      setStreaming(res)
-      console.log('first', res)
-      formik.values.title = res.data.title;
-      formik.values.desc = res.data.desc;
-      setLoading(false)
-    })
 
-  }, [id, loading])
-
-
+  
   const handleEdit = async (values, actions) => {
     setStreamings(values)
     await editStreaming(id, values)
     navigate('/admin/streamings')
     actions.resetForm()
   }
-
-
+  
   const formik = useFormik({
     initialValues: {
       title: streaming.title,
       desc: streaming.desc,
-
+      link:streaming.link
     },
     validationSchema: streamingSchema,
-
     onSubmit: handleEdit
 
   })
+
+
+
+  useEffect(() => {
+    getStreamingById(id).then((res) => {
+      setStreaming(res)
+      console.log('first', res)
+      formik.values.title = res.data.title;
+      formik.values.desc = res.data.desc;
+      formik.values.link = res.data.link;
+      setLoading(false)
+    })
+
+  }, [id, loading])
+
+
+ 
+
+
+ 
 
   return (
     <>
@@ -57,6 +65,9 @@ const EditStreaming = () => {
           <TextField type='text' name='desc' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.desc} id="outlined-basic" label="desc" variant="outlined" /><br />
           {formik.errors.desc && formik.touched.desc && (<span>{formik.errors.desc}</span>)}
 
+
+          <TextField type='text' name='link' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.link} id="outlined-basic" label="link" variant="outlined" /><br />
+          {formik.errors.link && formik.touched.link && (<span>{formik.errors.link}</span>)}
          
           <Button type='submit' variant='contained' color='success'>Edit</Button>
         </form>}

@@ -365,3 +365,51 @@ export const getContactById = async(id)=>{
 export const editContact = (id,updatedContact)=>{
    axios.put(`${BASE_URL}/contact/${id}`,updatedContact)
 }
+
+
+
+
+
+//blogs
+export const getAllBlogs = async(title)=>{
+    let URL
+    let globalData
+
+    if(!title){
+        URL = BASE_URL+ "/blogs"
+    }
+    else{
+        URL = BASE_URL + "/blogs/"+`?title=${title}`
+    }
+
+    await axios.get(URL).then((res)=>{
+        globalData=res.data
+    })
+
+    return globalData
+}
+
+
+export const getBlogById = async(id)=>{
+    let globalData;
+    await axios.get(`${BASE_URL}/blogs/${id}`).then((res)=>{
+        globalData=res.data
+        })
+        return globalData
+}
+
+export const deleteBlog = async(id)=>{
+   let deletedBlog
+    await axios.delete(`${BASE_URL}/blogs/${id}`).then((res)=>{
+        deletedBlog=res.data
+    })
+    return deletedBlog
+}
+
+export const editBlog = (id,updatedBlog)=>{
+   axios.put(`${BASE_URL}/blogs/${id}`,updatedBlog)
+}
+
+export const postBlog = (newBlog)=>{
+    axios.post(`${BASE_URL}/blogs`,newBlog)
+}

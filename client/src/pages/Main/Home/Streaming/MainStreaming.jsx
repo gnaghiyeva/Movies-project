@@ -31,17 +31,17 @@ const MainStreaming = () => {
   };
 
   const handleCloseModal = () => {
-    setOpenModal(false);
+    setOpenModal(false); 
   };
 
-  const youtubeLink = 'https://www.youtube.com/embed/hZGR5Sj1Bfo';
+  // const youtubeLink = 'https://www.youtube.com/embed/hZGR5Sj1Bfo';
 
   return (
     <section style={{padding:'40px 100px'}}>
     <Grid container spacing={2}>
       <Grid item md={6} xs={12}>
         <article>
-          <h5>Online Streaming</h5>
+          <h5>Online Streaming</h5> 
 
           {streamings && streamings.map((stream) => (
             <>
@@ -76,16 +76,22 @@ const MainStreaming = () => {
           </Button>
           <Dialog open={openModal} onClose={handleCloseModal}>
             <DialogTitle>YouTube Video</DialogTitle>
-            <DialogContent>
+            {streamings && streamings.map((stream)=>{
+             return(
+              <DialogContent>
               <iframe
                 width="560"
                 height="315"
-                src={youtubeLink}
+                src={stream.link}
                 allow="autoplay; encrypted-media"
                 allowFullScreen
                 title="YouTube Video"
               ></iframe>
+
             </DialogContent>
+             )
+
+            })}
           </Dialog>
         </article>
       </Grid>

@@ -34,6 +34,7 @@ const AdminStreamings = () => {
                   <TableRow>
                     <TableCell align="center"><b>Title</b></TableCell>
                     <TableCell align="center"><b>Description</b></TableCell>
+                    <TableCell align="center"><b>Video link</b></TableCell>
                     <TableCell align="center"><b>Edit</b></TableCell>
                   </TableRow>
                 </TableHead>
@@ -46,6 +47,7 @@ const AdminStreamings = () => {
                     
                       <TableCell align="center">{streaming.title}</TableCell>
                       <TableCell align="center">{streaming.desc}</TableCell>
+                      <TableCell align="center">{streaming.link}</TableCell>
                      
                       <TableCell align="center"><Button variant='contained'>
                 <Link style={{color:'white'}} to={`/admin/streaming/edit/${streaming._id}`}>Edit <EditIcon/></Link>

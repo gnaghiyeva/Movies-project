@@ -41,7 +41,7 @@ const MainMovies = () => {
     }
   };
   return (
-    <section style={{ backgroundColor: '#222', paddingTop: '60px' }}>
+    <section style={{ backgroundColor: '#222', padding: '60px 0' }}>
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { usePricingContext } from '../../../context/PricingContext'
 import { useNavigate, useParams } from 'react-router-dom'
-import { editPricingSlider,  getPricingSliderById } from '../../../api/requests'
+import { editPricingSlider, getPricingSliderById } from '../../../api/requests'
 import { useFormik } from 'formik'
-import { Button } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 
 const EditPricing = () => {
   const [selectedImages, setSelectedImages] = useState({})
@@ -63,9 +63,8 @@ const EditPricing = () => {
     <>
       {loading ? <div>loading...</div> : <form onSubmit={formik.handleSubmit}>
         <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          {/* <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='name' type='text' value={formik.values.name} id="outlined-basic" label="name" variant="outlined" />
-    <br/>
-    {formik.errors.name && formik.touched.name && (<span>{formik.errors.name}</span>)}  */}
+          <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='name' type='text' value={formik.values.name} id="outlined-basic" label="name" variant="outlined" />
+          {formik.errors.name && formik.touched.name && (<span>{formik.errors.name}</span>)}
 
           {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
 

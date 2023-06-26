@@ -29,6 +29,9 @@ const AdminDetail = () => {
     const [film, setFilm] = useState({});
     const { id } = useParams();
     
+    const currentDate = new Date().getTime();
+    const releaseDate = new Date(film.releaseDate).getTime();
+    const isFilmReleased = releaseDate <= currentDate;
 
     useEffect(() => {
         getFilmById(id).then((res) => {
@@ -36,15 +39,23 @@ const AdminDetail = () => {
         });
     }, [id]);
 
-    useEffect(() => {
-        getUpcomingVideoById(id).then((res) => {
-            setUpcomingVideos(res);
-        });
-    }, [id]);
+    // useEffect(() => {
+    //     getUpcomingVideoById(id).then((res) => {
+    //         setUpcomingVideos(res);
+    //     });
+    // }, [id]);
 
-    const currentDate = new Date().getTime();
-    const releaseDate = new Date(film.releaseDate).getTime();
-    const isFilmReleased = releaseDate <= currentDate;
+    
+    useEffect(() => {
+        if (isFilmReleased) {
+            getUpcomingVideoById(id).then((res) => {
+                setUpcomingVideos(res);
+            });
+        }
+    }, [id, isFilmReleased]);
+
+
+    
 
     return (
 <>
