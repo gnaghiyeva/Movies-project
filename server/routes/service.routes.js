@@ -2,19 +2,19 @@ const express = require('express');
 const service_router = express.Router()
 const serviceController = require('../controllers/service.controller');
 const upload = require('../helper/upload');
-//get All Artists
+//get All Service
 service_router.get('/',serviceController.getAll)
 
-//get Artist by ID
+//get Service by ID
 service_router.get('/:id',serviceController.getByID)
 
-//post Artist
+//post Service
 service_router.post('/',upload.single('image'),serviceController.post)
 
-//delete Artist
+//delete Service
 service_router.delete('/:id',serviceController.delete)
 
-//edit Artist
+//edit Service
 service_router.put('/:id',upload.single('image'),serviceController.edit)
 
 

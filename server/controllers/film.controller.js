@@ -179,7 +179,7 @@ const FilmController = {
           updatedFilm.image = updatedUrl + '/images/' + req.file.filename;
         }
       
-        // Dəyişdirilmiş məlumatları güncəlləyirik
+     
         updatedFilm.title = title;
         updatedFilm.releaseDate = releaseDate;
         updatedFilm.minute = minute;

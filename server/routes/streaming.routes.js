@@ -7,7 +7,7 @@ streaming_router.get('/', streamingController.getAll)
 
 streaming_router.get('/:id',streamingController.getByID)
 
-//post Artist
+//post Streaming
 streaming_router.post('/',streamingController.post)
 
 

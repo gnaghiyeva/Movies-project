@@ -2,19 +2,19 @@ const express = require('express');
 const blog_router = express.Router()
 const blogController = require('../controllers/blog.controller');
 const upload = require('../helper/upload');
-//get All Artists
+//get All Blogs
 blog_router.get('/',blogController.getAll)
 
-//get Artist by ID
+//get Blog by ID
 blog_router.get('/:id',blogController.getByID)
 
-//post Artist
+//post Blog
 blog_router.post('/',upload.single('image'),blogController.post)
 
-//delete Artist
+//delete Blog
 blog_router.delete('/:id',blogController.delete)
 
-//edit Artist
+//edit Blog
 blog_router.put('/:id',upload.single('image'),blogController.edit)
 
 

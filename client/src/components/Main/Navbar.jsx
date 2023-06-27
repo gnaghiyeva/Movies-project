@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,9 +7,12 @@ import IconButton from '@mui/material/IconButton';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-import MovieLogo from '../../assets/images/logo.png'
+import MovieLogo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
-
+import navStyle from '../../assets/styles/navbar.module.css';
+import { List, ListItem } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import Drawer from '@mui/material/Drawer';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -46,7 +49,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       width: '12ch',
-      '&:focus': { 
+      '&:focus': {
         width: '20ch',
       },
     },
@@ -54,55 +57,128 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Navbar = () => {
+  const [isFixed, setIsFixed] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
+
+  const toggleDrawer = () => {
+    setOpenDrawer(!openDrawer);
+  };
+
+  const handleNavigation = (path) => {
+    navigate(path);
+    setShowMenu(false);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollThreshold = 800; // İstenilen scroll yüksekliği
+
+      if (window.scrollY > scrollThreshold) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-    <AppBar position="static" style={{backgroundColor:'#222'}}>
-      <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="open drawer"
-          sx={{ mr: 2 }}
-        >
-        
-        </IconButton>
-        <Typography
-          variant="h6"
-          noWrap
-          component="div"
-          sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-        >
-          <img width={200} src={MovieLogo} alt='movieLogo'/>
-        </Typography>
-        <Typography
-          variant="h6"
-          noWrap
-          component="div"
-          sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-        >
-          <ul style={{display:'flex', gap:'40px', listStyle:'none'}}>
-            <li><Link to='/' style={{color:'white', textDecoration:'none'}}>HOME</Link></li>
-            <li><Link to='/movie' style={{color:'white', textDecoration:'none'}}>MOVIE</Link></li>
-            <li><Link to='/pricings' style={{color:'white', textDecoration:'none'}}>PRICING</Link></li>
-            <li><Link to='/blog' style={{color:'white', textDecoration:'none'}}>BLOG</Link></li>
-            <li><Link to='/contact' style={{color:'white', textDecoration:'none'}}>CONTACT</Link></li>
-          </ul>
-        </Typography>
+    <>
+      <nav style={{ backgroundColor: '#222' }} className={navStyle.nav}>
+        <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+          <div>
+            <img width={200} src={MovieLogo} alt='movieLogo' />
+          </div>
 
-        <Search>
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Search…"
-            inputProps={{ 'aria-label': 'search' }}
-          />
-        </Search>
-      </Toolbar>
-    </AppBar>
-  </Box>
-  )
-}
+          <div className={`${navStyle.nav_list} ${showMenu ? 'show' : ''}`}>
+            <List style={{ display: 'flex' }}>
+              <ListItem onClick={() => handleNavigation('/')}>
+                <span style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>HOME</span>
+              </ListItem>
+              <ListItem onClick={() => handleNavigation('/movie')}>
+                <span style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>MOVIE</span>
+              </ListItem>
+              <ListItem onClick={() => handleNavigation('/pricings')}>
+                <span style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>PRICING</span>
+              </ListItem>
+              <ListItem onClick={() => handleNavigation('/blog')}>
+                <span style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>BLOG</span>
+              </ListItem>
+              <ListItem onClick={() => handleNavigation('/contact')}>
+                <span style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>CONTACT</span>
+              </ListItem>
+            </List>
+          </div>
 
-export default Navbar
+          <div>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon style={{ color: 'white' }} />
+              </SearchIconWrapper>
+              <StyledInputBase
+                style={{ color: 'white' }}
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </Search>
+          </div>
+
+          <div className={`${navStyle.hamburger_menu} ${showMenu ? 'open' : ''}`} onClick={toggleDrawer}>
+            <div className={navStyle.hamburger_menu_line}></div>
+            <div className={navStyle.hamburger_menu_line}></div>
+            <div className={navStyle.hamburger_menu_line}></div>
+          </div>
+        </div>
+      </nav>
+      <Drawer anchor="right" open={openDrawer} onClose={toggleDrawer}>
+        <div
+          role="presentation"
+          onClick={toggleDrawer}
+          onKeyDown={toggleDrawer}
+          style={{ width: '250px' }}
+        >
+          <List>
+            <ListItem button onClick={() => handleNavigation('/')}>
+              <Link to="/" style={{ color: 'black', textDecoration: 'none' }}>
+                <span>HOME</span>
+              </Link>
+            </ListItem>
+            <ListItem button onClick={() => handleNavigation('/movie')}>
+              <Link to="/movie" style={{ color: 'black', textDecoration: 'none' }}>
+                <span>MOVIE</span>
+              </Link>
+            </ListItem>
+            <ListItem button onClick={() => handleNavigation('/pricings')}>
+              <Link to="/pricings" style={{ color: 'black', textDecoration: 'none' }}>
+                <span>PRICING</span>
+              </Link>
+            </ListItem>
+            <ListItem button onClick={() => handleNavigation('/blog')}>
+              <Link to="/blog" style={{ color: 'black', textDecoration: 'none' }}>
+                <span>BLOG</span>
+              </Link>
+            </ListItem>
+            <ListItem button onClick={() => handleNavigation('/contact')}>
+              <Link to="/contact" style={{ color: 'black', textDecoration: 'none' }}>
+                <span>CONTACT</span>
+              </Link>
+            </ListItem>
+          </List>
+        </div>
+      </Drawer>
+    </>
+  );
+};
+
+export default Navbar;

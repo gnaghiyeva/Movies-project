@@ -7,7 +7,7 @@ pricing_router.get('/', pricingController.getAll)
 
 pricing_router.get('/:id',pricingController.getByID)
 
-//post Artist
+//post Pricing
 pricing_router.post('/',pricingController.post)
 
 

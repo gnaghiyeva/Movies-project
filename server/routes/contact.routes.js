@@ -7,7 +7,7 @@ contact_router.get('/', contactController.getAll)
 
 contact_router.get('/:id',contactController.getByID)
 
-//post Artist
+//post contact
 contact_router.post('/',contactController.post)
 
 

@@ -82,7 +82,7 @@ const UpcomingVideosController = {
           updatedUpcomingVideo.video = updatedUrl + '/videos/' + req.file.filename;
         }
       
-        // Dəyişdirilmiş məlumatları güncəlləyirik
+        
         updatedUpcomingVideo.desc = desc;  
         await updatedUpcomingVideo.save();
         res.status(203).send({

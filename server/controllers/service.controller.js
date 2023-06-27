@@ -88,7 +88,7 @@ const ServiceController = {
           updatedService.image = updatedUrl + '/images/' + req.file.filename;
         }
       
-        // Dəyişdirilmiş məlumatları güncəlləyirik
+        
         updatedService.title = title;
         updatedService.desc = desc;
     

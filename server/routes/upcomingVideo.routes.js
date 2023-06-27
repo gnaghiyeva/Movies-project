@@ -2,19 +2,19 @@ const express = require('express');
 const upcomingVideo_router = express.Router()
 const UpcomingVideoController = require('../controllers/upcomingVideos.controller');
 const upload = require('../helper/videoupload');
-//get All Artists
+//get All Videos
 upcomingVideo_router.get('/',UpcomingVideoController.getAll)
 
-//get Artist by ID
+//get Video by ID
 upcomingVideo_router.get('/:id',UpcomingVideoController.getByID)
 
-//post Artist
+//post Video
 upcomingVideo_router.post('/',upload.single('video'),UpcomingVideoController.post)
 
-//delete Artist
+//delete Video
 upcomingVideo_router.delete('/:id',UpcomingVideoController.delete)
 
-//edit Artist
+//edit Video
 upcomingVideo_router.put('/:id',upload.single('video'),UpcomingVideoController.edit)
 
 

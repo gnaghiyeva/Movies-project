@@ -8,7 +8,7 @@ const FilmModel = mongoose.model("Films", new mongoose.Schema({
       default: function () {
           const date = new Date();
           date.setHours(0, 0, 0, 0);
-          return date.toISOString().split('T')[0]; // Yalnız "yyyy-mm-dd" hissəsini qaytarır
+          return date.toISOString().split('T')[0]; 
       }
   },
     minute:Number,
@@ -20,8 +20,3 @@ const FilmModel = mongoose.model("Films", new mongoose.Schema({
 }));
 
 module.exports = FilmModel
-
-// const title = req.body.title;
-// const releaseDate = req.body.releaseDate;
-// const minute = req.body.minute;
-// const imdb = req.body.imdb

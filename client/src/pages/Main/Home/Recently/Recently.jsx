@@ -14,7 +14,7 @@ const Recently = () => {
     getAllFilms().then((res) => {
       const formattedFilms = res.data;
 
-      // Son eklenen 8 filmi al
+     
       const recentlyAddedFilms = formattedFilms
         .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
         .slice(0, 4);

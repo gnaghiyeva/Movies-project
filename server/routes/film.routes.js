@@ -2,19 +2,19 @@ const express = require('express');
 const film_router = express.Router()
 const filmController = require('../controllers/film.controller');
 const upload = require('../helper/upload');
-//get All Artists
+//get All Films
 film_router.get('/',filmController.getAll)
 
-//get Artist by ID
+//get Film by ID
 film_router.get('/:id',filmController.getByID)
 
-//post Artist
+//post Film
 film_router.post('/',upload.single('image'),filmController.post)
 
-//delete Artist
+//delete Film
 film_router.delete('/:id',filmController.delete)
 
-//edit Artist
+//edit Film
 film_router.put('/:id',upload.single('image'),filmController.edit)
 
 

@@ -1,0 +1,63 @@
+.nav {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+  }
+  
+  .nav_list {
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
+  
+  .hamburger_menu {
+    display: none;
+    @media (max-width: 992px) {
+      display: block;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      position: relative;
+    }
+  }
+  
+  .hamburger_menu_line {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .hamburger_menu_line:nth-child(1) {
+    top: 0;
+  }
+  
+  .hamburger_menu_line:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .hamburger_menu_line:nth-child(3) {
+    bottom: 0;
+  }
+  
+  .open .hamburger_menu_line:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+  }
+  
+  .open .hamburger_menu_line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .open .hamburger_menu_line:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(45deg);
+  }
+  
+  .show {
+    display: block;
+  }
+  

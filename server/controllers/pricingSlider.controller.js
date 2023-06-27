@@ -89,7 +89,7 @@ const pricingSliderController = {
       updatedPricingSlider.image = updatedUrl + '/images/' + req.file.filename;
     }
   
-    // Dəyişdirilmiş məlumatları güncəlləyirik
+    
     updatedPricingSlider.name = name;
   
     await updatedPricingSlider.save();
