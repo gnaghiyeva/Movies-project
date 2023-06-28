@@ -18,13 +18,12 @@ const MainServices = () => {
     })
     return (
 
-        <section style={{ backgroundColor: '#222', padding:'100px 120px' }}>
+        <section style={{ backgroundColor: '#222', padding:'60px 40px', width:'100%' }}>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={6} lg={6} >
-                    <div>
-                        <img src={serviceLogo} alt='serviceLogo' width={400} />
-
-                        <Button variant='contained' style={{ backgroundColor: 'yellow', color: 'black' }} className={serviceStyle.service_button} >Download</Button>
+                    <div className={serviceStyle.service_img_container}>
+                        <img className={serviceStyle.service_img} src={serviceLogo} alt='serviceLogo' width={400} />
+                        <button className={serviceStyle.service_button}>Download</button>
                     </div>
                 </Grid>
 

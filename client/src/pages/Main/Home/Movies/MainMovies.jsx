@@ -7,6 +7,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Button } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom';
+import movieStyle from '../../../../assets/styles/mainMovies.module.css'
 
 const MainMovies = () => {
   const [films, setFilms] = useState([])
@@ -41,7 +42,7 @@ const MainMovies = () => {
     }
   };
   return (
-    <section style={{ backgroundColor: '#222', padding: '60px 0' }}>
+    <section style={{ backgroundColor: '#222', padding: '60px 0', width:'100%' }}>
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
 
@@ -82,13 +83,10 @@ const MainMovies = () => {
       </div>
 
 
-      <Grid container spacing={4} style={{margin:'0 auto'}}>
+      <Grid container spacing={2} style={{padding:'20px 90px'}}>
         {films && films.map((film) => {
           return (
-
-
-
-            <Grid item xs={6} md={3} key={film._id}>
+            <Grid className={movieStyle.card} item sm={6} xs={12} md={4} lg={3} key={film._id}>
               <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} layout>
                 <AnimatePresence>
                   <Card style={{ backgroundColor: '#222', color: 'white' }}>

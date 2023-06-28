@@ -37,9 +37,9 @@ const MainStreaming = () => {
   // const youtubeLink = 'https://www.youtube.com/embed/hZGR5Sj1Bfo';
 
   return (
-    <section style={{padding:'40px 100px'}}>
+    <section style={{width:'100%',padding:'40px 100px'}}>
     <Grid container spacing={2}>
-      <Grid item md={6} xs={12}>
+      <Grid item lg={6} md={6} xs={12} sm={12}>
         <article>
           <h5>Online Streaming</h5> 
 

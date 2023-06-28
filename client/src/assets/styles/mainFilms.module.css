@@ -1,0 +1,57 @@
+.main_films_container{
+    background-color: #222;
+    padding-top:60px;
+    width:100%
+}
+
+
+.films_article_span{
+    color: yellow 
+}
+
+.films_article_h1{
+    color: white;
+    font-size: 36px 
+}
+
+.films_categories{
+    display: flex;
+    gap: 20px;
+}
+
+.films_categories_button{
+   display: none !important;
+   color: white !important;
+}
+
+
+@media(max-width:992px){
+    .films_article_h1{
+        color: white;
+        font-size: 25px 
+    }
+    .films_article_span{
+       font-size: 15px;
+    }
+
+    .films_categories{
+       display:none;
+   }
+
+    .films_categories_button{
+        display: block !important;
+     }
+}
+
+@media(max-width:576px){
+    .films_article_h1{
+        color: white;
+        font-size: 16px 
+    }
+    .films_article_span{
+       font-size: 10px;
+    }
+    
+    
+    
+}
