@@ -4,18 +4,18 @@ import Grid from '@mui/material/Grid';
 import { Button, TextField } from '@mui/material';
 import homeContact from '../../../../assets/styles/homeContact.module.css'
 const MovieContact = () => {
-    const form = useRef();
+  const form = useRef();
 
-    const sendEmail = (e) => {
-        e.preventDefault();
-    
-        emailjs.sendForm('gmail', 'template_tsi07v3', form.current, 'dSgJh36b-64n40_h0')
-          .then((result) => {
-              console.log(result.text);
-          }, (error) => {
-              console.log(error.text);
-          });
-      };
+  const sendEmail = (e) => {
+      e.preventDefault();
+  
+      emailjs.sendForm('gmail', 'template_w5vn4y9', form.current, 'dSgJh36b-64n40_h0')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+    };
   return (
     <section className={homeContact.contact} style={{padding: '30px 60px', textAlign: 'center'}}>
     <Grid container spacing={2}>

@@ -18,7 +18,7 @@ const MovieSlider = () => {
        })
     },[])
   return (
-    <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+    <Swiper style={{ width: '100%' }} navigation={true} modules={[Navigation]} className="mySwiper">
     {pricingSliders && pricingSliders.map((pricingSlider) => (
       <SwiperSlide key={pricingSlider._id} style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${pricingSlider.image})` ,backgroundSize: 'cover', backgroundPosition: 'center'}}>
         <article style={{textAlign:'center', padding:'300px 40px'}}>

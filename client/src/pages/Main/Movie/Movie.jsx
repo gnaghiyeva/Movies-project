@@ -7,8 +7,8 @@ const Movie = () => {
   return (
     <>
       <MovieSlider />
-      <NewMovie />
-      <MovieContact />
+       <NewMovie />
+      {/*<MovieContact /> */}
     </>
   )
 }
