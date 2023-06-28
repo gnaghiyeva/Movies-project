@@ -1,0 +1,40 @@
+.slider_article {
+    text-align: left;
+    padding: 300px 40px
+}
+
+.slider_article_h3 {
+    color: yellow
+}
+
+.slider_article_h1 {
+    color: white;
+    font-weight: 900;
+    font-size: 60px;
+    line-height: 1.2
+}
+
+.slider_button{
+    background-color:transparent;
+    border:1px solid yellow;
+    border-radius:25px;
+    color:white
+}
+
+@media(max-width:576px) {
+    .slider_article {
+        padding: 230px 40px;
+        font-size: 20px;
+    }
+
+    .slider_article_h3 {
+        font-size: 25px;
+    }
+
+    .slider_article_h1 {
+        color: white;
+        font-weight: 900;
+        font-size: 30px;
+        
+    }
+}
