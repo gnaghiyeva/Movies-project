@@ -62,7 +62,7 @@ const AddPricing = () => {
     {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
 
 
-    <Button variant='contained' type='submit'>Add</Button>
+    <Button variant='contained' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0}>Add</Button>
 </form>
   )
 }

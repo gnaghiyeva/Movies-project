@@ -91,7 +91,7 @@ const EditDetail = () => {
 
 
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <Button type='submit' variant='contained' color='success'>Edit</Button>
+        <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0}>Edit</Button>
       </div>
     </form>}
   </>

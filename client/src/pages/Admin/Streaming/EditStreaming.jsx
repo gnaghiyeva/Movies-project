@@ -81,7 +81,7 @@ const EditStreaming = () => {
           <TextField type='text' name='link' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.link} id="outlined-basic" label="link" variant="outlined" /><br />
           {formik.errors.link && formik.touched.link && (<span>{formik.errors.link}</span>)}
          
-          <Button type='submit' variant='contained' color='success'>Edit</Button>
+          <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0}>Edit</Button>
         </form>}
   </>
   )

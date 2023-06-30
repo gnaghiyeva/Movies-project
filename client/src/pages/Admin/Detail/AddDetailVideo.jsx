@@ -69,7 +69,7 @@ const AddDetailVideo = () => {
             {formik.errors.video && formik.touched.video && (<span>{formik.errors.video}</span>)}
 
 
-            <Button variant='contained' type='submit'>Add Video</Button>
+            <Button variant='contained' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0}>Add Video</Button>
         </form>
     )
 }
