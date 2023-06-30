@@ -61,3 +61,14 @@
     display: block;
   }
   
+  .list_item{
+    color:white;
+    text-decoration: none; 
+    cursor: pointer;
+    transition: .4s ease;
+  }
+
+  .list_item:hover{
+    color:yellow;
+    
+  }

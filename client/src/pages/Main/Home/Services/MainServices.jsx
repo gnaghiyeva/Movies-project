@@ -8,6 +8,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import serviceLogo from '../../../../assets/images/services_img.jpg'
+import RemoveIcon from '@mui/icons-material/Remove';
+import downloadimage from '../../../../assets/images/services_img.jpg'
 const MainServices = () => {
     const [services, setServices] = useState([])
 
@@ -23,14 +25,14 @@ const MainServices = () => {
                 <Grid item xs={12} sm={12} md={6} lg={6} >
                     <div className={serviceStyle.service_img_container}>
                         <img className={serviceStyle.service_img} src={serviceLogo} alt='serviceLogo' width={400} />
-                        <button className={serviceStyle.service_button}>Download</button>
+                        <a className={serviceStyle.service_button} href={downloadimage} type='button' download="MyExampleDoc" target='_blank' >Download</a>
                     </div>
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={6} lg={6}>
                     <article className={serviceStyle.services_article}>
-                        <h4>OUR SERVICES</h4>
-                        <h1>Download Your Shows Watch Offline.</h1>
+                        <h4> <RemoveIcon style={{color:'yellow'}}/> OUR SERVICES</h4>
+                        <h1 style={{fontSize:'36px'}}>Download Your Shows Watch Offline.</h1>
                         <p>Lorem ipsum dolor sit amet, consecetur adipiscing elseddo eiusmod tempor.There are many variations of passages of lorem Ipsum available, but the majority have suffered alteration in some injected humour.</p>
                     </article>
 

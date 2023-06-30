@@ -124,19 +124,19 @@ const Navbar = () => {
           <div className={`${navStyle.nav_list} ${showMenu ? 'show' : ''}`}>
             <List style={{ display: 'flex' }}>
               <ListItem onClick={() => handleNavigation('/')}>
-                <span style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>HOME</span>
+                <span className={navStyle.list_item}>HOME</span>
               </ListItem>
               <ListItem onClick={() => handleNavigation('/movie')}>
-                <span style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>MOVIE</span>
+                <span className={navStyle.list_item}>MOVIE</span>
               </ListItem>
               <ListItem onClick={() => handleNavigation('/pricings')}>
-                <span style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>PRICING</span>
+                <span className={navStyle.list_item}>PRICING</span>
               </ListItem>
               <ListItem onClick={() => handleNavigation('/blog')}>
-                <span style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>BLOG</span>
+                <span className={navStyle.list_item}>BLOG</span>
               </ListItem>
               <ListItem onClick={() => handleNavigation('/contact')}>
-                <span style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>CONTACT</span>
+                <span className={navStyle.list_item}>CONTACT</span>
               </ListItem>
             </List>
           </div>

@@ -89,13 +89,25 @@ const MainMovies = () => {
             <Grid className={movieStyle.card} item sm={6} xs={12} md={4} lg={3} key={film._id}>
               <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} layout>
                 <AnimatePresence>
-                  <Card style={{ backgroundColor: '#222', color: 'white' }}>
+                  <Card style={{  backgroundColor: '#222', color: 'white', position: 'relative',
+                    overflow: 'hidden',
+                    transition: 'box-shadow 0.3s ease',
+                    boxShadow: 'none',
+                
+                  }} 
+                    
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 0, 20, 0.9)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}>
                     <img src={film.image} height={300} />
                     <Card.Content>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <Card.Header><Link to={`/film/${film._id}`}>{film.title}</Link></Card.Header>
+                        <Card.Header><Link  className={movieStyle.film_title} to={`/film/${film._id}`}>{film.title}</Link></Card.Header>
                         <Card.Meta>
-                          <span className='date' style={{ color: 'white' }}>{film.releaseDate}</span>
+                          <span className='date' style={{ color: 'yellow' }}>{film.releaseDate}</span>
                         </Card.Meta>
                       </div>
                       <br />

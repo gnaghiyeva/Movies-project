@@ -5,6 +5,8 @@ import { Card, Image } from 'semantic-ui-react';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { Button } from '@mui/material';
+import filmStyle from '../../../../assets/styles/mainFilms.module.css'
+import { Link } from 'react-router-dom';
 
 const Recently = () => {
   const [films, setFilms] = useState([]);
@@ -37,11 +39,23 @@ const Recently = () => {
         {films && films.map((film) => {
             return (
               <Grid item lg={3} md={3} sm={6} xs={12} key={film._id}>
-                <Card style={{ backgroundColor: '#222', color: 'white' }}>
+                <Card style={{  backgroundColor: '#222', color: 'white', position: 'relative',
+                    overflow: 'hidden',
+                    transition: 'box-shadow 0.3s ease',
+                    boxShadow: 'none',
+                
+                  }} 
+                    
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 0, 20, 0.9)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}>
                   <img src={film.image} height={300} />
                   <Card.Content>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <Card.Header>{film.title}</Card.Header>
+                      <Card.Header><Link className={filmStyle.film_title} to={`/film/${film._id}`}>{film.title}</Link></Card.Header>
                       <Card.Meta>
                         <span className="date" style={{ color: 'white' }}>
                           {film.releaseDate}

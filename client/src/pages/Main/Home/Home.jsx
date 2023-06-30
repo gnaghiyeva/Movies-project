@@ -5,7 +5,6 @@ import MainServices from './Services/MainServices'
 import MainMovies from './Movies/MainMovies'
 import MainStreaming from './Streaming/MainStreaming'
 import Recently from './Recently/Recently'
-import HomeContact from './HomeContact/HomeContact'
 
 const Home = () => {
   return (
@@ -16,7 +15,6 @@ const Home = () => {
     <MainMovies/>
    <MainStreaming/>
      <Recently/>
-   <HomeContact/> 
     </>
   )
 }

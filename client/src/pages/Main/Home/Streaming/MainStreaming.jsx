@@ -4,7 +4,7 @@ import streamingLogo from '../../../../assets/images/live_img.png'
 import { Button, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { getAllStreamings } from '../../../../api/requests';
-
+import RemoveIcon from '@mui/icons-material/Remove';
 const MainStreaming = () => {
   const [counter, setCounter] = useState(0);
   const [openModal, setOpenModal] = useState(false);
@@ -41,7 +41,7 @@ const MainStreaming = () => {
     <Grid container spacing={2}>
       <Grid item lg={6} md={6} xs={12} sm={12}>
         <article>
-          <h5>Online Streaming</h5> 
+          <h5> <RemoveIcon />Online Streaming</h5> 
 
           {streamings && streamings.map((stream) => (
             <>

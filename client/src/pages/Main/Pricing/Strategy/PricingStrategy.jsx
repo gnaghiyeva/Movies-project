@@ -16,7 +16,7 @@ const PricingStrategy = () => {
     })
     return (
         <section style={{ backgroundColor: 'rgb(22,23,30)', paddingBottom: '60px', paddingTop: '60px' }}>
-            <article style={{textAlign:'center'}}>
+            <article style={{ textAlign: 'center' }}>
                 <span style={{ color: 'yellow' }}>ONLINE STREAMING</span>
                 <h1 style={{ color: 'white', fontSize: '36px' }}>New Release Movies</h1>
             </article>
@@ -26,7 +26,20 @@ const PricingStrategy = () => {
 
                         <Grid item xs={12} md={3}>
                             <Fade>
-                                <Card style={{ textAlign: 'center', backgroundColor: 'rgb(31,30,36)', color: 'white' }} bordered={false}>
+                                <Card style={{
+                                    textAlign: 'center', backgroundColor: '#222', color: 'white', position: 'relative',
+                                    overflow: 'hidden',
+                                    transition: 'box-shadow 0.3s ease',
+                                    boxShadow: 'none',
+                                }} bordered={false}
+                                
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 0, 20, 0.9)';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.boxShadow = 'none';
+                                  }}
+                                >
                                     <h2>{pricing.className}</h2>
                                     <span style={{ backgroundColor: 'yellow', color: 'black', padding: '20px 40px', display: 'inline-block', textAlign: 'center', margin: '0 auto' }}>
                                         {pricing.price} $ <br />
