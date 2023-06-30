@@ -5,6 +5,7 @@ import { editPricing, getPricingById } from '../../../api/requests';
 import { useFormik } from 'formik';
 import { pricingStrategySchema } from '../../../validation/PricingStrategySchema';
 import { Button, TextField } from '@mui/material';
+import Swal from "sweetalert2";
 
 const EditPricingStrategy = () => {
     const [pricingsStrategy, setPricingsStrategy] = usePricingStrategy();
@@ -33,6 +34,13 @@ const EditPricingStrategy = () => {
   const handleEdit = async (values, actions) => {
     setPricingsStrategy(values)
     await editPricing(id, values)
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `film edited successfully`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate('/admin/pricingStrategy')
     actions.resetForm()
   }
@@ -73,7 +81,7 @@ const EditPricingStrategy = () => {
            {formik.errors.screen && formik.touched.screen && (<span>{formik.errors.screen}</span>)}
  
           
-           <Button type='submit' variant='contained' color='success'>Edit</Button>
+           <Button disabled={formik.isSubmitting || Object.keys(formik.errors).length>0} type='submit' variant='contained' color='success'>Edit</Button>
          </form>}
    </>
   )

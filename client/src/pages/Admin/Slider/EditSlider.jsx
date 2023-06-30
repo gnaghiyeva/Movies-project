@@ -4,6 +4,7 @@ import { useFormik } from 'formik'
 import { useSliderContext } from '../../../context/SliderContext'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button, TextField } from '@mui/material'
+import Swal from "sweetalert2";
 
 const EditSlider = () => {
     const[ selectedImages, setSelectedImages] = useState({})
@@ -29,9 +30,18 @@ const EditSlider = () => {
   const handleEdit = async(values, actions) => {
     const formData = new FormData();
   formData.append('name', values.name);
-  formData.append('image', values.image); // FormData'ya seçilen resmi ekleyin
+  formData.append('image', values.image); 
 
-  await editSlider(id, formData); // Düzenlenmiş slaydı kaydetmek için FormData'yı kullanın
+  await editSlider(id, formData); 
+
+  Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: `slider edited successfully`,
+    showConfirmButton: false,
+    timer: 1500,
+  });
+
   navigate('/admin/sliders');
   actions.resetForm();
   

@@ -3,7 +3,7 @@ import { postSlider } from '../../../api/requests'
 import { useFormik } from 'formik'
 import { sliderSchema } from '../../../validation/SliderSchema'
 import { Button, TextField } from '@mui/material'
-
+import Swal from "sweetalert2";
 
 const AddSlider = () => {
     const [selectedImages, setSelectedImages] = useState(null)
@@ -15,6 +15,14 @@ const AddSlider = () => {
         formData.append("name", values.name)
 
         postSlider(formData)
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `slider successfully`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
         buttonRef.current.style.background = '#1976D2';
         buttonRef.current.textContent = 'Upload File';
 

@@ -3,6 +3,7 @@ import { postBlog } from '../../../api/requests'
 import { blogSchema } from '../../../validation/BlogSchema'
 import { useFormik } from 'formik'
 import { Button, TextField } from '@mui/material'
+import Swal from "sweetalert2";
 
 const AddBlog = () => {
   const [selectedImages, setSelectedImages] = useState(null)
@@ -18,6 +19,13 @@ const AddBlog = () => {
     formData.append("blockquote", values.blockquote)
 
     postBlog(formData)
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `blog added successfully`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
     buttonRef.current.style.background = '#1976D2';
     buttonRef.current.textContent = 'Upload File';
 

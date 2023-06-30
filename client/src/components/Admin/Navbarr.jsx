@@ -45,7 +45,7 @@ const Navbarr = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Sliders', 'pricingSliders', 'Films', 'Contact', 'Services', 'Streamings', 'blogs'].map((text, index) => (
+        {['Sliders', 'pricingSliders', 'pricingStrategy','Films', 'Contact', 'Services', 'Streamings', 'blogs'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -53,6 +53,7 @@ const Navbarr = () => {
                
                 {text === 'Sliders' ? <Link to='sliders'><ContrastIcon /></Link> : ''}
                 {text === 'pricingSliders' ? <Link to='pricingSliders'><AttachMoneyIcon/></Link> : ''}
+                {text === 'pricingStrategy' ? <Link to='pricingStrategy'><AttachMoneyIcon/></Link> : ''}
                 {text === 'Films' ? <Link to='films'><TheatersIcon /></Link> : ''}
                 {text === 'Contact' ? <Link to='contact'><ContactPageIcon /></Link> : ''}
                 {text === 'Services' ? <Link to='services'><DesignServicesIcon /></Link> : ''}

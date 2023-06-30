@@ -5,6 +5,8 @@ import { editStreaming, getStreamingById } from '../../../api/requests'
 import { useFormik } from 'formik'
 import { Button, TextField } from '@mui/material'
 import { streamingSchema } from '../../../validation/StreamingSchema'
+import Swal from "sweetalert2";
+
 
 const EditStreaming = () => {
   const [streamings, setStreamings] = useStreamingContext();
@@ -20,6 +22,16 @@ const EditStreaming = () => {
   const handleEdit = async (values, actions) => {
     setStreamings(values)
     await editStreaming(id, values)
+
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `Streaming edited successfully`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
+    
     navigate('/admin/streamings')
     actions.resetForm()
   }

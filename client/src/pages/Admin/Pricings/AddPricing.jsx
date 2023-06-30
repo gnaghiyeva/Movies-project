@@ -3,7 +3,7 @@ import { postPricingSlider } from '../../../api/requests'
 import { useFormik } from 'formik'
 import { pricingSliderSchema } from '../../../validation/PricingSchema'
 import { Button, TextField } from '@mui/material'
-
+import Swal from "sweetalert2";
 const AddPricing = () => {
     const [selectedImages, setSelectedImages] = useState(null)
     const buttonRef = useRef()
@@ -14,6 +14,13 @@ const AddPricing = () => {
         formData.append("name", values.name)
 
         postPricingSlider(formData)
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `pricing added successfully`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
         buttonRef.current.style.background = '#1976D2';
         buttonRef.current.textContent = 'Upload File';
 

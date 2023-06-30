@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { editPricingSlider, getPricingSliderById } from '../../../api/requests'
 import { useFormik } from 'formik'
 import { Button, TextField } from '@mui/material'
+import Swal from "sweetalert2";
 
 const EditPricing = () => {
   const [selectedImages, setSelectedImages] = useState({})
@@ -29,13 +30,18 @@ const EditPricing = () => {
   const handleEdit = async (values, actions) => {
     const formData = new FormData();
     formData.append('name', values.name);
-    formData.append('image', values.image); // FormData'ya seçilen resmi ekleyin
+    formData.append('image', values.image); 
 
-    await editPricingSlider(id, formData); // Düzenlenmiş slaydı kaydetmek için FormData'yı kullanın
+    await editPricingSlider(id, formData); 
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `pricing edited successfully`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate('/admin/pricingSliders');
     actions.resetForm();
-
-
   };
 
 
@@ -54,7 +60,7 @@ const EditPricing = () => {
     reader.onload = () => {
       const base64Image = reader.result;
       setSelectedImages(base64Image);
-      formik.setFieldValue('image', file); // Seçilen resmi formik değerine atayın
+      formik.setFieldValue('image', file); 
     };
 
     reader.readAsDataURL(file);

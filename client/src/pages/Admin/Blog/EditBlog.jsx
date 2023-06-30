@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { editBlog, getBlogById } from '../../../api/requests'
 import { useFormik } from 'formik'
 import { Button, TextField } from '@mui/material'
+import Swal from "sweetalert2";
 
 const EditBlog = () => {
   const [selectedImage, setSelectedImage] = useState('');
@@ -32,13 +33,20 @@ const EditBlog = () => {
   const handleEdit = async (values, actions) => {
     const formData = new FormData();
     formData.append('title', values.title);
-    formData.append('image', values.image); // FormData'ya seçilen resmi ekleyin
+    formData.append('image', values.image); 
     formData.append('releaseDate', values.releaseDate);
     formData.append('description', values.description);
     formData.append('blockquote', values.blockquote);
     formData.append('author', values.author);
 
-    await editBlog(id, formData); // Düzenlenmiş slaydı kaydetmek için FormData'yı kullanın
+    await editBlog(id, formData); 
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `blog edited successfully`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate('/admin/blogs');
     actions.resetForm();
   };

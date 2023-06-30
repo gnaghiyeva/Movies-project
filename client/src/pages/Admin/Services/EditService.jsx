@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { editService, getServiceById } from '../../../api/requests'
 import { useFormik } from 'formik'
 import { Button, TextField } from '@mui/material'
+import Swal from "sweetalert2";
 
 const EditService = () => {
     const [selectedImages, setSelectedImages] = useState({})
@@ -30,11 +31,18 @@ const EditService = () => {
   const handleEdit = async (values, actions) => {
     const formData = new FormData();
     formData.append('title', values.title);
-    formData.append('image', values.image); // FormData'ya seçilen resmi ekleyin
+    formData.append('image', values.image);
     formData.append('desc', values.desc);
     
 
-    await editService(id, formData); // Düzenlenmiş slaydı kaydetmek için FormData'yı kullanın
+    await editService(id, formData); 
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `service edited successfully`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate('/admin/services');
     actions.resetForm();
 

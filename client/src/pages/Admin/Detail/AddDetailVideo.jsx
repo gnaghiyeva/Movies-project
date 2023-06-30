@@ -4,6 +4,7 @@ import { useFormik } from 'formik'
 import { detailSchema } from '../../../validation/DetailSchema'
 import { Button, TextField } from '@mui/material'
 import { useParams } from 'react-router-dom'
+import Swal from "sweetalert2";
 
 const AddDetailVideo = () => {
     const [selectedVideo, setSelectedVideo] = useState(null)
@@ -17,6 +18,14 @@ const AddDetailVideo = () => {
 
 
         postUpcomingVideo(formData)
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `detail added successfully`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          
         buttonRef.current.style.background = '#1976D2';
         buttonRef.current.textContent = 'Upload File';
 

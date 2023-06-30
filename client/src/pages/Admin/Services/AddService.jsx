@@ -3,6 +3,7 @@ import { postService } from '../../../api/requests'
 import { useFormik } from 'formik'
 import { serviceSchema } from '../../../validation/ServiceSchema'
 import { Button, TextField } from '@mui/material'
+import Swal from "sweetalert2";
 
 const AddService = () => {
     const [selectedImages, setSelectedImages] = useState(null)
@@ -16,6 +17,14 @@ const AddService = () => {
       
 
         postService(formData)
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `service successfully`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
         buttonRef.current.style.background = '#1976D2';
         buttonRef.current.textContent = 'Upload File';
 

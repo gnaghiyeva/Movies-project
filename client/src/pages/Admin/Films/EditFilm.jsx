@@ -4,6 +4,8 @@ import { useFormik } from 'formik'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button, TextField } from '@mui/material'
 import { useFilmContext } from '../../../context/FilmContext'
+import Swal from "sweetalert2";
+
 const EditFilm = () => {
   const [selectedImages, setSelectedImages] = useState({})
   const buttonRef = useRef()
@@ -31,14 +33,21 @@ const EditFilm = () => {
   const handleEdit = async (values, actions) => {
     const formData = new FormData();
     formData.append('title', values.title);
-    formData.append('image', values.image); // FormData'ya seçilen resmi ekleyin
+    formData.append('image', values.image); 
     formData.append('releaseDate', values.releaseDate);
     formData.append('minute', values.minute);
     formData.append('imdb', values.imdb);
     formData.append('quality', values.quality);
     formData.append('category', values.category);
 
-    await editFilm(id, formData); // Düzenlenmiş slaydı kaydetmek için FormData'yı kullanın
+    await editFilm(id, formData); 
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `film edited successfully`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate('/admin/films');
     actions.resetForm();
 

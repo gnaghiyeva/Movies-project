@@ -27,14 +27,14 @@ const AdminPricingStrategy = () => {
 
   return (
     <>
-    <Navbar bg="dark" variant="dark">
+    {/* <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">Film Navbar</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="#home"><Link to='/admin/add-film'>Add Pricing Strategy</Link></Nav.Link>
           </Nav>
         </Container>
-      </Navbar>
+      </Navbar> */}
 
 
       <Grid container spacing={2}>

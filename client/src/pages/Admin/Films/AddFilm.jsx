@@ -3,6 +3,7 @@ import { postFilm } from '../../../api/requests'
 import { useFormik } from 'formik'
 import { filmSchema } from '../../../validation/FilmSchema'
 import { Button, TextField } from '@mui/material'
+import Swal from "sweetalert2";
 
 const AddFilm = () => {
     const [selectedImages, setSelectedImages] = useState(null)
@@ -19,6 +20,14 @@ const AddFilm = () => {
         formData.append("category", values.category)
 
         postFilm(formData)
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `film added successfully`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          
         buttonRef.current.style.background = '#1976D2';
         buttonRef.current.textContent = 'Upload File';
 
@@ -82,7 +91,7 @@ const AddFilm = () => {
         {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
 
 
-        <Button variant='contained' type='submit'>Add</Button>
+        <Button variant='contained' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0}  type='submit'>Add</Button>
     </form>
 </>
   )

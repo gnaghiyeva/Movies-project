@@ -4,7 +4,7 @@ import { useFormik } from 'formik'
 import { Button, TextField } from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDetailContext } from '../../../context/DetailContext'
-
+import Swal from "sweetalert2";
 const EditDetail = () => {
     const [selectedVideo, setSelectedVideo] = useState({})
   const buttonRef = useRef()
@@ -31,6 +31,13 @@ const EditDetail = () => {
     formData.append('video', values.video); 
 
     await editUpcomingVideo(id, formData); 
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `detail edited successfully`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate('/admin/films');
     actions.resetForm();
 
