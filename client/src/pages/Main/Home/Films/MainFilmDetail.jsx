@@ -31,18 +31,20 @@ const MainFilmDetail = () => {
 
   return (
     <>
-      <section className={filmdetail.detail} style={{ backgroundColor: '#222', padding: '60px 50px' }}>
+      <section className={filmdetail.detail}>
         <Grid container spacing={2}>
-          <Grid item xs={6} md={4}>
-            <Card style={{ backgroundColor: '#222', color: 'white' }}>
-              <img src={film.image} height={450} alt={film.title} />
+          
+          <Grid item xs={12} sm={12} md={4}>
+            <Card className={filmdetail.detail_card}>
+              <img className={filmdetail.image} src={film.image} alt={film.title} />
             </Card>
           </Grid>
 
-          <Grid item xs={6} md={6}>
+
+          <Grid item xs={12} sm={12} md={8}>
             <article>
-              <h2 style={{ color: 'yellow' }}>New Episodes</h2>
-              <h1 style={{ color: 'white' }}>{film.title}</h1>
+              <h2 className={filmdetail.detail_article_h2}>New Episodes</h2>
+              <h1 className={filmdetail.detail_article_h1}>{film.title}</h1>
             </article>
 
             <div style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
@@ -67,7 +69,7 @@ const MainFilmDetail = () => {
                   <p style={{ color: 'gray' }}>{upcoming.desc}</p>
                   {upcoming.video && (
                     <div>
-                      <video controls width={600} height={400}>
+                      <video className={filmdetail.video} controls>
                         {console.log('VIDEO: ', upcoming.video)}
                         <source src={upcoming.video} type="video/mp4" />
                         Sorry, your browser doesn't support embedded videos.

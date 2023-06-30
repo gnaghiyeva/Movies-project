@@ -1,9 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
@@ -13,6 +8,7 @@ import navStyle from '../../assets/styles/navbar.module.css';
 import { List, ListItem } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Drawer from '@mui/material/Drawer';
+import { getAllFilms } from '../../api/requests';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -60,6 +56,7 @@ const Navbar = () => {
   const [isFixed, setIsFixed] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [films, setFilms] = useState([])
   const navigate = useNavigate();
 
   const toggleMenu = () => {
@@ -92,6 +89,29 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const handleSearch = async (e) => {
+    const searchFilm = e.target.value;
+    if (searchFilm) {
+      try {
+        const res = await getAllFilms(searchFilm);
+        setFilms(res.data);
+      } catch (error) {
+        console.log('Error searching films:', error);
+      }
+    } else {
+      setFilms([]);
+    }
+  };
+
+
+  function handleChange(e){
+    getAllFilms(e.target.value).then((res)=>{
+        setFilms(res.data)  
+        console.log(res.data)
+
+    })
+  }
 
   return (
     <>
@@ -127,10 +147,24 @@ const Navbar = () => {
                 <SearchIcon style={{ color: 'white' }} />
               </SearchIconWrapper>
               <StyledInputBase
+                onChange={(e)=>handleChange(e)}
                 style={{ color: 'white' }}
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
               />
+               {films.length > 0 && (
+                <div style={{ backgroundColor: 'white', position: 'absolute', top: '100%', left: 0, width: '100%' }}>
+                  <List style={{backgroundColor:'rgb(67,67,67)'}}>
+                    {films.map((film) => (
+                      <ListItem  key={film.id}>
+                        <span style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }}>
+                          {film.title}
+                        </span>
+                      </ListItem>
+                    ))}
+                  </List>
+                </div>
+              )}
             </Search>
           </div>
 
