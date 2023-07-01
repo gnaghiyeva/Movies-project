@@ -68,7 +68,7 @@ const MainBlogs = () => {
 
 
     return (
-        <section style={{ backgroundColor: 'rgb(16,15,23)', padding: '80px 100px', margin:'0 auto' }}>
+        <section style={{ backgroundColor: 'rgb(16,15,23)', padding: '80px 100px', margin: '0 auto' }}>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={8} lg={8}>
                     <Grid container spacing={2}>
@@ -81,7 +81,12 @@ const MainBlogs = () => {
                                             <AccessTimeIcon style={{ color: 'yellow' }} /> {blog.releaseDate}
                                         </Typography>
                                         <Typography style={{ color: 'white' }} gutterBottom variant="h5" component="div">
-                                            <b>{blog.title}</b>
+                                            <b onMouseEnter={(e) => {
+                                                e.currentTarget.style.color = 'yellow';
+                                            }}
+                                                onMouseLeave={(e) => {
+                                                    e.currentTarget.style.color = 'white';
+                                                }}>{blog.title}</b>
                                         </Typography>
                                         <p
                                             style={{
@@ -147,30 +152,30 @@ const MainBlogs = () => {
                         </CardContent>
                     </Card>
 
-<br/>
-                    <h2 style={{color:'white'}}>Recent Posts</h2>
-                      {lastBlogs && lastBlogs.map((last)=>{
+                    <br />
+                    <h2 style={{ color: 'white' }}>Recent Posts</h2>
+                    {lastBlogs && lastBlogs.map((last) => {
                         return (
-                            <Card style={{ backgroundColor: 'rgb(31,30,36)' }} sx={{ maxWidth: 345,display: 'flex'  }} >
-                            <CardMedia
-                              component="img"
-                              sx={{ width: 151 }}
-                              image={last.image}
-                              alt="Live from space album cover"
-                            />
-                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                              <CardContent sx={{ flex: '1 0 auto' }}  style={{color:'white'}}>
-                                <Typography component="div" variant="h5">
-                                  {last.title}
-                                </Typography>
-                                <Typography  style={{color:'white'}} variant="subtitle1" color="text.secondary" component="div">
-                                 {last.releaseDate}
-                                </Typography>
-                              </CardContent>
-                            </Box>
-                          </Card>
+                            <Card style={{ backgroundColor: 'rgb(31,30,36)' }} sx={{ maxWidth: 345, display: 'flex' }} >
+                                <CardMedia
+                                    component="img"
+                                    sx={{ width: 151 }}
+                                    image={last.image}
+                                    alt="Live from space album cover"
+                                />
+                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                    <CardContent sx={{ flex: '1 0 auto' }} style={{ color: 'white' }}>
+                                        <Typography component="div" variant="h5">
+                                            <span style={{ fontSize: '16px' }}>{last.title}</span>
+                                        </Typography>
+                                        <Typography style={{ color: 'white' }} variant="subtitle1" color="text.secondary" component="div">
+                                            <AccessTimeIcon style={{ color: 'yellow' }} /> {last.releaseDate}
+                                        </Typography>
+                                    </CardContent>
+                                </Box>
+                            </Card>
                         )
-                      })}
+                    })}
                 </Grid>
             </Grid>
 

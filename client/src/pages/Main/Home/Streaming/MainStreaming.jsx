@@ -5,6 +5,7 @@ import { Button, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { getAllStreamings } from '../../../../api/requests';
 import RemoveIcon from '@mui/icons-material/Remove';
+import streamingStyle from '../../../../assets/styles/streaming.module.css'
 const MainStreaming = () => {
   const [counter, setCounter] = useState(0);
   const [openModal, setOpenModal] = useState(false);
@@ -37,7 +38,7 @@ const MainStreaming = () => {
   // const youtubeLink = 'https://www.youtube.com/embed/hZGR5Sj1Bfo';
 
   return (
-    <section style={{width:'100%',padding:'40px 100px'}}>
+    <section className={streamingStyle.streaming_container}>
     <Grid container spacing={2}>
       <Grid item lg={6} md={6} xs={12} sm={12}>
         <article>
@@ -51,10 +52,10 @@ const MainStreaming = () => {
           ))}
 
           <div style={{ display: 'flex', gap: '25px' }}>
-            <span style={{ fontSize: '60px', textShadow: '0px 3px 24px rgba(160, 160, 160, 0.09)', lineHeight: '1', color: '#d81c2b' }}>HD 4K</span>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span style={{ fontWeight: '900', fontSize: '38px', textShadow: '0px 3px 4px rgba(30, 30, 30, 0.18)' }}>{counter <= 20 ? counter : '20'}K+</span>
-              <p style={{ fontWeight: '400', fontSize: '38px' }}>Costumer</p>
+            <span className={streamingStyle.streaming_quality}>HD 4K</span>
+            <div className={streamingStyle.streaming_counter_container}>
+              <span className={streamingStyle.streaming_counter}>{counter <= 20 ? counter : '20'}K+</span>
+              <p className={streamingStyle.streaming_costumer}>Costumer</p>
             </div>
           </div>
           <Button
@@ -87,7 +88,6 @@ const MainStreaming = () => {
                 allowFullScreen
                 title="YouTube Video"
               ></iframe>
-
             </DialogContent>
              )
 

@@ -60,7 +60,7 @@ const Footer = () => {
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} md={3}>
                         <ul style={{ color: 'white', listStyle: 'none', lineHeight: '2em' }}>
-                            <li><img width={200} src={Movflix} alt='logo' /></li>
+                            <li><img width={200} src={Movflix} alt='logo' /></li>  <br/>
                             {contacts && contacts.map((contact)=>{
                                 return (
                                     <>
@@ -76,7 +76,10 @@ const Footer = () => {
 
                     <Grid item xs={12} sm={6} md={3}>
                         <ul style={{ color: 'white', listStyle: 'none', lineHeight: '2.5em' }}>
-                            <li><h2>Categories</h2></li>
+                            <li style={{display:'flex', flexDirection:'column'}}>
+                                <h2>Categories</h2>
+                                <span style={{borderBottom:'4px solid yellow', width:'15%', borderRadius:'2px'}}></span>
+                            </li> <br/>
                             {categories.map((category) => (
                                 <li key={category}>{category}</li>
                             ))}
@@ -85,7 +88,10 @@ const Footer = () => {
 
                     <Grid item xs={12} sm={6} md={3}>
                         <ul style={{ color: 'white', listStyle: 'none', lineHeight: '2.5em' }}>
-                            <li><h2>Recent Posts</h2></li>
+                            <li style={{display:'flex', flexDirection:'column'}}>
+                                <h2 >Recent Posts</h2>
+                                <span style={{borderBottom:'4px solid yellow', width:'15%', borderRadius:'2px'}}></span>
+                            </li> <br/>
                             {lastBlogs && lastBlogs.map((last) => {
                                 return (
                                     <Card style={{ backgroundColor: 'transparent' }} sx={{ maxWidth: 345, display: 'flex' }} >
@@ -116,7 +122,10 @@ const Footer = () => {
                     <Grid item xs={12} sm={6} md={3}>
 
                         <ul style={{ color: 'white', listStyle: 'none', lineHeight: '2.5em' }}>
-                            <li><h2>Follow us</h2></li>
+                            <li style={{display:'flex', flexDirection:'column'}}>
+                                <h2>Follow us</h2>
+                                <span style={{borderBottom:'4px solid yellow', width:'15%', borderRadius:'2px'}}></span>
+                            </li> <br/>
                             <div style={{ display: 'flex', gap: '15px' }}>
                                 <li><Link to='https://www.facebook.com/ColorsTV/'><FacebookIcon style={{ color: 'rgb(59,89,152)', fontSize: '45px' }} /></Link></li>
                                 <li><Link to='https://twitter.com/ColorsTV?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'><TwitterIcon style={{ color: 'rgb(85,172,238)', fontSize: '45px' }} /></Link></li>

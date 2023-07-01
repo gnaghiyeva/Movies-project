@@ -105,7 +105,7 @@ const NewMovie = () => {
           <Button
             className={activeButton === 'All Movies' ? 'active' : ''}
             onClick={() => handleCategoryFilter('All Movies')}
-            style={{ border: activeButton === 'All Movies' ? '1px solid yellow' : '' }}
+            style={{ border: activeButton === 'All Movies' ? '1px solid yellow' : '', backgroundColor:'rgb(32,33,43)', padding:'10px 30px', color:'white', borderRadius:'25px' }}
           >
             All Movies
           </Button>
@@ -114,7 +114,7 @@ const NewMovie = () => {
               key={category}
               className={activeButton === category ? 'active' : ''}
               onClick={() => handleCategoryFilter(category)}
-              style={{ border: activeButton === category ? '1px solid yellow' : '' }}
+              style={{ border: activeButton === category ? '1px solid yellow' : '', backgroundColor:'rgb(32,33,43)', padding:'10px 30px', color:'white', borderRadius:'25px' }}
             >
               {category}
             </Button>
@@ -131,13 +131,12 @@ const NewMovie = () => {
             <Grid item sm={6} xs={12} md={3} lg={3} key={film._id}>
               <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} layout>
                 <AnimatePresence>
-                  <Card style={{
-                    backgroundColor: '#222', color: 'white', position: 'relative',
+                  <Card style={{  backgroundColor: 'transparent', color: 'white', position: 'relative',
                     overflow: 'hidden',
                     transition: 'box-shadow 0.3s ease',
-                    boxShadow: 'none'
+                    boxShadow: 'none',
                   }} className={filmStyle.hover_card}
-                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 0, 20, 0.9)'}
+                    onMouseEnter={(e) =>  e.currentTarget.style.boxShadow = '0px 0px 10px 5px rgba(0, 0, 0, 0.95)'}
                     onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}>
                     
                     <img className={filmStyle.film_image} src={film.image} height={300} alt='film_photo' />
@@ -159,13 +158,13 @@ const NewMovie = () => {
 
                         <div style={{ display: 'flex', gap: '15px' }}>
                           <Card.Description>
-                            <span style={{ display: 'flex', alignItems: 'center' }}>
-                              <AccessTimeIcon />  {film.minute} min
+                            <span style={{ display: 'flex', alignItems: 'center', gap:'5px' }}>
+                              <AccessTimeIcon style={{color:'yellow'}}/>  {film.minute} min
                             </span>
                           </Card.Description>
                           <Card.Description>
-                            <span style={{ display: 'flex', alignItems: 'center' }}>
-                              <ThumbUpIcon /> {film.imdb}
+                            <span style={{ display: 'flex', alignItems: 'center', gap:'5px' }}>
+                              <ThumbUpIcon style={{color:'yellow'}} /> {film.imdb}
                             </span>
                           </Card.Description>
 

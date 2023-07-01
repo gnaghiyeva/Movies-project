@@ -1,3 +1,38 @@
 .contact{
     background-image: url('../../assets/images/newsletter_bg.jpg');
+    padding: 50px 60px;
+    text-align: center ;
+    background-position: center;
+}
+
+.article{
+    text-align: left;
+    padding: 0 70px;
+}
+.text_h1{
+    font-weight: 800;
+}
+
+.contact_input_container{
+    display:flex;
+    width: 90% 
+}
+.contact_input{
+    background-color: white;
+    padding: 0 1px;
+    flex: 1 
+}
+
+.contact_button{
+    background-color: black;
+    color: yellow;
+    padding: 0 60px;
+    border-radius: 6px;
+}
+@media(max-width:600px){
+    .article{
+        text-align: left;
+        padding: 0;
+        font-size: 20px;
+    }
 }

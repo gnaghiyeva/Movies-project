@@ -28,16 +28,16 @@ const MainSliders = () => {
           <article className={sliderStyle.slider_article}>
             <h3 className={sliderStyle.slider_article_h3}>MOVFLX</h3>
             <h1 className={sliderStyle.slider_article_h1}>Unlimited Movie, TVs <br /> Shows, & More.</h1>
-            <Button variant='contained' style={{ backgroundColor: 'transparent', border: '1px solid yellow', borderRadius: '25px', color: 'white' }} onMouseEnter={(e) => {
+            <button  style={{ backgroundColor: 'rgb(18,21,30)', border: '1px solid yellow', borderRadius: '25px', color: 'white', padding:'12px 15px' }} onMouseEnter={(e) => {
               e.target.style.backgroundColor = 'yellow';
-              e.target.style.color = 'black';
+              e.target.style.color = 'white';
             }}
               onMouseLeave={(e) => {
-                e.target.style.backgroundColor = 'transparent';
+                e.target.style.backgroundColor = 'rgb(18,21,30)';
                 e.target.style.color = 'white';
               }}>
-              <PlayArrowIcon /> <Link style={{ color: 'black' }} to='/movie'>WATCH NOW</Link>
-            </Button>
+              <PlayArrowIcon /> <Link to='/movie'>WATCH NOW</Link>
+            </button>
           </article>
         </SwiperSlide>
       ))}

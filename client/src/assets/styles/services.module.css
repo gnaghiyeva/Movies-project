@@ -1,3 +1,9 @@
+.service_container{
+    background-color: #222;
+    padding:90px 100px;
+    width:100%;
+    background-image: url('../images/services_bg.jpg');
+}
 .service_button{
     background-color:  yellow;
     text-transform: uppercase;
@@ -34,6 +40,7 @@
     object-fit: cover;
   }
 
+  
 @media (max-width:1300px){
     .service_button{
         background-color:  yellow;
@@ -48,6 +55,7 @@
         padding: 43px 50px;
     }
 }
+
 
 
 @media(max-width:992px){

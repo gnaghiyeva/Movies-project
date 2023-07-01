@@ -1,0 +1,17 @@
+.recently_films_container{
+    background-color: rgb(18,18,26);
+    padding-top: 60px; 
+    width:100%;
+    background-image: url('../images/tv_series_bg.jpg'); 
+}
+
+
+.film_title {
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.film_title:hover {
+    color: yellow;
+}

@@ -18,19 +18,19 @@ const Subscribe = () => {
             });
     };
     return (
-        <section className={homeContact.contact} style={{ padding: '30px 60px', textAlign: 'center' }}>
+        <section className={homeContact.contact} >
             <Grid container spacing={2}>
                 <Grid item md={6} xs={12}>
-                    <article>
-                        <h1>TRIAL START FIRST 30 DAYS.</h1>
+                    <article className={homeContact.article}>
+                        <h1 className={homeContact.text_h1} >TRIAL START FIRST 30 DAYS.</h1>
                         <p>Enter your email to create or restart your membership.</p>
                     </article>
                 </Grid>
                 <Grid item md={6} xs={12}>
                     <form ref={form} onSubmit={sendEmail} style={{ display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ display: 'flex', width: '100%' }}>
-                            <TextField style={{ backgroundColor: 'white', padding: '0 1px', flex: 1 }} name="message" placeholder='Enter your message ...' /><br />
-                            <button style={{ backgroundColor: 'black', color: 'yellow', padding: '0 20px' }} type="submit" value="Send">Send</button>
+                        <div className={homeContact.contact_input_container} >
+                            <TextField className={homeContact.contact_input} name="message" placeholder='Enter your message ...' /><br />
+                            <button className={homeContact.contact_button} type="submit" value="Send">GET STARTED</button>
                         </div>
                     </form>
                 </Grid>

@@ -1,11 +1,24 @@
+.movies_container{
+    background-color: rgb(18,18,26);
+    padding: 60px 0;
+    width:100%;
+    background-image: url('../images/tr_movies_bg.jpg');
+}
 .film_title {
     color: white;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 .film_title:hover {
     color: yellow;
 }
 
+.movies_categories {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
 
 @media(max-width:576px){
     .card{

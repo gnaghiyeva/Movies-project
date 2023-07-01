@@ -9,6 +9,7 @@ import {motion, AnimatePresence} from 'framer-motion'
 import {Link} from 'react-router-dom'
 import filmStyle from '../../../../assets/styles/mainFilms.module.css'
 import MenuIcon from '@mui/icons-material/Menu';
+import { grey } from '@mui/material/colors';
 
 
 const MainFilms = () => {
@@ -91,16 +92,16 @@ const MainFilms = () => {
           <Button
             className={activeButton === 'All Movies' ? 'active' : ''}
             onClick={() => handleCategoryFilter('All Movies')}
-            style={{ border: activeButton === 'All Movies' ? '1px solid yellow' : '' }}
+            style={{ border: activeButton === 'All Movies' ? '1px solid yellow' : '', backgroundColor:'rgb(32,33,43)', padding:'10px 30px', color:'white', borderRadius:'25px' }}
           >
             All Movies
           </Button>
           {categories.map((category) => (
-            <Button
+            <Button 
               key={category}
               className={activeButton === category ? 'active' : ''}
               onClick={() => handleCategoryFilter(category)}
-              style={{ border: activeButton === category ? '1px solid yellow' : '' }}
+              style={{ border: activeButton === category ? '1px solid yellow' : '' , backgroundColor:'rgb(32,33,43)', padding:'10px 30px', color:'white', borderRadius:'25px'}}
             >
               {category}
             </Button>
@@ -117,15 +118,14 @@ const MainFilms = () => {
             <Grid item sm={6} xs={12} md={3} lg={3} key={film._id}>
             <motion.div animate={{opacity:1}} initial={{opacity:0}} layout>
             <AnimatePresence>
-              <Card style={{  backgroundColor: '#222', color: 'white', position: 'relative',
+              <Card style={{  backgroundColor: 'transparent', color: 'white', position: 'relative',
                     overflow: 'hidden',
                     transition: 'box-shadow 0.3s ease',
                     boxShadow: 'none',
-                
                   }} 
                     className={filmStyle.hover_card}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 0, 20, 0.9)';
+                      e.currentTarget.style.boxShadow = '0px 0px 10px 5px rgba(0, 0, 0, 0.95)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.boxShadow = 'none';
@@ -136,27 +136,27 @@ const MainFilms = () => {
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Card.Header><Link  className={filmStyle.film_title} to={`/film/${film._id}`}>{film.title}</Link></Card.Header>
                     <Card.Meta>
-                      <span className='date' style={{ color: 'yellow' }}>{film.releaseDate}</span>
+                      <span className='date' style={{ color: 'yellow' }}>{film.releaseDate.substring(0, 4)}</span>
                     </Card.Meta>
                   </div>
                   <br />
 
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Card.Description>
-                      <span style={{ border: '1px solid yellow', padding: '5px 15px' }}>
+                      <span style={{ border: '2px solid gray', padding: '5px 10px', color:'yellow', fontSize:'10px' }}>
                         {film.quality}
                       </span>
                     </Card.Description>
 
                     <div style={{ display: 'flex', gap: '15px' }}>
                       <Card.Description>
-                        <span style={{ display: 'flex', alignItems: 'center' }}>
-                          <AccessTimeIcon />  {film.minute} min
+                        <span style={{ display: 'flex', alignItems: 'center', gap:'5px' }}>
+                          <AccessTimeIcon style={{color:'yellow',fontSize:'16px'}} />  {film.minute} min
                         </span>
                       </Card.Description>
                       <Card.Description>
-                        <span style={{ display: 'flex', alignItems: 'center' }}>
-                          <ThumbUpIcon /> {film.imdb}
+                        <span style={{ display: 'flex', alignItems: 'center',gap:'5px' }}>
+                          <ThumbUpIcon style={{color:'yellow',fontSize:'16px'}} /> {film.imdb}
                         </span>
                       </Card.Description>
 

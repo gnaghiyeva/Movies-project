@@ -42,7 +42,7 @@ const MainMovies = () => {
     }
   };
   return (
-    <section style={{ backgroundColor: '#222', padding: '60px 0', width:'100%' }}>
+    <section className={movieStyle.movies_container}>
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
 
@@ -61,11 +61,19 @@ const MainMovies = () => {
     </div> */}
 
 
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className={movieStyle.movies_categories}>
           <Button
             className={activeButton === 'All Movies' ? 'active' : ''}
             onClick={() => handleCategoryFilter('All Movies')}
-            style={{ border: activeButton === 'All Movies' ? '1px solid yellow' : '' }}
+            style={{
+              
+              backgroundColor: 'rgb(11,17,16)',
+              padding: '10px 30px',
+              color: 'white',
+              borderLeft: activeButton === 'All Movies' ? '1px solid yellow' : '',
+              borderRight: activeButton === 'All Movies' ? '1px solid yellow' : '',
+              color: activeButton === 'All Movies' ? 'yellow' : 'white',
+            }}
           >
             All Movies
           </Button>
@@ -74,7 +82,12 @@ const MainMovies = () => {
               key={category}
               className={activeButton === category ? 'active' : ''}
               onClick={() => handleCategoryFilter(category)}
-              style={{ border: activeButton === category ? '1px solid yellow' : '' }}
+              style={{  backgroundColor: 'rgb(11,17,16)',
+              padding: '10px 30px',
+              color: 'white',
+              borderLeft: activeButton === category ? '1px solid yellow' : '',
+              borderRight: activeButton === category ? '1px solid yellow' : '',
+              color: activeButton === category ? 'yellow' : 'white', }}
             >
               {category}
             </Button>
@@ -83,13 +96,13 @@ const MainMovies = () => {
       </div>
 
 
-      <Grid container spacing={2} style={{padding:'20px 90px'}}>
+      <Grid container spacing={2} style={{padding:'60px 90px'}}>
         {films && films.map((film) => {
           return (
             <Grid className={movieStyle.card} item sm={6} xs={12} md={4} lg={3} key={film._id}>
               <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} layout>
                 <AnimatePresence>
-                  <Card style={{  backgroundColor: '#222', color: 'white', position: 'relative',
+                  <Card style={{  backgroundColor: 'transparent', color: 'white', position: 'relative',
                     overflow: 'hidden',
                     transition: 'box-shadow 0.3s ease',
                     boxShadow: 'none',
@@ -97,7 +110,7 @@ const MainMovies = () => {
                   }} 
                     
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 0, 20, 0.9)';
+                      e.currentTarget.style.boxShadow = '0px 0px 10px 5px rgba(0, 0, 0, 0.95)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.boxShadow = 'none';
@@ -107,27 +120,27 @@ const MainMovies = () => {
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Card.Header><Link  className={movieStyle.film_title} to={`/film/${film._id}`}>{film.title}</Link></Card.Header>
                         <Card.Meta>
-                          <span className='date' style={{ color: 'yellow' }}>{film.releaseDate}</span>
+                          <span className='date' style={{ color: 'yellow' }}>{film.releaseDate.substring(0, 4)}</span>
                         </Card.Meta>
                       </div>
                       <br />
 
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Card.Description>
-                          <span style={{ border: '1px solid yellow', padding: '5px 15px' }}>
+                          <span style={{ border: '2px solid gray', padding: '5px 10px', color:'yellow', fontSize:'10px' }}>
                             {film.quality}
                           </span>
                         </Card.Description>
 
                         <div style={{ display: 'flex', gap: '15px' }}>
                           <Card.Description>
-                            <span style={{ display: 'flex', alignItems: 'center' }}>
-                              <AccessTimeIcon />  {film.minute} min
+                            <span style={{ display: 'flex', alignItems: 'center',gap:'5px'  }}>
+                              <AccessTimeIcon style={{color:'yellow',fontSize:'16px'}} />  {film.minute} min
                             </span>
                           </Card.Description>
                           <Card.Description>
-                            <span style={{ display: 'flex', alignItems: 'center' }}>
-                              <ThumbUpIcon /> {film.imdb}
+                            <span style={{ display: 'flex', alignItems: 'center',gap:'5px'  }}>
+                              <ThumbUpIcon style={{color:'yellow',fontSize:'16px'}} /> {film.imdb}
                             </span>
                           </Card.Description>
 

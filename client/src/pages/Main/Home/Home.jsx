@@ -9,12 +9,12 @@ import Recently from './Recently/Recently'
 const Home = () => {
   return (
     <>
-    <MainSliders/>
-    <MainFilms/>
-    <MainServices/>
-    <MainMovies/>
-   <MainStreaming/>
-     <Recently/>
+      <MainSliders />
+      <MainFilms />
+      <MainServices />
+      <MainMovies />
+      <MainStreaming />
+      <Recently />
     </>
   )
 }

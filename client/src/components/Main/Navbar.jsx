@@ -109,13 +109,12 @@ const Navbar = () => {
     getAllFilms(e.target.value).then((res)=>{
         setFilms(res.data)  
         console.log(res.data)
-
     })
   }
 
   return (
     <>
-      <nav style={{ backgroundColor: '#222' }} className={navStyle.nav}>
+      <nav style={{ backgroundColor: '#222',padding:'20px 0' }} className={navStyle.nav}>
         <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
           <div>
             <img width={200} src={MovieLogo} alt='movieLogo' />

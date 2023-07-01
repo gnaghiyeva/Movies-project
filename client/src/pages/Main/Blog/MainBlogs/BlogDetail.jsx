@@ -177,10 +177,10 @@ const BlogDetail = () => {
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                   <CardContent sx={{ flex: '1 0 auto' }} style={{ color: 'white' }}>
                     <Typography component="div" variant="h5">
-                      {last.title}
+                      <span style={{fontSize:'16px'}}>{last.title}</span>
                     </Typography>
                     <Typography style={{ color: 'white' }} variant="subtitle1" color="text.secondary" component="div">
-                      {last.releaseDate}
+                     <AccessTimeIcon style={{color:'yellow'}}/> {last.releaseDate}
                     </Typography>
                   </CardContent>
                 </Box>

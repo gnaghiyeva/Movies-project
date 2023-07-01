@@ -1,0 +1,28 @@
+.streaming_container{
+    background-image: url('../images/live_bg.jpg');
+    width:100%;
+    padding:80px 100px
+}
+
+.streaming_quality{
+    font-size: 60px;
+    text-shadow: 0px 3px 24px rgba(160, 160, 160, 0.09);
+    line-height: 1;
+    color: #d81c2b;
+}
+
+.streaming_counter_container{
+    display:flex; 
+    flex-direction: column; 
+}
+
+.streaming_counter{
+    font-weight:900; 
+    font-size: 38px;
+    text-shadow: 0px 3px 4px rgba(30, 30, 30, 0.18);
+}
+
+.streaming_costumer{
+    font-weight: 400;
+    font-size: 38px;
+}

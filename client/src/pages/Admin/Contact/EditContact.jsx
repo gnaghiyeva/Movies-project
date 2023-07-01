@@ -73,7 +73,7 @@ const EditContact = () => {
           {formik.errors.location && formik.touched.location && (<span>{formik.errors.location}</span>)}
 
          
-          <Button type='submit' variant='contained' color='success'>Edit</Button>
+          <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0} >Edit</Button>
         </form>}
     </>
   )

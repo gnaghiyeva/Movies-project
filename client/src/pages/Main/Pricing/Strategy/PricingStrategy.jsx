@@ -16,11 +16,12 @@ const PricingStrategy = () => {
     })
     return (
         <section style={{ backgroundColor: 'rgb(22,23,30)', paddingBottom: '60px', paddingTop: '60px' }}>
-            <article style={{ textAlign: 'center' }}>
-                <span style={{ color: 'yellow' }}>ONLINE STREAMING</span>
-                <h1 style={{ color: 'white', fontSize: '36px' }}>New Release Movies</h1>
+            <article style={{ textAlign: 'center', display:'flex', flexDirection:'column' }}>
+                <span style={{ color: 'yellow' }}>OUR PRICING PLANS</span>
+                <h1 style={{ color: 'white', fontSize: '36px' }}>Our Pricing Strategy</h1>
+               
             </article>
-            <Grid container spacing={2} style={{ display: 'flex', justifyContent: 'center' }}>
+            <Grid container spacing={2} style={{ display: 'flex', justifyContent: 'center', padding:'40px 0' }}>
                 {pricings && pricings.map((pricing) => {
                     return (
 
@@ -34,15 +35,15 @@ const PricingStrategy = () => {
                                 }} bordered={false}
                                 
                                 onMouseEnter={(e) => {
-                                    e.currentTarget.style.boxShadow = '0 0 30px rgba(0, 0, 20, 0.9)';
+                                    e.currentTarget.style.border = '2px solid yellow';
                                   }}
                                   onMouseLeave={(e) => {
-                                    e.currentTarget.style.boxShadow = 'none';
+                                    e.currentTarget.style.border = 'none';
                                   }}
                                 >
                                     <h2>{pricing.className}</h2>
-                                    <span style={{ backgroundColor: 'yellow', color: 'black', padding: '20px 40px', display: 'inline-block', textAlign: 'center', margin: '0 auto' }}>
-                                        {pricing.price} $ <br />
+                                    <span style={{ backgroundColor: 'rgb(228,216,4)', color: 'black', padding: '20px 40px', display: 'inline-block', textAlign: 'center', margin: '0 auto', fontWeight:'900' }}>
+                                       <span style={{fontSize:'25px'}}> {pricing.price} $ </span><br />
                                         Monthly
                                     </span>
 
@@ -53,7 +54,7 @@ const PricingStrategy = () => {
                                             <h3 style={{ margin: '25px 0' }}>Video quality</h3>
                                         </div>
 
-                                        <h3 style={{ margin: '0', marginTop: '5px' }}>{pricing.videoQuality}</h3>
+                                        <h3 style={{ margin: '0', marginTop: '5px', color:'yellow' }}>{pricing.videoQuality}</h3>
                                     </div>
 
                                     <Divider></Divider>
@@ -61,10 +62,10 @@ const PricingStrategy = () => {
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                                             <CheckIcon style={{ marginRight: '5px', marginTop: '5px' }} />
-                                            <h3 style={{ margin: '25px 0' }}> Resolution</h3>
+                                            <h3 style={{ margin: '25px 0'}}> Resolution</h3>
                                         </div>
 
-                                        <h3 style={{ margin: '0', marginTop: '5px' }}>{pricing.resolution}</h3>
+                                        <h3 style={{ margin: '0', marginTop: '5px', color:'yellow' }}>{pricing.resolution}</h3>
                                     </div>
 
                                     <Divider></Divider>
@@ -75,7 +76,7 @@ const PricingStrategy = () => {
                                             <h3 style={{ margin: '25px 0' }}> Screens you can watch</h3>
                                         </div>
 
-                                        <h3 style={{ margin: '0', marginTop: '5px' }}>{pricing.screen}</h3>
+                                        <h3 style={{ margin: '0', marginTop: '5px', color:'yellow'  }}>{pricing.screen}</h3>
                                     </div>
 
 

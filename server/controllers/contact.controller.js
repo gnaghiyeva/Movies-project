@@ -35,7 +35,7 @@ const contactController = {
 
     edit: async(req,res)=>{
         const id = req.params.id;
-        const desc = req.params.desc
+        const desc = req.body.desc
         const address = req.body.address
         const phone = req.body.phone
         const email = req.body.email

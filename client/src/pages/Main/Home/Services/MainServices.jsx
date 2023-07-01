@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 import serviceLogo from '../../../../assets/images/services_img.jpg'
 import RemoveIcon from '@mui/icons-material/Remove';
 import downloadimage from '../../../../assets/images/services_img.jpg'
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+
 const MainServices = () => {
     const [services, setServices] = useState([])
 
@@ -20,16 +22,16 @@ const MainServices = () => {
     })
     return (
 
-        <section style={{ backgroundColor: '#222', padding:'60px 40px', width:'100%' }}>
+        <section className={serviceStyle.service_container}>
             <Grid container spacing={2}>
-                <Grid item xs={12} sm={12} md={6} lg={6} >
+                <Grid item xs={12} sm={12} md={7} lg={7} >
                     <div className={serviceStyle.service_img_container}>
-                        <img className={serviceStyle.service_img} src={serviceLogo} alt='serviceLogo' width={400} />
-                        <a className={serviceStyle.service_button} href={downloadimage} type='button' download="MyExampleDoc" target='_blank' >Download</a>
+                        <img className={serviceStyle.service_img} src={serviceLogo} alt='serviceLogo'  />
+                        <a className={serviceStyle.service_button}  href={downloadimage} type='button' download="MyExampleDoc" target='_blank' >Download</a>
                     </div>
                 </Grid>
 
-                <Grid item xs={12} sm={12} md={6} lg={6}>
+                <Grid item xs={12} sm={12} md={5} lg={5}>
                     <article className={serviceStyle.services_article}>
                         <h4> <RemoveIcon style={{color:'yellow'}}/> OUR SERVICES</h4>
                         <h1 style={{fontSize:'36px'}}>Download Your Shows Watch Offline.</h1>
