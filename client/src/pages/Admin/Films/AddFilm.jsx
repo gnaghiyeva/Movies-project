@@ -4,6 +4,7 @@ import { useFormik } from 'formik'
 import { filmSchema } from '../../../validation/FilmSchema'
 import { Button, TextField } from '@mui/material'
 import Swal from "sweetalert2";
+import { Helmet } from 'react-helmet'
 
 const AddFilm = () => {
     const [selectedImages, setSelectedImages] = useState(null)
@@ -26,8 +27,8 @@ const AddFilm = () => {
             title: `film added successfully`,
             showConfirmButton: false,
             timer: 1500,
-          });
-          
+        });
+
         buttonRef.current.style.background = '#1976D2';
         buttonRef.current.textContent = 'Upload File';
 
@@ -40,61 +41,65 @@ const AddFilm = () => {
         initialValues: {
             image: '',
             title: '',
-            releaseDate:'',
-            minute:'',
-            imdb:'',
-            quality:'',
-            category:''
+            releaseDate: '',
+            minute: '',
+            imdb: '',
+            quality: '',
+            category: ''
 
         },
 
         validationSchema: filmSchema,
         onSubmit: handleSubmit
     })
-  return (
-    <>
-    <form onSubmit={formik.handleSubmit}>
+    return (
+        <>
 
-        <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='title' value={formik.values.title} id="outlined-basic" label="title" variant="outlined" />
-        {formik.errors.title && formik.touched.title && (<span>{formik.errors.title}</span>)}
+            <Helmet>
+                <title>Add Film</title>
+            </Helmet>
+            <form onSubmit={formik.handleSubmit}>
 
-        <TextField type='date' onChange={formik.handleChange} onBlur={formik.handleBlur} name='releaseDate' value={formik.values.releaseDate} id="outlined-basic" label="releaseDate" variant="outlined" />
-        {/* {formik.errors.releaseDate && formik.touched.releaseDate && (<span>{formik.errors.releaseDate}</span>)} */}
+                <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='title' value={formik.values.title} id="outlined-basic" label="title" variant="outlined" />
+                {formik.errors.title && formik.touched.title && (<span>{formik.errors.title}</span>)}
 
-
-        <TextField type='number' onChange={formik.handleChange} onBlur={formik.handleBlur} name='minute' value={formik.values.minute} id="outlined-basic" label="minute" variant="outlined" />
-        {formik.errors.minute && formik.touched.minute && (<span>{formik.errors.minute}</span>)}
-
-        <TextField type='number' onChange={formik.handleChange} onBlur={formik.handleBlur} name='imdb' value={formik.values.imdb} id="outlined-basic" label="imdb" variant="outlined" />
-        {formik.errors.imdb && formik.touched.imdb && (<span>{formik.errors.imdb}</span>)}
-
-        <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='quality' value={formik.values.quality} id="outlined-basic" label="quality" variant="outlined" />
-        {formik.errors.quality && formik.touched.quality && (<span>{formik.errors.quality}</span>)}
-
-        <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='category' value={formik.values.category} id="outlined-basic" label="category" variant="outlined" />
-        {formik.errors.category && formik.touched.category && (<span>{formik.errors.category}</span>)}
+                <TextField type='date' onChange={formik.handleChange} onBlur={formik.handleBlur} name='releaseDate' value={formik.values.releaseDate} id="outlined-basic" label="releaseDate" variant="outlined" />
+                {/* {formik.errors.releaseDate && formik.touched.releaseDate && (<span>{formik.errors.releaseDate}</span>)} */}
 
 
-        <Button ref={buttonRef} variant="contained" component="label" >
-            Upload File
+                <TextField type='number' onChange={formik.handleChange} onBlur={formik.handleBlur} name='minute' value={formik.values.minute} id="outlined-basic" label="minute" variant="outlined" />
+                {formik.errors.minute && formik.touched.minute && (<span>{formik.errors.minute}</span>)}
 
-            <input value={formik.values.image}
-                onChange={(e) => {
-                    buttonRef.current.style.background = 'red'
-                    buttonRef.current.textContent = e.target.files[0].name;
-                    formik.handleChange(e)
-                    setSelectedImages(e.target.files[0])
-                }}
-                onBlur={formik.handleBlur} name='image' type='file' accept="image/*" hidden
-            />
-        </Button>
-        {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
+                <TextField type='number' onChange={formik.handleChange} onBlur={formik.handleBlur} name='imdb' value={formik.values.imdb} id="outlined-basic" label="imdb" variant="outlined" />
+                {formik.errors.imdb && formik.touched.imdb && (<span>{formik.errors.imdb}</span>)}
+
+                <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='quality' value={formik.values.quality} id="outlined-basic" label="quality" variant="outlined" />
+                {formik.errors.quality && formik.touched.quality && (<span>{formik.errors.quality}</span>)}
+
+                <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='category' value={formik.values.category} id="outlined-basic" label="category" variant="outlined" />
+                {formik.errors.category && formik.touched.category && (<span>{formik.errors.category}</span>)}
 
 
-        <Button variant='contained' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0}  type='submit'>Add</Button>
-    </form>
-</>
-  )
+                <Button ref={buttonRef} variant="contained" component="label" >
+                    Upload File
+
+                    <input value={formik.values.image}
+                        onChange={(e) => {
+                            buttonRef.current.style.background = 'red'
+                            buttonRef.current.textContent = e.target.files[0].name;
+                            formik.handleChange(e)
+                            setSelectedImages(e.target.files[0])
+                        }}
+                        onBlur={formik.handleBlur} name='image' type='file' accept="image/*" hidden
+                    />
+                </Button>
+                {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
+
+
+                <Button variant='contained' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0} type='submit'>Add</Button>
+            </form>
+        </>
+    )
 }
 
 export default AddFilm

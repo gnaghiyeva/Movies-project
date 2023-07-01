@@ -5,6 +5,7 @@ import { detailSchema } from '../../../validation/DetailSchema'
 import { Button, TextField } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import Swal from "sweetalert2";
+import { Helmet } from 'react-helmet'
 
 const AddDetailVideo = () => {
     const [selectedVideo, setSelectedVideo] = useState(null)
@@ -24,8 +25,8 @@ const AddDetailVideo = () => {
             title: `detail added successfully`,
             showConfirmButton: false,
             timer: 1500,
-          });
-          
+        });
+
         buttonRef.current.style.background = '#1976D2';
         buttonRef.current.textContent = 'Upload File';
 
@@ -38,39 +39,45 @@ const AddDetailVideo = () => {
         initialValues: {
             video: '',
             desc: '',
-            filmID:''
+            filmID: ''
         },
 
         validationSchema: detailSchema,
         onSubmit: handleSubmit
     })
     return (
-        <form onSubmit={formik.handleSubmit}>
+        <>
 
-            <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='filmID' value={formik.values.filmID} id="outlined-basic" label="filmID" variant="outlined" />
-            {formik.errors.filmID && formik.touched.filmID && (<span>{formik.errors.filmID}</span>)}
+            <Helmet>
+                <title>Add Video</title>
+            </Helmet>
+            <form onSubmit={formik.handleSubmit}>
 
-            <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='desc' value={formik.values.desc} id="outlined-basic" label="desc" variant="outlined" />
-            {formik.errors.desc && formik.touched.desc && (<span>{formik.errors.desc}</span>)}
+                <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='filmID' value={formik.values.filmID} id="outlined-basic" label="filmID" variant="outlined" />
+                {formik.errors.filmID && formik.touched.filmID && (<span>{formik.errors.filmID}</span>)}
 
-            <Button ref={buttonRef} variant="contained" component="label" >
-                Upload File
+                <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='desc' value={formik.values.desc} id="outlined-basic" label="desc" variant="outlined" />
+                {formik.errors.desc && formik.touched.desc && (<span>{formik.errors.desc}</span>)}
 
-                <input value={formik.values.video}
-                    onChange={(e) => {
-                        buttonRef.current.style.background = 'red'
-                        buttonRef.current.textContent = e.target.files[0].name;
-                        formik.handleChange(e)
-                        setSelectedVideo(e.target.files[0])
-                    }}
-                    onBlur={formik.handleBlur} name='video' type='file' accept="video/mp4" hidden
-                />
-            </Button>
-            {formik.errors.video && formik.touched.video && (<span>{formik.errors.video}</span>)}
+                <Button ref={buttonRef} variant="contained" component="label" >
+                    Upload File
+
+                    <input value={formik.values.video}
+                        onChange={(e) => {
+                            buttonRef.current.style.background = 'red'
+                            buttonRef.current.textContent = e.target.files[0].name;
+                            formik.handleChange(e)
+                            setSelectedVideo(e.target.files[0])
+                        }}
+                        onBlur={formik.handleBlur} name='video' type='file' accept="video/mp4" hidden
+                    />
+                </Button>
+                {formik.errors.video && formik.touched.video && (<span>{formik.errors.video}</span>)}
 
 
-            <Button variant='contained' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0}>Add Video</Button>
-        </form>
+                <Button variant='contained' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Add Video</Button>
+            </form>
+        </>
     )
 }
 

@@ -5,9 +5,10 @@ import { editService, getServiceById } from '../../../api/requests'
 import { useFormik } from 'formik'
 import { Button, TextField } from '@mui/material'
 import Swal from "sweetalert2";
+import { Helmet } from 'react-helmet'
 
 const EditService = () => {
-    const [selectedImages, setSelectedImages] = useState({})
+  const [selectedImages, setSelectedImages] = useState({})
   const buttonRef = useRef()
 
   const [setServices] = useServiceContext()
@@ -15,14 +16,14 @@ const EditService = () => {
   const { id } = useParams()
   const navigate = useNavigate();
   const [service, SetService] = useState({});
-  
+
   useEffect(() => {
     getServiceById(id).then((res) => {
       SetService(res);
       formik.values.title = res.data.title;
       formik.values.image = res.data.image;
       formik.values.desc = res.data.desc;
-     
+
       setLoading(false);
 
     })
@@ -33,9 +34,9 @@ const EditService = () => {
     formData.append('title', values.title);
     formData.append('image', values.image);
     formData.append('desc', values.desc);
-    
 
-    await editService(id, formData); 
+
+    await editService(id, formData);
     Swal.fire({
       position: "top-end",
       icon: "success",
@@ -71,10 +72,15 @@ const EditService = () => {
 
 
   return (
-     <>
+    <>
+
+      <Helmet>
+        <title>Edit Service</title>
+      </Helmet>
+
       {loading ? <div>loading...</div> : <form onSubmit={formik.handleSubmit}>
         <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-         
+
           <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='title' type='text' value={formik.values.title} id="outlined-basic" label="title" variant="outlined" />
           {formik.errors.title && formik.touched.title && (<span>{formik.errors.title}</span>)}
 
@@ -102,7 +108,7 @@ const EditService = () => {
 
 
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0}>Edit</Button>
+          <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Edit</Button>
         </div>
       </form>}
     </>

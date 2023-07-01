@@ -6,6 +6,7 @@ import { useFormik } from 'formik'
 import { Button, TextField } from '@mui/material'
 import { streamingSchema } from '../../../validation/StreamingSchema'
 import Swal from "sweetalert2";
+import { Helmet } from 'react-helmet'
 
 
 const EditStreaming = () => {
@@ -18,7 +19,7 @@ const EditStreaming = () => {
   const [loading, setLoading] = useState(true)
 
 
-  
+
   const handleEdit = async (values, actions) => {
     setStreamings(values)
     await editStreaming(id, values)
@@ -31,16 +32,16 @@ const EditStreaming = () => {
       timer: 1500,
     });
 
-    
+
     navigate('/admin/streamings')
     actions.resetForm()
   }
-  
+
   const formik = useFormik({
     initialValues: {
       title: streaming.title,
       desc: streaming.desc,
-      link:streaming.link
+      link: streaming.link
     },
     validationSchema: streamingSchema,
     onSubmit: handleEdit
@@ -62,28 +63,34 @@ const EditStreaming = () => {
   }, [id, loading])
 
 
- 
 
 
- 
+
+
 
   return (
     <>
-   {loading ? <div>loading</div> : <form onSubmit={formik.handleSubmit} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
-         
-          <TextField type='text' name='title' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.title} id="outlined-basic" label="title" variant="outlined" /><br />
-          {formik.errors.title && formik.touched.title && (<span>{formik.errors.title}</span>)}
-
-          <TextField type='text' name='desc' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.desc} id="outlined-basic" label="desc" variant="outlined" /><br />
-          {formik.errors.desc && formik.touched.desc && (<span>{formik.errors.desc}</span>)}
 
 
-          <TextField type='text' name='link' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.link} id="outlined-basic" label="link" variant="outlined" /><br />
-          {formik.errors.link && formik.touched.link && (<span>{formik.errors.link}</span>)}
-         
-          <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0}>Edit</Button>
-        </form>}
-  </>
+      <Helmet>
+        <title>Edit Streaming</title>
+      </Helmet>
+
+      {loading ? <div>loading</div> : <form onSubmit={formik.handleSubmit} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
+
+        <TextField type='text' name='title' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.title} id="outlined-basic" label="title" variant="outlined" /><br />
+        {formik.errors.title && formik.touched.title && (<span>{formik.errors.title}</span>)}
+
+        <TextField type='text' name='desc' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.desc} id="outlined-basic" label="desc" variant="outlined" /><br />
+        {formik.errors.desc && formik.touched.desc && (<span>{formik.errors.desc}</span>)}
+
+
+        <TextField type='text' name='link' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.link} id="outlined-basic" label="link" variant="outlined" /><br />
+        {formik.errors.link && formik.touched.link && (<span>{formik.errors.link}</span>)}
+
+        <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Edit</Button>
+      </form>}
+    </>
   )
 }
 

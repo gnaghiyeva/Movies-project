@@ -6,10 +6,11 @@ import { useFormik } from 'formik';
 import { pricingStrategySchema } from '../../../validation/PricingStrategySchema';
 import { Button, TextField } from '@mui/material';
 import Swal from "sweetalert2";
+import { Helmet } from 'react-helmet';
 
 const EditPricingStrategy = () => {
-    const [pricingsStrategy, setPricingsStrategy] = usePricingStrategy();
-//   console.log('context', pricingsStrategy)
+  const [pricingsStrategy, setPricingsStrategy] = usePricingStrategy();
+  //   console.log('context', pricingsStrategy)
   const { id } = useParams()
   // console.log(id);
   const navigate = useNavigate()
@@ -18,7 +19,7 @@ const EditPricingStrategy = () => {
 
   useEffect(() => {
     getPricingById(id).then((res) => {
-        setPricingStrategy(res)
+      setPricingStrategy(res)
       console.log('first', res)
       formik.values.className = res.data.className;
       formik.values.price = res.data.price;
@@ -51,8 +52,8 @@ const EditPricingStrategy = () => {
       className: pricingStrategy.className,
       price: pricingStrategy.price,
       videoQuality: pricingStrategy.videoQuality,
-      resolution:pricingStrategy.resolution,
-      screen:pricingStrategy.screen,
+      resolution: pricingStrategy.resolution,
+      screen: pricingStrategy.screen,
 
 
     },
@@ -63,27 +64,31 @@ const EditPricingStrategy = () => {
   })
   return (
     <>
-    {loading ? <div>loading</div> : <form onSubmit={formik.handleSubmit} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
-          
-           <TextField type='text' name='className' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.className} id="outlined-basic" label="className" variant="outlined" /><br />
-           {formik.errors.className && formik.touched.className && (<span>{formik.errors.className}</span>)}
- 
-           <TextField type='number' name='price' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.price} id="outlined-basic" label="price" variant="outlined" /><br />
-           {formik.errors.price && formik.touched.price && (<span>{formik.errors.price}</span>)}
 
-           <TextField type='text' name='videoQuality' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.videoQuality} id="outlined-basic" label="videoQuality" variant="outlined" /><br />
-           {formik.errors.videoQuality && formik.touched.videoQuality && (<span>{formik.errors.videoQuality}</span>)}
+      <Helmet>
+        <title>Edit Prices</title>
+      </Helmet>
+      {loading ? <div>loading</div> : <form onSubmit={formik.handleSubmit} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
 
-           <TextField type='text' name='resolution' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.resolution} id="outlined-basic" label="resolution" variant="outlined" /><br />
-           {formik.errors.resolution && formik.touched.resolution && (<span>{formik.errors.resolution}</span>)}
+        <TextField type='text' name='className' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.className} id="outlined-basic" label="className" variant="outlined" /><br />
+        {formik.errors.className && formik.touched.className && (<span>{formik.errors.className}</span>)}
 
-           <TextField type='number' name='screen' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.screen} id="outlined-basic" label="screen" variant="outlined" /><br />
-           {formik.errors.screen && formik.touched.screen && (<span>{formik.errors.screen}</span>)}
- 
-          
-           <Button disabled={formik.isSubmitting || Object.keys(formik.errors).length>0} type='submit' variant='contained' color='success'>Edit</Button>
-         </form>}
-   </>
+        <TextField type='number' name='price' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.price} id="outlined-basic" label="price" variant="outlined" /><br />
+        {formik.errors.price && formik.touched.price && (<span>{formik.errors.price}</span>)}
+
+        <TextField type='text' name='videoQuality' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.videoQuality} id="outlined-basic" label="videoQuality" variant="outlined" /><br />
+        {formik.errors.videoQuality && formik.touched.videoQuality && (<span>{formik.errors.videoQuality}</span>)}
+
+        <TextField type='text' name='resolution' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.resolution} id="outlined-basic" label="resolution" variant="outlined" /><br />
+        {formik.errors.resolution && formik.touched.resolution && (<span>{formik.errors.resolution}</span>)}
+
+        <TextField type='number' name='screen' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.screen} id="outlined-basic" label="screen" variant="outlined" /><br />
+        {formik.errors.screen && formik.touched.screen && (<span>{formik.errors.screen}</span>)}
+
+
+        <Button disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0} type='submit' variant='contained' color='success'>Edit</Button>
+      </form>}
+    </>
   )
 }
 

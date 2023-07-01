@@ -2,7 +2,7 @@ import React from 'react'
 
 const AddPricingStrategy = () => {
   return (
-    <div>AddPricingStrategy</div>
+    <div>AddPricingStrategy-cancel</div>
   )
 }
 

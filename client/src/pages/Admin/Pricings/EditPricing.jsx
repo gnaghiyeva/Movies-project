@@ -5,6 +5,7 @@ import { editPricingSlider, getPricingSliderById } from '../../../api/requests'
 import { useFormik } from 'formik'
 import { Button, TextField } from '@mui/material'
 import Swal from "sweetalert2";
+import { Helmet } from 'react-helmet'
 
 const EditPricing = () => {
   const [selectedImages, setSelectedImages] = useState({})
@@ -30,9 +31,9 @@ const EditPricing = () => {
   const handleEdit = async (values, actions) => {
     const formData = new FormData();
     formData.append('name', values.name);
-    formData.append('image', values.image); 
+    formData.append('image', values.image);
 
-    await editPricingSlider(id, formData); 
+    await editPricingSlider(id, formData);
     Swal.fire({
       position: "top-end",
       icon: "success",
@@ -60,13 +61,17 @@ const EditPricing = () => {
     reader.onload = () => {
       const base64Image = reader.result;
       setSelectedImages(base64Image);
-      formik.setFieldValue('image', file); 
+      formik.setFieldValue('image', file);
     };
 
     reader.readAsDataURL(file);
   };
   return (
     <>
+
+      <Helmet>
+        <title>Edit Pricing</title>
+      </Helmet>
       {loading ? <div>loading...</div> : <form onSubmit={formik.handleSubmit}>
         <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='name' type='text' value={formik.values.name} id="outlined-basic" label="name" variant="outlined" />
@@ -91,7 +96,7 @@ const EditPricing = () => {
         </div>
 
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0}>Edit</Button>
+          <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Edit</Button>
         </div>
       </form>}
     </>

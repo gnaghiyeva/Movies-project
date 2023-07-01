@@ -1,12 +1,17 @@
 import React from 'react'
 import PricingStrategy from './Strategy/PricingStrategy'
 import PricingPlan from './PricingPlan/PricingPlan'
+import { Helmet } from 'react-helmet'
 
 const Pricings = () => {
   return (
     <>
-    <PricingPlan/>
-    <PricingStrategy/>
+
+      <Helmet>
+        <title>Prices</title>
+      </Helmet>
+      <PricingPlan />
+      <PricingStrategy />
 
     </>
   )

@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom';
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Helmet } from 'react-helmet';
 
 
 const AdminContact = () => {
@@ -19,41 +20,46 @@ const AdminContact = () => {
     }, [contacts])
 
     return (
-        <TableContainer component={Paper} wi>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell align="center"><b>Description</b></TableCell>
-                        <TableCell align="center"><b>Address</b></TableCell>
-                        <TableCell align="center"><b>Email</b></TableCell>
-                        <TableCell align="center"><b>Phone</b></TableCell>
-                        <TableCell align="center"><b>Location</b></TableCell>
-                        <TableCell align="center"><b>Edit</b></TableCell>                        
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {contacts.map((contact) => (
-                        <TableRow
-                            key={contact._id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
+        <>
 
-                            <TableCell align="center">{contact.desc}</TableCell>
-                            <TableCell align="center">{contact.address}</TableCell>
-                            <TableCell align="center">{contact.email}</TableCell>
-                            <TableCell align="center">{contact.phone}</TableCell>
-                            <TableCell align="center">{contact.location}</TableCell>
-
-                            <TableCell align="center"> <Button variant='contained'>
-                                <Link style={{ color: 'white' }} to={`/admin/contact/edit/${contact._id}`}>Edit  <EditIcon /></Link>
-                            </Button>
-                            </TableCell>
+            <Helmet>
+                <title>Admin Contact</title>
+            </Helmet>
+            <TableContainer component={Paper} wi>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="center"><b>Description</b></TableCell>
+                            <TableCell align="center"><b>Address</b></TableCell>
+                            <TableCell align="center"><b>Email</b></TableCell>
+                            <TableCell align="center"><b>Phone</b></TableCell>
+                            <TableCell align="center"><b>Location</b></TableCell>
+                            <TableCell align="center"><b>Edit</b></TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {contacts.map((contact) => (
+                            <TableRow
+                                key={contact._id}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
 
+                                <TableCell align="center">{contact.desc}</TableCell>
+                                <TableCell align="center">{contact.address}</TableCell>
+                                <TableCell align="center">{contact.email}</TableCell>
+                                <TableCell align="center">{contact.phone}</TableCell>
+                                <TableCell align="center">{contact.location}</TableCell>
+
+                                <TableCell align="center"> <Button variant='contained'>
+                                    <Link style={{ color: 'white' }} to={`/admin/contact/edit/${contact._id}`}>Edit  <EditIcon /></Link>
+                                </Button>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </>
         // <Grid container spacing={2}>
         //     {contacts && contacts.map((contact) => {
         //         return (

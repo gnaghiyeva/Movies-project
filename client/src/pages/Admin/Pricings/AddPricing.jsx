@@ -4,6 +4,7 @@ import { useFormik } from 'formik'
 import { pricingSliderSchema } from '../../../validation/PricingSchema'
 import { Button, TextField } from '@mui/material'
 import Swal from "sweetalert2";
+import { Helmet } from 'react-helmet'
 const AddPricing = () => {
     const [selectedImages, setSelectedImages] = useState(null)
     const buttonRef = useRef()
@@ -20,7 +21,7 @@ const AddPricing = () => {
             title: `pricing added successfully`,
             showConfirmButton: false,
             timer: 1500,
-          });
+        });
         buttonRef.current.style.background = '#1976D2';
         buttonRef.current.textContent = 'Upload File';
 
@@ -40,31 +41,37 @@ const AddPricing = () => {
         onSubmit: handleSubmit
     })
 
-  return (
-    <form onSubmit={formik.handleSubmit}>
+    return (
+        <>
 
-    <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='name' value={formik.values.name} id="outlined-basic" label="name" variant="outlined" />
-    {formik.errors.name && formik.touched.name && (<span>{formik.errors.name}</span>)}
+            <Helmet>
+                <title>Add Pricing</title>
+            </Helmet>
+            <form onSubmit={formik.handleSubmit}>
 
-    <Button ref={buttonRef} variant="contained" component="label" >
-        Upload File
+                <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='name' value={formik.values.name} id="outlined-basic" label="name" variant="outlined" />
+                {formik.errors.name && formik.touched.name && (<span>{formik.errors.name}</span>)}
 
-        <input value={formik.values.image}
-            onChange={(e) => {
-                buttonRef.current.style.background = 'red'
-                buttonRef.current.textContent = e.target.files[0].name;
-                formik.handleChange(e)
-                setSelectedImages(e.target.files[0])
-            }}
-            onBlur={formik.handleBlur} name='image' type='file' accept="image/*" hidden
-        />
-    </Button>
-    {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
+                <Button ref={buttonRef} variant="contained" component="label" >
+                    Upload File
+
+                    <input value={formik.values.image}
+                        onChange={(e) => {
+                            buttonRef.current.style.background = 'red'
+                            buttonRef.current.textContent = e.target.files[0].name;
+                            formik.handleChange(e)
+                            setSelectedImages(e.target.files[0])
+                        }}
+                        onBlur={formik.handleBlur} name='image' type='file' accept="image/*" hidden
+                    />
+                </Button>
+                {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
 
 
-    <Button variant='contained' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0}>Add</Button>
-</form>
-  )
+                <Button variant='contained' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Add</Button>
+            </form>
+        </>
+    )
 }
 
 export default AddPricing

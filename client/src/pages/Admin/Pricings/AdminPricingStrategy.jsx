@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button';
+import { Helmet } from 'react-helmet';
 
 const AdminPricingStrategy = () => {
   const [pricingsStrategy, setPricingsStrategy] = useState([])
@@ -27,7 +28,11 @@ const AdminPricingStrategy = () => {
 
   return (
     <>
-    {/* <Navbar bg="dark" variant="dark">
+
+      <Helmet>
+        <title>Admin Prices</title>
+      </Helmet>
+      {/* <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">Film Navbar</Navbar.Brand>
           <Nav className="me-auto">
@@ -59,29 +64,29 @@ const AdminPricingStrategy = () => {
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                    {pricingStrategy.className}
-                      
+                      {pricingStrategy.className}
+
                     </TableCell>
                     <TableCell align="center">{pricingStrategy.price}</TableCell>
                     <TableCell align="center">{pricingStrategy.videoQuality}</TableCell>
                     <TableCell align="center">{pricingStrategy.resolution}</TableCell>
                     <TableCell align="center">{pricingStrategy.screen}</TableCell>
-                   
+
                     <TableCell align="center"> <Button variant='contained'>
-              <Link style={{color:'white'}} to={`/admin/pricingStrategy/edit/${pricingStrategy._id}`}>Edit  <EditIcon/></Link>
-              
-              </Button>
-              </TableCell>
+                      <Link style={{ color: 'white' }} to={`/admin/pricingStrategy/edit/${pricingStrategy._id}`}>Edit  <EditIcon /></Link>
+
+                    </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
         </Grid>
-      
-  
 
-  </Grid>
+
+
+      </Grid>
     </>
   )
 }

@@ -3,10 +3,16 @@ import { Box, Button, Typography } from '@mui/material';
 import { purple } from '@mui/material/colors';
 import { Link } from 'react-router-dom';
 import notFoundStyle from '../../../assets/styles/notFound.module.css'
+import { Helmet } from 'react-helmet';
 const primary = purple[500]; // #f44336
 const NotFound = () => {
     return (
         <>
+
+            <Helmet>
+                <title>Not Found</title>
+            </Helmet>
+
             <Box
 
                 sx={{
@@ -20,7 +26,7 @@ const NotFound = () => {
 
 
             >
-               
+
                 <div className={notFoundStyle.oops_container}>
                     <div className={notFoundStyle.oops_circle}>
                         <div className={notFoundStyle.oops_inner_circle}>

@@ -5,9 +5,10 @@ import { signIn } from '../../api/requests';
 import Swal from 'sweetalert2'
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
+import { Helmet } from 'react-helmet';
 
 const AdminLogin = () => {
-    const [user, setUser] = useUserContext();
+  const [user, setUser] = useUserContext();
   const navigate = useNavigate();
   const handleSubmit = async (values, actions) => {
     const response = await signIn({
@@ -15,8 +16,8 @@ const AdminLogin = () => {
       password: values.password,
     });
     if (response.auth) {
-      localStorage.setItem('token',response.token);
-      localStorage.setItem('user',JSON.stringify(response.user));
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('user', JSON.stringify(response.user));
       setUser(response.user);
       console.log(response)
       Swal.fire({
@@ -38,50 +39,57 @@ const AdminLogin = () => {
     onSubmit: handleSubmit,
   });
   return (
-    <div
-    style={{
-      display: "flex",
-      height: "80vh",
-      width: "100%",
-      justifyContent: "center",
-      alignItems: "center",
-    }}
-  >
-    <form onSubmit={formik.handleSubmit}>
-      <div>
-        <TextField
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          name="username"
-          value={formik.values.username}
-          type="text"
-          id="outlined-basic"
-          label="Username"
-          variant="outlined"
-        />
-      </div>
-      <div>
-        <TextField
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          name="password"
-          value={formik.values.password}
-          type="password"
-          id="outlined-basic"
-          label="Password"
-          variant="outlined"
-        />
-      </div>
-      <Button
-        type="submit"
-        style={{ display: "block", margin: "30px auto" }}
-        variant="contained"
-        color="warning"
+    <>
+
+      <Helmet>
+        <title>Admin Login</title>
+      </Helmet>
+      <div
+        style={{
+          display: "flex",
+          height: "80vh",
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        Login
-      </Button>
-    </form>
-  </div>
+        <form onSubmit={formik.handleSubmit}>
+          <div>
+            <TextField
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              name="username"
+              value={formik.values.username}
+              type="text"
+              id="outlined-basic"
+              label="Username"
+              variant="outlined"
+            />
+          </div>
+          <div>
+            <TextField
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              name="password"
+              value={formik.values.password}
+              type="password"
+              id="outlined-basic"
+              label="Password"
+              variant="outlined"
+            />
+          </div>
+          <Button
+            type="submit"
+            style={{ display: "block", margin: "30px auto" }}
+            variant="contained"
+            color="warning"
+          >
+            Login
+          </Button>
+        </form>
+      </div>
+
+    </>
   )
 }
 

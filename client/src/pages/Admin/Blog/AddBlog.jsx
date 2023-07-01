@@ -4,6 +4,7 @@ import { blogSchema } from '../../../validation/BlogSchema'
 import { useFormik } from 'formik'
 import { Button, TextField } from '@mui/material'
 import Swal from "sweetalert2";
+import { Helmet } from 'react-helmet'
 
 const AddBlog = () => {
   const [selectedImages, setSelectedImages] = useState(null)
@@ -52,6 +53,10 @@ const AddBlog = () => {
   return (
     <>
 
+      <Helmet>
+        <title>Add Blog</title>
+      </Helmet>
+
       <form onSubmit={formik.handleSubmit}>
 
         <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='title' value={formik.values.title} id="outlined-basic" label="title" variant="outlined" />
@@ -87,7 +92,7 @@ const AddBlog = () => {
         {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
 
 
-        <Button variant='contained' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length>0}>Add</Button>
+        <Button variant='contained' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Add</Button>
       </form>
 
     </>

@@ -17,6 +17,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -33,6 +34,12 @@ const AdminFilms = () => {
 
   return (
     <>
+
+
+      <Helmet>
+        <title>Admin Films</title>
+      </Helmet>
+
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">Film Navbar</Navbar.Brand>
@@ -44,9 +51,9 @@ const AdminFilms = () => {
 
 
       <Grid container spacing={2}>
-            <Grid item xs={12} md={12}>
+        <Grid item xs={12} md={12}>
 
-              {/* <Card style={{backgroundColor:'#222', color:'white'}}>
+          {/* <Card style={{backgroundColor:'#222', color:'white'}}>
                 <Image src={film.image} wrapped ui={false} />
                 <Card.Content>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -129,81 +136,81 @@ const AdminFilms = () => {
                   </div>  
               </Card> */}
 
-              <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                    <TableCell><b>ID</b></TableCell>
-                      <TableCell><b>Image</b></TableCell>
-                      <TableCell align="center"><b>Title</b></TableCell>
-                      <TableCell align="center"><b>Release Date</b></TableCell>
-                      <TableCell align="center"><b>Quality</b></TableCell>
-                      <TableCell align="center"><b>Minute</b></TableCell>
-                      <TableCell align="center"><b>Imdb</b></TableCell>
-                      <TableCell align="center"><b>Category</b></TableCell>
-                      <TableCell align="center"><b>Delete</b></TableCell>
-                      <TableCell align="center"><b>Edit</b></TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {films.map((film) => (
-                      <TableRow
-                        key={film._id}
-                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                      >
-                           <TableCell align="center">{film._id}</TableCell>
-                        <TableCell component="th" scope="row">
-                          <img width={200} src={film.image} alt='logo'/>
-                          
-                        </TableCell>
-                        <TableCell align="center"><Link to={`/admin/film/${film._id}`}>{film.title}</Link></TableCell>
-                        <TableCell align="center">{film.releaseDate}</TableCell>
-                        <TableCell align="center">{film.quality}</TableCell>
-                        <TableCell align="center">{film.minute}</TableCell>
-                        <TableCell align="center">{film.imdb}</TableCell>
-                        <TableCell align="center">{film.category}</TableCell>
-                        <TableCell align="center"><Button variant='contained' color='success' onClick={()=>{
-                    Swal.fire({
-                      title: 'Are you sure?',
-                      text: "You won't be able to revert this!",
-                      icon: 'warning',
-                      showCancelButton: true,
-                      confirmButtonColor: '#3085d6',
-                      cancelButtonColor: '#d33',
-                      confirmButtonText: 'Yes, delete it!'
-                    }).then((result) => {
-                      if (result.isConfirmed) {
-                        deleteFilm(film._id).then((res)=>{
-                          Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                          )
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell><b>ID</b></TableCell>
+                  <TableCell><b>Image</b></TableCell>
+                  <TableCell align="center"><b>Title</b></TableCell>
+                  <TableCell align="center"><b>Release Date</b></TableCell>
+                  <TableCell align="center"><b>Quality</b></TableCell>
+                  <TableCell align="center"><b>Minute</b></TableCell>
+                  <TableCell align="center"><b>Imdb</b></TableCell>
+                  <TableCell align="center"><b>Category</b></TableCell>
+                  <TableCell align="center"><b>Delete</b></TableCell>
+                  <TableCell align="center"><b>Edit</b></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {films.map((film) => (
+                  <TableRow
+                    key={film._id}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
+                    <TableCell align="center">{film._id}</TableCell>
+                    <TableCell component="th" scope="row">
+                      <img width={200} src={film.image} alt='logo' />
 
-                        }) 
-                        setFilms(films.filter((x)=> x._id!==film._id))
-                        
-                      }
-                    })
-                  }}>
-                    Delete
-                   <DeleteIcon/>
-                  </Button>
-                  
-                  </TableCell>
-                        <TableCell align="center"> <Button variant='contained'>
-                  <Link style={{color:'white'}} to={`/admin/film/edit/${film._id}`}>Edit  <EditIcon/></Link>
-                  
-                  </Button>
-                  </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Grid>
-          
-      
+                    </TableCell>
+                    <TableCell align="center"><Link to={`/admin/film/${film._id}`}>{film.title}</Link></TableCell>
+                    <TableCell align="center">{film.releaseDate}</TableCell>
+                    <TableCell align="center">{film.quality}</TableCell>
+                    <TableCell align="center">{film.minute}</TableCell>
+                    <TableCell align="center">{film.imdb}</TableCell>
+                    <TableCell align="center">{film.category}</TableCell>
+                    <TableCell align="center"><Button variant='contained' color='success' onClick={() => {
+                      Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          deleteFilm(film._id).then((res) => {
+                            Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              'success'
+                            )
+
+                          })
+                          setFilms(films.filter((x) => x._id !== film._id))
+
+                        }
+                      })
+                    }}>
+                      Delete
+                      <DeleteIcon />
+                    </Button>
+
+                    </TableCell>
+                    <TableCell align="center"> <Button variant='contained'>
+                      <Link style={{ color: 'white' }} to={`/admin/film/edit/${film._id}`}>Edit  <EditIcon /></Link>
+
+                    </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+
+
 
       </Grid>
     </>

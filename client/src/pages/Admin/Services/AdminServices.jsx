@@ -20,19 +20,25 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Helmet } from 'react-helmet';
 
 
 const AdminServices = () => {
-    const [services, setServices] = useState([])
-    useEffect(() => {
-        getAllServices().then((res) => {
-            setServices(res.data)
-            console.log(res.data)
-        })
-    }, [services])
-    return (
-       <>
-       <Navbar bg="dark" variant="dark">
+  const [services, setServices] = useState([])
+  useEffect(() => {
+    getAllServices().then((res) => {
+      setServices(res.data)
+      console.log(res.data)
+    })
+  }, [services])
+  return (
+    <>
+
+      <Helmet>
+        <title>Admin Services</title>
+      </Helmet>
+
+      <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">Film Navbar</Navbar.Brand>
           <Nav className="me-auto">
@@ -62,57 +68,57 @@ const AdminServices = () => {
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      <img width={200} src={service.image} alt='logo'/>
-                      
+                      <img width={200} src={service.image} alt='logo' />
+
                     </TableCell>
                     <TableCell align="center">{service.title}</TableCell>
                     <TableCell align="center">{service.desc}</TableCell>
-                    <TableCell align="center"><Button variant='contained' color='success' onClick={()=>{
-                Swal.fire({
-                  title: 'Are you sure?',
-                  text: "You won't be able to revert this!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    deleteService(service._id).then((res)=>{
-                      Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                      )
+                    <TableCell align="center"><Button variant='contained' color='success' onClick={() => {
+                      Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          deleteService(service._id).then((res) => {
+                            Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              'success'
+                            )
 
-                    }) 
-                    setServices(services.filter((x)=> x._id!==service._id))
-                    
-                  }
-                })
-              }}>
-                Delete
-               <DeleteIcon/>
-              </Button>
-              
-              </TableCell>
+                          })
+                          setServices(services.filter((x) => x._id !== service._id))
+
+                        }
+                      })
+                    }}>
+                      Delete
+                      <DeleteIcon />
+                    </Button>
+
+                    </TableCell>
                     <TableCell align="center"> <Button variant='contained'>
-              <Link style={{color:'white'}} to={`/admin/service/edit/${service._id}`}>Edit<EditIcon/></Link>
-              
-              </Button>
-              </TableCell>
+                      <Link style={{ color: 'white' }} to={`/admin/service/edit/${service._id}`}>Edit<EditIcon /></Link>
+
+                    </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
         </Grid>
-      
-  
 
-  </Grid>
-       </>
-    )
+
+
+      </Grid>
+    </>
+  )
 }
 
 export default AdminServices
