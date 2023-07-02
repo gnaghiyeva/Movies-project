@@ -28,6 +28,7 @@ const AdminStreamings = () => {
       <Helmet>
         <title>Admin Streamings</title>
       </Helmet>
+      <h1 style={{fontFamily:'sans-serif', textAlign:'center'}}>Movie of the day</h1>
 
       <Grid container spacing={2}>
         <Grid item xs={12} md={12}>

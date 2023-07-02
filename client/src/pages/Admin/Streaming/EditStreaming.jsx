@@ -76,6 +76,8 @@ const EditStreaming = () => {
         <title>Edit Streaming</title>
       </Helmet>
 
+      <h1 style={{fontFamily:'sans-serif', textAlign:'center'}}>Editing the movie of the day</h1>
+
       {loading ? <div>loading</div> : <form onSubmit={formik.handleSubmit} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
 
         <TextField type='text' name='title' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.title} id="outlined-basic" label="title" variant="outlined" /><br />

@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
 import { Helmet } from 'react-helmet';
-
+import LoginIcon from '@mui/icons-material/Login';
 const AdminLogin = () => {
   const [user, setUser] = useUserContext();
   const navigate = useNavigate();
@@ -44,17 +44,16 @@ const AdminLogin = () => {
       <Helmet>
         <title>Admin Login</title>
       </Helmet>
-      <div
-        style={{
-          display: "flex",
-          height: "80vh",
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <form onSubmit={formik.handleSubmit}>
-          <div>
+        
+        <form onSubmit={formik.handleSubmit} >
+         
+          <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '20%', margin: '0 auto', paddingTop:'150px' }}> 
+          <article style={{textAlign:'center'}}>
+           <span style={{padding:'15px', backgroundColor:'rgb(156,39,176)', borderRadius:'54%'}}>
+          <LoginIcon style={{color:'white'}}/>
+          </span> 
+          <h1 >Sign in</h1>
+          </article> <br/> <br/>
             <TextField
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -65,8 +64,8 @@ const AdminLogin = () => {
               label="Username"
               variant="outlined"
             />
-          </div>
-          <div>
+          <br/>
+          
             <TextField
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -77,17 +76,19 @@ const AdminLogin = () => {
               label="Password"
               variant="outlined"
             />
-          </div>
+          <br/>
           <Button
             type="submit"
-            style={{ display: "block", margin: "30px auto" }}
             variant="contained"
-            color="warning"
+            
           >
-            Login
+            SIGN IN
           </Button>
+          </div>
+            <br/>
+          <div style={{textAlign:'center', color:'gray'}}>Copyright © Your Website 2023.</div>
         </form>
-      </div>
+      
 
     </>
   )

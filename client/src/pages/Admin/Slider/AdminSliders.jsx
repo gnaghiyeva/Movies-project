@@ -39,8 +39,8 @@ const AdminSliders = () => {
         </Container>
       </Navbar>
 
-
-      <Grid container spacing={2}>
+      <h1 style={{fontFamily:'sans-serif', textAlign:'center'}}>Film Sliders</h1>
+      <Grid container spacing={2} style={{padding:'0 40px'}}>
         {sliders && sliders.map((slider) => {
           return (
             <Grid item xs={6} md={3}>

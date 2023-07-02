@@ -57,24 +57,26 @@ const AddBlog = () => {
         <title>Add Blog</title>
       </Helmet>
 
+      <h1 style={{ fontFamily: 'sans-serif', textAlign: 'center' }}>Add Blog</h1>
       <form onSubmit={formik.handleSubmit}>
-
+        
+        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
         <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='title' value={formik.values.title} id="outlined-basic" label="title" variant="outlined" />
         {formik.errors.title && formik.touched.title && (<span>{formik.errors.title}</span>)}
-
-        <TextField type='date' onChange={formik.handleChange} onBlur={formik.handleBlur} name='releaseDate' value={formik.values.releaseDate} id="outlined-basic" label="releaseDate" variant="outlined" />
+        <br/>
+        <TextField type='date' onChange={formik.handleChange} onBlur={formik.handleBlur} name='releaseDate' value={formik.values.releaseDate} id="outlined-basic"  variant="outlined" />
         {/* {formik.errors.releaseDate && formik.touched.releaseDate && (<span>{formik.errors.releaseDate}</span>)} */}
-
+        <br/>
 
         <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='description' value={formik.values.description} id="outlined-basic" label="description" variant="outlined" />
         {formik.errors.description && formik.touched.description && (<span>{formik.errors.description}</span>)}
-
+        <br/>
         <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='author' value={formik.values.author} id="outlined-basic" label="author" variant="outlined" />
         {formik.errors.author && formik.touched.author && (<span>{formik.errors.author}</span>)}
-
+        <br/>
         <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='blockquote' value={formik.values.blockquote} id="outlined-basic" label="blockquote" variant="outlined" />
         {formik.errors.blockquote && formik.touched.blockquote && (<span>{formik.errors.blockquote}</span>)}
-
+        <br/>
 
         <Button ref={buttonRef} variant="contained" component="label" >
           Upload File
@@ -91,8 +93,9 @@ const AddBlog = () => {
         </Button>
         {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
 
-
-        <Button variant='contained' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Add</Button>
+        </div>
+        <br/>
+        <Button style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '10%', margin: '0 auto' }} variant='contained' color='error' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Add</Button>
       </form>
 
     </>

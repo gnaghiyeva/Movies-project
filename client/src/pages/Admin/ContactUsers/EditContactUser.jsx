@@ -75,8 +75,10 @@ const EditContactUser = () => {
       <title>Edit Streaming</title>
     </Helmet>
 
+    <h1 style={{ fontFamily: 'sans-serif', textAlign: 'center' }}>Editing User</h1>
     {loading ? <div>loading</div> : <form onSubmit={formik.handleSubmit} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
 
+      <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
       <TextField type='text' name='name' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.name} id="outlined-basic" label="name" variant="outlined" /><br />
       {formik.errors.name && formik.touched.name && (<span>{formik.errors.name}</span>)}
 
@@ -89,8 +91,8 @@ const EditContactUser = () => {
 
       <TextField type='text' name='opinions' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.opinions} id="outlined-basic" label="opinions" variant="outlined" /><br />
       {formik.errors.opinions && formik.touched.opinions && (<span>{formik.errors.opinions}</span>)}
-
-      <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Edit</Button>
+      </div>
+      <Button style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '10%', margin: '0 auto' }} type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Edit</Button>
     </form>}
   </>
   )

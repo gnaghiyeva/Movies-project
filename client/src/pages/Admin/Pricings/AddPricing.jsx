@@ -47,9 +47,13 @@ const AddPricing = () => {
             <Helmet>
                 <title>Add Pricing</title>
             </Helmet>
-            <form onSubmit={formik.handleSubmit}>
 
-                <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='name' value={formik.values.name} id="outlined-basic" label="name" variant="outlined" />
+            <h1 style={{fontFamily:'sans-serif', textAlign:'center'}}>Add Prices Sliders</h1>
+
+            <form onSubmit={formik.handleSubmit}>
+                    
+                <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>   
+                <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='name' value={formik.values.name} id="outlined-basic" label="name" variant="outlined" /> <br/>
                 {formik.errors.name && formik.touched.name && (<span>{formik.errors.name}</span>)}
 
                 <Button ref={buttonRef} variant="contained" component="label" >
@@ -66,9 +70,11 @@ const AddPricing = () => {
                     />
                 </Button>
                 {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
-
-
-                <Button variant='contained' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Add</Button>
+                
+                </div> 
+                <br/>
+ 
+                <Button style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '10%', margin: '0 auto' }} variant='contained' color='error' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Add</Button>
             </form>
         </>
     )

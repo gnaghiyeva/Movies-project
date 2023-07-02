@@ -70,12 +70,14 @@ const EditDetail = () => {
       <Helmet>
         <title>Edit Detail</title>
       </Helmet>
+      <h1 style={{ fontFamily: 'sans-serif', textAlign: 'center' }}>Editing Video</h1>
+
       {loading ? <div>loading...</div> : <form onSubmit={formik.handleSubmit}>
-        <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
 
           <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='desc' type='text' value={formik.values.desc} id="outlined-basic" label="desc" variant="outlined" />
           {formik.errors.desc && formik.touched.desc && (<span>{formik.errors.desc}</span>)}
-
+            <br/>
           {formik.errors.video && formik.touched.video && (<span>{formik.errors.video}</span>)}
 
           <Button ref={buttonRef} variant="contained" component="label" >
@@ -96,7 +98,7 @@ const EditDetail = () => {
 
 
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Edit</Button>
+          <Button style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '10%', margin: '0 auto' }} type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Edit</Button>
         </div>
       </form>}
     </>

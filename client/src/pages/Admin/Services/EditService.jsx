@@ -77,15 +77,16 @@ const EditService = () => {
       <Helmet>
         <title>Edit Service</title>
       </Helmet>
-
+      
+      <h1 style={{fontFamily:'sans-serif', textAlign:'center'}}>Editing Service</h1>
       {loading ? <div>loading...</div> : <form onSubmit={formik.handleSubmit}>
-        <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
 
           <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='title' type='text' value={formik.values.title} id="outlined-basic" label="title" variant="outlined" />
-          {formik.errors.title && formik.touched.title && (<span>{formik.errors.title}</span>)}
+          {formik.errors.title && formik.touched.title && (<span>{formik.errors.title}</span>)} <br/>
 
           <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='desc' type='text' value={formik.values.desc} id="outlined-basic" label="desc" variant="outlined" />
-          {formik.errors.desc && formik.touched.desc && (<span>{formik.errors.desc}</span>)}
+          {formik.errors.desc && formik.touched.desc && (<span>{formik.errors.desc}</span>)} <br/>
 
 
           {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
@@ -108,7 +109,7 @@ const EditService = () => {
 
 
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Edit</Button>
+          <Button style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '10%', margin: '0 auto' }} type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Edit</Button>
         </div>
       </form>}
     </>

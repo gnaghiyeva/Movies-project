@@ -49,12 +49,15 @@ const AddSlider = () => {
             <Helmet>
                 <title>Add Slider</title>
             </Helmet>
-            <form onSubmit={formik.handleSubmit}>
 
+            <h1 style={{fontFamily:'sans-serif', textAlign:'center'}}>Add Film Slider</h1>
+            <form onSubmit={formik.handleSubmit} >
+
+               <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
                 <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='name' value={formik.values.name} id="outlined-basic" label="name" variant="outlined" />
                 {formik.errors.name && formik.touched.name && (<span>{formik.errors.name}</span>)}
-
-                <Button ref={buttonRef} variant="contained" component="label" >
+                </div> <br/>
+                <Button style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '20%', margin: '0 auto' }}  ref={buttonRef} variant="contained" component="label" >
                     Upload File
 
                     <input value={formik.values.image}
@@ -66,11 +69,11 @@ const AddSlider = () => {
                         }}
                         onBlur={formik.handleBlur} name='image' type='file' accept="image/*" hidden
                     />
-                </Button>
+                </Button> <br/>
                 {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
 
 
-                <Button variant='contained' type='submit'>Add</Button>
+                <Button style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '10%', margin: '0 auto' }}   variant='contained' color='error' type='submit'>Add</Button>
             </form>
         </>
     )

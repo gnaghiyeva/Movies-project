@@ -25,10 +25,13 @@ const MainFilms = () => {
         const currentDate = new Date();
         return releaseDate > currentDate;
       });
-      setFilms(formattedFilms);
-      setAllFilms(formattedFilms); 
 
-      const uniqueCategories = [...new Set(formattedFilms.map((film) => film.category))];
+      const sortingFilms = formattedFilms.slice(-4).reverse();
+
+      setFilms(sortingFilms);
+      setAllFilms(sortingFilms); 
+
+      const uniqueCategories = [...new Set(sortingFilms.map((film) => film.category))];
       setCategories(uniqueCategories);
     });
   }, []);

@@ -87,27 +87,29 @@ const EditFilm = () => {
       <Helmet>
         <title>Edit Film</title>
       </Helmet>
+      <h1 style={{ fontFamily: 'sans-serif', textAlign: 'center' }}>Edit Film</h1>
+
       {loading ? <div>loading...</div> : <form onSubmit={formik.handleSubmit}>
-        <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
 
           <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='title' type='text' value={formik.values.title} id="outlined-basic" label="title" variant="outlined" />
           {formik.errors.title && formik.touched.title && (<span>{formik.errors.title}</span>)}
-
+           <br/>
           <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='releaseDate' type='date' value={formik.values.releaseDate} id="outlined-basic" label="releaseDate" variant="outlined" />
           {formik.errors.releaseDate && formik.touched.releaseDate && (<span>{formik.errors.releaseDate}</span>)}
-
+          <br/>
           <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='minute' type='number' value={formik.values.minute} id="outlined-basic" label="minute" variant="outlined" />
           {formik.errors.minute && formik.touched.minute && (<span>{formik.errors.minute}</span>)}
-
+          <br/>
           <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='quality' type='text' value={formik.values.quality} id="outlined-basic" label="quality" variant="outlined" />
           {formik.errors.quality && formik.touched.quality && (<span>{formik.errors.quality}</span>)}
-
+          <br/>
           <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='imdb' type='number' value={formik.values.imdb} id="outlined-basic" label="imdb" variant="outlined" />
           {formik.errors.imdb && formik.touched.imdb && (<span>{formik.errors.imdb}</span>)}
-
+          <br/>
           <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='category' type='text' value={formik.values.category} id="outlined-basic" label="category" variant="outlined" />
           {formik.errors.category && formik.touched.category && (<span>{formik.errors.category}</span>)}
-
+          <br/>
           {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
 
           <Button ref={buttonRef} variant="contained" component="label" >
@@ -128,7 +130,7 @@ const EditFilm = () => {
 
 
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Edit</Button>
+          <Button style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '10%', margin: '0 auto' }} type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Edit</Button>
         </div>
       </form>}
     </>

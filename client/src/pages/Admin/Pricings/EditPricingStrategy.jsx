@@ -68,25 +68,29 @@ const EditPricingStrategy = () => {
       <Helmet>
         <title>Edit Prices</title>
       </Helmet>
-      {loading ? <div>loading</div> : <form onSubmit={formik.handleSubmit} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
 
-        <TextField type='text' name='className' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.className} id="outlined-basic" label="className" variant="outlined" /><br />
-        {formik.errors.className && formik.touched.className && (<span>{formik.errors.className}</span>)}
+      <h1 style={{ fontFamily: 'sans-serif', textAlign: 'center' }}>Editing Prices</h1>
 
-        <TextField type='number' name='price' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.price} id="outlined-basic" label="price" variant="outlined" /><br />
-        {formik.errors.price && formik.touched.price && (<span>{formik.errors.price}</span>)}
+      {loading ? <div>loading</div> : <form onSubmit={formik.handleSubmit}>
 
-        <TextField type='text' name='videoQuality' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.videoQuality} id="outlined-basic" label="videoQuality" variant="outlined" /><br />
-        {formik.errors.videoQuality && formik.touched.videoQuality && (<span>{formik.errors.videoQuality}</span>)}
+        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
+          <TextField type='text' name='className' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.className} id="outlined-basic" label="className" variant="outlined" /><br />
+          {formik.errors.className && formik.touched.className && (<span>{formik.errors.className}</span>)}
 
-        <TextField type='text' name='resolution' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.resolution} id="outlined-basic" label="resolution" variant="outlined" /><br />
-        {formik.errors.resolution && formik.touched.resolution && (<span>{formik.errors.resolution}</span>)}
+          <TextField type='number' name='price' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.price} id="outlined-basic" label="price" variant="outlined" /><br />
+          {formik.errors.price && formik.touched.price && (<span>{formik.errors.price}</span>)}
 
-        <TextField type='number' name='screen' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.screen} id="outlined-basic" label="screen" variant="outlined" /><br />
-        {formik.errors.screen && formik.touched.screen && (<span>{formik.errors.screen}</span>)}
+          <TextField type='text' name='videoQuality' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.videoQuality} id="outlined-basic" label="videoQuality" variant="outlined" /><br />
+          {formik.errors.videoQuality && formik.touched.videoQuality && (<span>{formik.errors.videoQuality}</span>)}
 
+          <TextField type='text' name='resolution' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.resolution} id="outlined-basic" label="resolution" variant="outlined" /><br />
+          {formik.errors.resolution && formik.touched.resolution && (<span>{formik.errors.resolution}</span>)}
 
-        <Button disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0} type='submit' variant='contained' color='success'>Edit</Button>
+          <TextField type='number' name='screen' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.screen} id="outlined-basic" label="screen" variant="outlined" /><br />
+          {formik.errors.screen && formik.touched.screen && (<span>{formik.errors.screen}</span>)}
+        </div>
+
+        <Button style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '10%', margin: '0 auto' }} disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0} type='submit' variant='contained' color='success'>Edit</Button>
       </form>}
     </>
   )

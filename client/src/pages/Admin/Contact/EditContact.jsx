@@ -60,25 +60,27 @@ const EditContact = () => {
       <Helmet>
         <title>Edit Contact</title>
       </Helmet>
-      {loading ? <div>loading</div> : <form onSubmit={formik.handleSubmit} style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
+      {loading ? <div>loading</div> : <form onSubmit={formik.handleSubmit} >
 
-        <TextField type='text' name='desc' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.desc} id="outlined-basic" label="desc" variant="outlined" /><br />
-        {formik.errors.desc && formik.touched.desc && (<span>{formik.errors.desc}</span>)}
+      <h1 style={{ fontFamily: 'sans-serif', textAlign: 'center' }}>Editing Contact</h1>
+        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
+          <TextField type='text' name='desc' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.desc} id="outlined-basic" label="desc" variant="outlined" /><br />
+          {formik.errors.desc && formik.touched.desc && (<span>{formik.errors.desc}</span>)}
 
-        <TextField type='text' name='address' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.address} id="outlined-basic" label="address" variant="outlined" /><br />
-        {formik.errors.address && formik.touched.address && (<span>{formik.errors.address}</span>)}
+          <TextField type='text' name='address' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.address} id="outlined-basic" label="address" variant="outlined" /><br />
+          {formik.errors.address && formik.touched.address && (<span>{formik.errors.address}</span>)}
 
-        <TextField type='email' name='email' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email} id="outlined-basic" label="email" variant="outlined" /><br />
-        {formik.errors.email && formik.touched.email && (<span>{formik.errors.email}</span>)}
+          <TextField type='email' name='email' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email} id="outlined-basic" label="email" variant="outlined" /><br />
+          {formik.errors.email && formik.touched.email && (<span>{formik.errors.email}</span>)}
 
-        <TextField type='text' name='phone' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.phone} id="outlined-basic" label="phone" variant="outlined" /><br />
-        {formik.errors.phone && formik.touched.phone && (<span>{formik.errors.phone}</span>)}
+          <TextField type='text' name='phone' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.phone} id="outlined-basic" label="phone" variant="outlined" /><br />
+          {formik.errors.phone && formik.touched.phone && (<span>{formik.errors.phone}</span>)}
 
-        <TextField type='text' name='location' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.location} id="outlined-basic" label="location" variant="outlined" /><br />
-        {formik.errors.location && formik.touched.location && (<span>{formik.errors.location}</span>)}
+          <TextField type='text' name='location' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.location} id="outlined-basic" label="location" variant="outlined" /><br />
+          {formik.errors.location && formik.touched.location && (<span>{formik.errors.location}</span>)}
+        </div>
 
-
-        <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0} >Edit</Button>
+        <Button style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '10%', margin: '0 auto' }} type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0} >Edit</Button>
       </form>}
     </>
   )

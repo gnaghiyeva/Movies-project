@@ -83,24 +83,27 @@ const EditBlog = () => {
       <Helmet>
         <title>Edit Blog</title>
       </Helmet>
+
+      <h1 style={{ fontFamily: 'sans-serif', textAlign: 'center' }}>Editing Blog</h1>
+
       {loading ? <div>loading...</div> : (
         <form onSubmit={formik.handleSubmit}>
-          <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
             <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='title' type='text' value={formik.values.title} id="outlined-basic" label="title" variant="outlined" />
             {formik.errors.title && formik.touched.title && (<span>{formik.errors.title}</span>)}
-
+            <br/>
             <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='releaseDate' type='date' value={formik.values.releaseDate} id="outlined-basic" label="releaseDate" variant="outlined" />
             {formik.errors.releaseDate && formik.touched.releaseDate && (<span>{formik.errors.releaseDate}</span>)}
-
+            <br/>
             <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='description' type='text' value={formik.values.description} id="outlined-basic" label="description" variant="outlined" />
             {formik.errors.description && formik.touched.description && (<span>{formik.errors.description}</span>)}
-
+            <br/>
             <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='blockquote' type='text' value={formik.values.blockquote} id="outlined-basic" label="blockquote" variant="outlined" />
             {formik.errors.blockquote && formik.touched.blockquote && (<span>{formik.errors.blockquote}</span>)}
-
+            <br/>
             <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='author' type='text' value={formik.values.author} id="outlined-basic" label="author" variant="outlined" />
             {formik.errors.author && formik.touched.author && (<span>{formik.errors.author}</span>)}
-
+            <br/>
             {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
 
             <Button ref={buttonRef} variant="contained" component="label">
@@ -119,9 +122,9 @@ const EditBlog = () => {
 
             {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
           </div>
-
+          <br/>
           <div style={{ textAlign: 'center', marginTop: '20px' }}>
-            <Button type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Edit</Button>
+            <Button style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '10%', margin: '0 auto' }} type='submit' variant='contained' color='success' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Edit</Button>
           </div>
         </form>
       )}

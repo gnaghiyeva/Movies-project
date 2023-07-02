@@ -77,9 +77,10 @@ const EditSlider = () => {
         <title>Edit Slider</title>
       </Helmet>
 
+      <h1 style={{fontFamily:'sans-serif', textAlign:'center'}}>Editing Film Slider</h1>
       {loading ? <div>loading...</div> : <form onSubmit={formik.handleSubmit}>
         <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='name' type='text' value={formik.values.name} id="outlined-basic" label="name" variant="outlined" />
+          <TextField onChange={formik.handleChange} onBlur={formik.handleBlur} name='name' type='text' value={formik.values.name} id="outlined-basic" label="name" variant="outlined" /> <br/>
           {formik.errors.name && formik.touched.name && (<span>{formik.errors.name}</span>)}
 
           {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}

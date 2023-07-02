@@ -53,14 +53,18 @@ const AddService = () => {
             <Helmet>
                 <title>Add Service</title>
             </Helmet>
-            <form onSubmit={formik.handleSubmit}>
 
+            <h1 style={{fontFamily:'sans-serif', textAlign:'center'}}>Add Services</h1>
+
+            <form onSubmit={formik.handleSubmit} >
+            
+               <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '60%', margin: '0 auto' }}>
                 <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='title' value={formik.values.title} id="outlined-basic" label="title" variant="outlined" />
                 {formik.errors.title && formik.touched.title && (<span>{formik.errors.title}</span>)}
-
-                <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='desc' value={formik.values.desc} id="outlined-basic" label="desc" variant="outlined" />
+                <br/>
+                <TextField type='text' onChange={formik.handleChange} onBlur={formik.handleBlur} name='desc' value={formik.values.desc} id="outlined-basic" label="description" variant="outlined" />
                 {formik.errors.desc && formik.touched.desc && (<span>{formik.errors.desc}</span>)}
-
+                <br/>                
 
                 <Button ref={buttonRef} variant="contained" component="label" >
                     Upload File
@@ -76,9 +80,9 @@ const AddService = () => {
                     />
                 </Button>
                 {formik.errors.image && formik.touched.image && (<span>{formik.errors.image}</span>)}
-
-
-                <Button variant='contained' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Add</Button>
+                </div>
+                <br/>
+                <Button style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', width: '10%', margin: '0 auto' }}  variant='contained' color='error' type='submit' disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}>Add</Button>
             </form>
         </>
     )

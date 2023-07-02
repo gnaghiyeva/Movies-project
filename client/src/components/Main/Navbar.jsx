@@ -174,7 +174,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <Drawer anchor="right" open={openDrawer} onClose={toggleDrawer}>
+      <Drawer  anchor="right" open={openDrawer} onClose={toggleDrawer}>
         <div
           role="presentation"
           onClick={toggleDrawer}
