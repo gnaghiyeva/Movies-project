@@ -413,3 +413,54 @@ export const editBlog = (id,updatedBlog)=>{
 export const postBlog = (newBlog)=>{
     axios.post(`${BASE_URL}/blogs`,newBlog)
 }
+
+
+//contact-users
+export const getAllContactUsers = async(name)=>{
+    let URL
+    let globalData
+
+    if(!name){
+        URL = BASE_URL+ "/contactUsers"
+    }
+    else{
+        URL = BASE_URL + "/contactUsers/"+`?name=${name}`
+    }
+
+    await axios.get(URL).then((res)=>{
+        globalData=res.data
+    })
+
+    return globalData
+}
+
+
+export const getContactUserById = async(id)=>{
+    let globalData;
+    await axios.get(`${BASE_URL}/contactUsers/${id}`).then((res)=>{
+        globalData=res.data
+        })
+        return globalData
+}
+
+export const editContactUser = (id,updatedContactUser)=>{
+   axios.put(`${BASE_URL}/contactUsers/${id}`,updatedContactUser)
+}
+
+export const deleteContactUser = async(id)=>{
+    let deletedContactUser
+     await axios.delete(`${BASE_URL}/contactUsers/${id}`).then((res)=>{
+        deletedContactUser=res.data
+     })
+     return deletedContactUser
+ }
+
+export const postContactUser = (newContactUser) => {
+  axios.post(`${BASE_URL}/contactUsers`, newContactUser)
+    .then((response) => {
+      console.log('Data gönderildi:', response.data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+};

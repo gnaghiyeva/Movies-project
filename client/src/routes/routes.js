@@ -5,6 +5,8 @@ import AdminBlog from "../pages/Admin/Blog/AdminBlog";
 import EditBlog from "../pages/Admin/Blog/EditBlog";
 import AdminContact from "../pages/Admin/Contact/AdminContact";
 import EditContact from "../pages/Admin/Contact/EditContact";
+import ContactUsers from "../pages/Admin/ContactUsers/ContactUsers";
+import EditContactUser from "../pages/Admin/ContactUsers/EditContactUser";
 import Dashboard from "../pages/Admin/Dashboard/Dashboard";
 import AddDetailVideo from "../pages/Admin/Detail/AddDetailVideo";
 import AdminDetail from "../pages/Admin/Detail/AdminDetail";
@@ -188,6 +190,14 @@ export const ROUTES = [
             {
                 path:'add-blog',
                 element:<AddBlog/>
+            },
+            {
+                path:'contactUsers',
+                element:<ContactUsers/>
+            },
+            {
+                path:'contactUser/edit/:id',
+                element:<EditContactUser/>
             },
             {
                 path:'*',
