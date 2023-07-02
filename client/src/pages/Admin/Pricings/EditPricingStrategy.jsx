@@ -38,7 +38,7 @@ const EditPricingStrategy = () => {
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: `film edited successfully`,
+      title: `price edited successfully`,
       showConfirmButton: false,
       timer: 1500,
     });

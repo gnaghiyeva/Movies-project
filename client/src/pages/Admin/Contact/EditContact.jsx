@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import { contactSchema } from '../../../validation/ContactSchema';
 import { Button, TextField } from '@mui/material';
 import { Helmet } from 'react-helmet';
+import Swal from "sweetalert2";
 
 const EditContact = () => {
   const [contacts, setContacts] = useContact();
@@ -34,6 +35,13 @@ const EditContact = () => {
   const handleEdit = async (values, actions) => {
     setContacts(values)
     await editContact(id, values)
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: `contact section edited successfully`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
     navigate('/admin/contact')
     actions.resetForm()
   }

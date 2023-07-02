@@ -19,7 +19,7 @@ const AddSlider = () => {
         Swal.fire({
             position: "top-end",
             icon: "success",
-            title: `slider successfully`,
+            title: `slider added successfully`,
             showConfirmButton: false,
             timer: 1500,
         });

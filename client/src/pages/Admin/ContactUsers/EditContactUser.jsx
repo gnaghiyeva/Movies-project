@@ -26,7 +26,7 @@ const EditContactUser = () => {
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: `Streaming edited successfully`,
+      title: `user edited successfully`,
       showConfirmButton: false,
       timer: 1500,
     });
