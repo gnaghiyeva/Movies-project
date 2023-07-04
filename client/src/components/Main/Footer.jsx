@@ -127,8 +127,8 @@ const Footer = () => {
                                 <span style={{borderBottom:'4px solid yellow', width:'15%', borderRadius:'2px'}}></span>
                             </li> <br/>
                             <div style={{ display: 'flex', gap: '15px' }}>
-                                <li><Link to='https://www.facebook.com/ColorsTV/'><FacebookIcon style={{ color: 'rgb(59,89,152)', fontSize: '45px' }} /></Link></li>
-                                <li><Link to='https://twitter.com/ColorsTV?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'><TwitterIcon style={{ color: 'rgb(85,172,238)', fontSize: '45px' }} /></Link></li>
+                                <li><Link to='https://www.facebook.com/profile.php?viewas=100000686899395&id=100094180459231'><FacebookIcon style={{ color: 'rgb(59,89,152)', fontSize: '45px' }} /></Link></li>
+                                <li><Link to='https://twitter.com/MovFlix_studio'><TwitterIcon style={{ color: 'rgb(85,172,238)', fontSize: '45px' }} /></Link></li>
                                 <li><Link to='https://in.pinterest.com/ColorsTv/'><PinterestIcon style={{ color: 'rgb(215,30,24)', fontSize: '45px' }} /></Link></li>
                                 <li><Link to='https://www.linkedin.com/company/colorstv'><LinkedInIcon style={{ color: 'rgb(21,101,192)', fontSize: '45px' }} /></Link></li>
                             </div>
