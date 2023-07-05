@@ -36,8 +36,8 @@ const AdminPricings = () => {
         </Container>
       </Navbar>
 
-
-      <Grid container spacing={2}>
+      <h1 style={{fontFamily:'sans-serif', textAlign:'center'}}>Price Sliders</h1>
+      <Grid container spacing={2} style={{padding:'0 40px'}}>
         {pricingSliders && pricingSliders.map((pricingSlider) => {
           return (
             <Grid item xs={6} md={3}>
