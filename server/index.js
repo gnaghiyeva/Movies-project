@@ -17,6 +17,7 @@ const upcomingVideo_router = require('./routes/upcomingVideo.routes');
 const contact_router = require('./routes/contact.routes');
 const blog_router = require('./routes/blog.routes');
 const contactUser_router = require('./routes/contactUsers.routes');
+const upcomingSong_router = require('./routes/upcomingSongs.routes');
 
 
 dotenv.config();
@@ -45,6 +46,7 @@ app.use('/api', user_router)
 app.use('/api/sliders', slider_router)
 app.use('/images', express.static('images'))
 app.use('/videos', express.static('videos'))
+app.use('/songs', express.static('songs'))
 
 app.use('/api/categories', category_router)
 
@@ -65,6 +67,9 @@ app.use('/api/contact', contact_router)
 app.use('/api/blogs', blog_router)
 
 app.use('/api/contactUsers',contactUser_router)
+
+app.use('/api/upcomingsongs', upcomingSong_router)
+
 
 PORT = process.env.PORT
 app.listen(PORT, () => {

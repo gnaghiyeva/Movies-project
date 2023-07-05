@@ -8,9 +8,11 @@ import EditContact from "../pages/Admin/Contact/EditContact";
 import ContactUsers from "../pages/Admin/ContactUsers/ContactUsers";
 import EditContactUser from "../pages/Admin/ContactUsers/EditContactUser";
 import Dashboard from "../pages/Admin/Dashboard/Dashboard";
+import AddDetailSong from "../pages/Admin/Detail/AddDetailSong";
 import AddDetailVideo from "../pages/Admin/Detail/AddDetailVideo";
 import AdminDetail from "../pages/Admin/Detail/AdminDetail";
 import EditDetail from "../pages/Admin/Detail/EditDetail";
+import EditSong from "../pages/Admin/Detail/EditSong";
 import AddFilm from "../pages/Admin/Films/AddFilm";
 import AdminFilms from "../pages/Admin/Films/AdminFilms";
 import EditFilm from "../pages/Admin/Films/EditFilm";
@@ -203,8 +205,14 @@ export const ROUTES = [
                 path:'*',
                 element:<NotFound/>
             },
-            
-
+            {
+                path:'add-song',
+                element:<AddDetailSong/>
+            },
+            {
+                path:'songDetail/edit/:id',
+                element:<EditSong/>
+            },
 
 
 

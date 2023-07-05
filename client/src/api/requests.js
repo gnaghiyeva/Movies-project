@@ -464,3 +464,50 @@ export const postContactUser = (newContactUser) => {
       console.error('Error:', error);
     });
 };
+
+
+
+
+//upcomingSongs
+export const getAllUpcomingSongs = async(name)=>{
+    let URL
+    let globalData
+
+    if(!name){
+        URL = BASE_URL+ "/upcomingsongs"
+    }
+    else{
+        URL = BASE_URL + "/upcomingsongs/"+`?name=${name}`
+    }
+
+    await axios.get(URL).then((res)=>{
+        globalData=res.data
+    })
+
+    return globalData
+}
+
+
+export const getUpcomingSongById = async(id)=>{
+    let globalData;
+    await axios.get(`${BASE_URL}/upcomingsongs/${id}`).then((res)=>{
+        globalData=res.data
+        })
+        return globalData
+}
+
+export const deleteUpcomingSong = async(id)=>{
+   let deletedUpcomingSong
+    await axios.delete(`${BASE_URL}/upcomingsongs/${id}`).then((res)=>{
+        deletedUpcomingSong=res.data
+    })
+    return deletedUpcomingSong
+}
+
+export const editUpcomingSong = (id,updatedUpcomingSong)=>{
+   axios.put(`${BASE_URL}/upcomingsongs/${id}`,updatedUpcomingSong)
+}
+
+export const postUpcomingSong = (newUpcomingSong)=>{
+    axios.post(`${BASE_URL}/upcomingsongs`,newUpcomingSong)
+}

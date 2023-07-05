@@ -14,6 +14,7 @@ import { DetailContextProvider } from './context/DetailContext';
 import { ContactProvider } from './context/ContactContext';
 import { BlogContextProviver } from './context/BlogContext';
 import { ContactUserContextProvider } from './context/ContactUserContext';
+import { SongContextProvider } from './context/SongContext';
 function App() {
   const routes = createBrowserRouter(ROUTES)
   return (
@@ -30,9 +31,11 @@ function App() {
                       <ContactProvider>
                         <BlogContextProviver>
                           <ContactUserContextProvider>
-                            <RouterProvider router={routes}>
+                            <SongContextProvider>
+                              <RouterProvider router={routes}>
 
-                            </RouterProvider>
+                              </RouterProvider>
+                            </SongContextProvider>
                           </ContactUserContextProvider>
                         </BlogContextProviver>
                       </ContactProvider>

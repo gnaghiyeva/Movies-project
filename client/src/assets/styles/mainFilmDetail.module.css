@@ -1,7 +1,7 @@
 .detail{
     background-image: url('../../assets/images/movie_details_bg.jpg');
     background-color: #222;
-    padding: 60px 50px ;
+    padding: 150px 50px ;
     width: 100%;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .detail_article_h2{
-    color: white 
+    color: yellow 
 }
 
 .video{
@@ -30,6 +30,11 @@
   }
 .image{
     height: 450px;
+}
+
+.audio{
+background-color: #222;
+    
 }
 
 @media (max-width:686px){

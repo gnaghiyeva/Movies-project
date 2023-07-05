@@ -1,4 +1,4 @@
-import { Button, Grid } from '@mui/material'
+import {Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import serviceStyle from '../../../../assets/styles/services.module.css'
 import { getAllServices } from '../../../../api/requests'
@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import serviceLogo from '../../../../assets/images/services_img.jpg'
 import RemoveIcon from '@mui/icons-material/Remove';
 import downloadimage from '../../../../assets/images/services_img.jpg'
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
 const MainServices = () => {
     const [services, setServices] = useState([])
