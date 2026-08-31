@@ -17,17 +17,6 @@ async function run() {
 
   const db = mongoose.connection.db;
   const backupCollection = db.collection(BACKUP_COLLECTION);
-
-  // Eyni migration ikinci dəfə səhvən işləməsin
-  const existingBackup = await backupCollection.countDocuments();
-
-  if (existingBackup > 0) {
-    console.log("Migration backup already exists.");
-    console.log("Migration stopped.");
-    await mongoose.disconnect();
-    return;
-  }
-
   const collections = await db.listCollections().toArray();
 
   let totalUpdated = 0;
@@ -40,7 +29,6 @@ async function run() {
 
     for await (const doc of cursor) {
       const updates = {};
-      const backups = [];
 
       for (const field of FIELDS) {
         const value = doc[field];
@@ -51,36 +39,27 @@ async function run() {
         ) {
           const newValue = value.replace(OLD_BASE, "");
 
-          updates[field] = newValue;
-
-          backups.push({
+          await backupCollection.insertOne({
             collection: name,
             documentId: doc._id,
-            field,
+            field: field,
             oldValue: value,
             newValue: newValue,
             migratedAt: new Date()
           });
+
+          updates[field] = newValue;
+          totalUpdated++;
         }
       }
 
-      if (backups.length > 0) {
-        // Köhnə URL-i əvvəl backup et
-        await backupCollection.insertMany(backups);
-
-        // Sonra dəyiş
+      if (Object.keys(updates).length > 0) {
         await collection.updateOne(
           { _id: doc._id },
           { $set: updates }
         );
 
-        totalUpdated += backups.length;
-
-        console.log(
-          name,
-          doc._id.toString(),
-          "updated"
-        );
+        console.log(name, doc._id.toString(), "updated");
       }
     }
   }
