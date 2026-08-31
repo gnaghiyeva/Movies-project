@@ -6,45 +6,88 @@ const connectionString = process.env.DB_CONNECTION.replace(
 );
 
 const OLD_BASE = "http://localhost:9595";
+const FIELDS = ["image", "video", "song"];
+
+const BACKUP_COLLECTION = "media_migration_backup_20260831";
 
 async function run() {
   await mongoose.connect(connectionString);
 
   console.log("MongoDB connected");
-  console.log("DRY RUN - database deyisdirilmir\n");
 
-  const collections =
-    await mongoose.connection.db.listCollections().toArray();
+  const db = mongoose.connection.db;
+  const backupCollection = db.collection(BACKUP_COLLECTION);
 
-  let total = 0;
+  // Eyni migration ikinci dəfə səhvən işləməsin
+  const existingBackup = await backupCollection.countDocuments();
+
+  if (existingBackup > 0) {
+    console.log("Migration backup already exists.");
+    console.log("Migration stopped.");
+    await mongoose.disconnect();
+    return;
+  }
+
+  const collections = await db.listCollections().toArray();
+
+  let totalUpdated = 0;
 
   for (const { name } of collections) {
-    const collection = mongoose.connection.db.collection(name);
-    const docs = await collection.find({}).toArray();
+    if (name === BACKUP_COLLECTION) continue;
 
-    for (const doc of docs) {
-      for (const field of ["image", "video", "song"]) {
+    const collection = db.collection(name);
+    const cursor = collection.find({});
+
+    for await (const doc of cursor) {
+      const updates = {};
+      const backups = [];
+
+      for (const field of FIELDS) {
         const value = doc[field];
 
         if (
           typeof value === "string" &&
           value.startsWith(OLD_BASE + "/")
         ) {
-          console.log(
-            name,
-            doc._id.toString(),
-            field,
-            "=>",
-            value.replace(OLD_BASE, "")
-          );
+          const newValue = value.replace(OLD_BASE, "");
 
-          total++;
+          updates[field] = newValue;
+
+          backups.push({
+            collection: name,
+            documentId: doc._id,
+            field,
+            oldValue: value,
+            newValue: newValue,
+            migratedAt: new Date()
+          });
         }
+      }
+
+      if (backups.length > 0) {
+        // Köhnə URL-i əvvəl backup et
+        await backupCollection.insertMany(backups);
+
+        // Sonra dəyiş
+        await collection.updateOne(
+          { _id: doc._id },
+          { $set: updates }
+        );
+
+        totalUpdated += backups.length;
+
+        console.log(
+          name,
+          doc._id.toString(),
+          "updated"
+        );
       }
     }
   }
 
-  console.log("\nOld URL count:", total);
+  console.log("\nMigration completed.");
+  console.log("Updated URLs:", totalUpdated);
+  console.log("Backup collection:", BACKUP_COLLECTION);
 
   await mongoose.disconnect();
 }
