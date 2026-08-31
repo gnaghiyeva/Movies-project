@@ -1,0 +1,45 @@
+name: Deploy Movflix
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: movflix-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Deploy to Oracle Server
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+
+        run: |
+          mkdir -p ~/.ssh
+
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+          ssh-keyscan -H "$SERVER_HOST" >> ~/.ssh/known_hosts
+
+          ssh -i ~/.ssh/deploy_key "$SERVER_USER@$SERVER_HOST" << 'EOF'
+            set -e
+
+            cd ~/Movies-project
+
+            git fetch origin main
+            git reset --hard origin/main
+
+            docker compose up -d --build
+
+            docker image prune -f
+
+            docker compose ps
+          EOF
