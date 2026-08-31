@@ -115,7 +115,7 @@ const Navbar = () => {
   return (
     <>
       <nav style={{ backgroundColor: '#222',padding:'20px 0' }} className={navStyle.nav}>
-        <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+        <div className={navStyle.nav_container}>
           <div>
             <img width={200} src={MovieLogo} alt='movieLogo' />
           </div>
@@ -140,19 +140,19 @@ const Navbar = () => {
             </List>
           </div>
 
-          <div>
-            <Search>
+          <div className={navStyle.search_wrapper}>
+            <Search style={{ width: '100%' }}>
               <SearchIconWrapper>
                 <SearchIcon style={{ color: 'white' }} />
               </SearchIconWrapper>
               <StyledInputBase
                 onChange={(e)=>handleChange(e)}
-                style={{ color: 'white' }}
+                style={{ color: 'white', width: '100%' }}
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
               />
                {films.length > 0 && (
-                <div style={{ backgroundColor: 'white', position: 'absolute', top: '100%', left: 0, width: '100%' }}>
+                <div style={{ backgroundColor: 'white', position: 'absolute', top: '100%', left: 0, width: '100%', zIndex: 1000 }}>
                   <List style={{backgroundColor:'rgb(67,67,67)'}}>
                     {films.map((film) => (
                       <ListItem  key={film.id}>
