@@ -10,7 +10,8 @@ const UpcomingSongsController =  {
         const newUpcomingSong = new UpcomingSongModel({
             name: req.body.name,
             filmID: req.body.filmID,
-            song: url + '/songs/' + req.file.filename,
+            // song: url + '/songs/' + req.file.filename,
+            song: '/songs/' + req.file.filename,
 
         });
         await newUpcomingSong.save();
@@ -37,25 +38,44 @@ const UpcomingSongsController =  {
     },
 
      //from me
-     delete: async (req, res) => {
-        const id = req.params.id;
-        const name = req.body.name;
-        const deletedUpcomingSong = await UpcomingSongModel.findByIdAndDelete(id);
-        const idx = deletedUpcomingSong.song.indexOf("songs/")
-        const songName = deletedUpcomingSong.song.substr(idx)
+    //  delete: async (req, res) => {
+    //     const id = req.params.id;
+    //     const name = req.body.name;
+    //     const deletedUpcomingSong = await UpcomingSongModel.findByIdAndDelete(id);
+    //     const idx = deletedUpcomingSong.song.indexOf("songs/")
+    //     const songName = deletedUpcomingSong.song.substr(idx)
 
-        fs.unlinkSync('./' + songName)
-        if (deletedUpcomingSong === undefined) {
-            res.status(404).send("UpcomingSong not found");
-        } else {
-            res.status(203).send({
-                data: deletedUpcomingSong,
-                message: "UpcomingSong deleted successfully",
-            });
-        }
+    //     fs.unlinkSync('./' + songName)
+    //     if (deletedUpcomingSong === undefined) {
+    //         res.status(404).send("UpcomingSong not found");
+    //     } else {
+    //         res.status(203).send({
+    //             data: deletedUpcomingSong,
+    //             message: "UpcomingSong deleted successfully",
+    //         });
+    //     }
 
-    },
+    // },
+    delete: async (req, res) => {
+    const id = req.params.id;
 
+    const deletedUpcomingSong =
+        await UpcomingSongModel.findByIdAndDelete(id);
+
+    if (!deletedUpcomingSong) {
+        return res.status(404).send("UpcomingSong not found");
+    }
+
+    const idx = deletedUpcomingSong.song.indexOf("songs/");
+    const songName = deletedUpcomingSong.song.slice(idx);
+
+    fs.unlinkSync('./' + songName);
+
+    res.status(203).send({
+        data: deletedUpcomingSong,
+        message: "UpcomingSong deleted successfully",
+    });
+},
 
     
     edit: async (req, res) => {
@@ -74,7 +94,8 @@ const UpcomingSongsController =  {
         if (req.file) {
           fs.unlinkSync('./' + songName);
           const updatedUrl = req.protocol + '://' + req.get('host');
-          updatedUpcomingSong.song = updatedUrl + '/songs/' + req.file.filename;
+        //   updatedUpcomingSong.song = updatedUrl + '/songs/' + req.file.filename;
+          updatedUpcomingSong.song = '/songs/' + req.file.filename;
         }
       
         

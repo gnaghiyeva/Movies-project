@@ -10,7 +10,8 @@ const sliderController = {
      const url = req.protocol + '://' + req.get('host');
      const newSlider = new SliderModel({
       name: req.body.name,
-      image:  url + '/images/'+ req.file.filename,
+      // image:  url + '/images/'+ req.file.filename,
+       image: '/images/' + req.file.filename,
     });
     await newSlider.save();
     res.status(201).send("created");
@@ -178,7 +179,8 @@ const sliderController = {
       fs.unlinkSync('./' + imageName);
   
       const updatedUrl = req.protocol + '://' + req.get('host');
-      updatedSlider.image = updatedUrl + '/images/' + req.file.filename;
+      // updatedSlider.image = updatedUrl + '/images/' + req.file.filename;
+       updatedSlider.image = '/images/' + req.file.filename;
     }
   
     updatedSlider.name = name;

@@ -10,7 +10,8 @@ const BlogController = {
         const newBlog = new BlogModel({
             title: req.body.title,
             description: req.body.description,
-            image: url + '/images/' + req.file.filename,
+            // image: url + '/images/' + req.file.filename,
+             image: '/images/' + req.file.filename,
             author: req.body.author,
             blockquote: req.body.blockquote,
             releaseDate: req.body.releaseDate
@@ -103,7 +104,8 @@ const BlogController = {
             fs.unlinkSync(path.join(imagesDIR, imageName));
 
             const updatedUrl = req.protocol + '://' + req.get('host');
-            updatedBlog.image = updatedUrl + '/images/' + req.file.filename;
+            // updatedBlog.image = updatedUrl + '/images/' + req.file.filename;
+              updatedBlog.image = '/images/' + req.file.filename;
         }
 
         updatedBlog.title = title;

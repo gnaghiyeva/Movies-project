@@ -10,7 +10,8 @@ const ServiceController = {
         const newService= new ServiceModel({
             title: req.body.title,
             desc:req.body.desc,
-            image: url + '/images/' + req.file.filename,
+            // image: url + '/images/' + req.file.filename,
+            image: '/images/' + req.file.filename,
             
         });
         await newService.save();
@@ -85,7 +86,8 @@ const ServiceController = {
           fs.unlinkSync('./' + imageName);
       
           const updatedUrl = req.protocol + '://' + req.get('host');
-          updatedService.image = updatedUrl + '/images/' + req.file.filename;
+        //   updatedService.image = updatedUrl + '/images/' + req.file.filename;
+        updatedService.image = '/images/' + req.file.filename;
         }
       
         

@@ -11,7 +11,8 @@ const UpcomingVideosController = {
         const newUpcomingVideo = new UpcomingVideoModel({
             desc: req.body.desc,
             filmID: req.body.filmID,
-            video: url + '/videos/' + req.file.filename,
+            // video: url + '/videos/' + req.file.filename,
+            video: '/videos/' + req.file.filename,
 
         });
         await newUpcomingVideo.save();
@@ -42,24 +43,44 @@ const UpcomingVideosController = {
 
 
     //from me
+    // delete: async (req, res) => {
+    //     const id = req.params.id;
+    //     const desc = req.body.desc;
+    //     const deletedUpcomingVideo = await UpcomingVideoModel.findByIdAndDelete(id);
+    //     const idx = deletedUpcomingVideo.video.indexOf("videos/")
+    //     const videoName = deletedUpcomingVideo.video.substr(idx)
+
+    //     fs.unlinkSync('./' + videoName)
+    //     if (deletedUpcomingVideo === undefined) {
+    //         res.status(404).send("UpcomingVideo not found");
+    //     } else {
+    //         res.status(203).send({
+    //             data: deletedUpcomingVideo,
+    //             message: "UpcomingVideo deleted successfully",
+    //         });
+    //     }
+
+    // },
     delete: async (req, res) => {
-        const id = req.params.id;
-        const desc = req.body.desc;
-        const deletedUpcomingVideo = await UpcomingVideoModel.findByIdAndDelete(id);
-        const idx = deletedUpcomingVideo.video.indexOf("videos/")
-        const videoName = deletedUpcomingVideo.video.substr(idx)
+    const id = req.params.id;
 
-        fs.unlinkSync('./' + videoName)
-        if (deletedUpcomingVideo === undefined) {
-            res.status(404).send("UpcomingVideo not found");
-        } else {
-            res.status(203).send({
-                data: deletedUpcomingVideo,
-                message: "UpcomingVideo deleted successfully",
-            });
-        }
+    const deletedUpcomingVideo =
+        await UpcomingVideoModel.findByIdAndDelete(id);
 
-    },
+    if (!deletedUpcomingVideo) {
+        return res.status(404).send("UpcomingVideo not found");
+    }
+
+    const idx = deletedUpcomingVideo.video.indexOf("videos/");
+    const videoName = deletedUpcomingVideo.video.slice(idx);
+
+    fs.unlinkSync('./' + videoName);
+
+    res.status(203).send({
+        data: deletedUpcomingVideo,
+        message: "UpcomingVideo deleted successfully",
+    });
+},
 
 
 
@@ -79,7 +100,8 @@ const UpcomingVideosController = {
         if (req.file) {
           fs.unlinkSync('./' + videoName);
           const updatedUrl = req.protocol + '://' + req.get('host');
-          updatedUpcomingVideo.video = updatedUrl + '/videos/' + req.file.filename;
+        //   updatedUpcomingVideo.video = updatedUrl + '/videos/' + req.file.filename;
+        updatedUpcomingVideo.video = '/videos/' + req.file.filename;
         }
       
         

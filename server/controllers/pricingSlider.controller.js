@@ -10,7 +10,8 @@ const pricingSliderController = {
      const url = req.protocol + '://' + req.get('host');
      const newPricingSlider = new pricingSliderModel({
       name: req.body.name,
-      image:  url + '/images/'+ req.file.filename,
+      // image:  url + '/images/'+ req.file.filename,
+      image:  '/images/'+ req.file.filename,
     });
     await newPricingSlider.save();
     res.status(201).send("created");
@@ -86,7 +87,8 @@ const pricingSliderController = {
       fs.unlinkSync('./' + imageName);
   
       const updatedUrl = req.protocol + '://' + req.get('host');
-      updatedPricingSlider.image = updatedUrl + '/images/' + req.file.filename;
+      // updatedPricingSlider.image = updatedUrl + '/images/' + req.file.filename;
+        updatedPricingSlider.image = '/images/' + req.file.filename;
     }
   
     

@@ -11,7 +11,8 @@ const FilmController = {
         const url = req.protocol + '://' + req.get('host');
         const newFilm = new FilmModel({
             title: req.body.title,
-            image: url + '/images/' + req.file.filename,
+            // image: url + '/images/' + req.file.filename,
+            image: '/images/' + req.file.filename,
             releaseDate: req.body.releaseDate,
             minute: req.body.minute,
             imdb: req.body.imdb,
@@ -176,7 +177,8 @@ const FilmController = {
           fs.unlinkSync('./' + imageName);
       
           const updatedUrl = req.protocol + '://' + req.get('host');
-          updatedFilm.image = updatedUrl + '/images/' + req.file.filename;
+        //   updatedFilm.image = updatedUrl + '/images/' + req.file.filename;
+        updatedFilm.image = '/images/' + req.file.filename;
         }
       
      
