@@ -1,0 +1,24 @@
+services:
+  backend:
+    build:
+      context: ./server
+    container_name: movies-backend
+    env_file:
+      - ./server/.env
+    restart: unless-stopped
+    expose:
+      - "9595"
+    volumes:
+      - ./server/images:/app/images
+      - ./server/videos:/app/videos
+      - ./server/songs:/app/songs
+
+  frontend:
+    build:
+      context: ./client
+    container_name: movies-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
